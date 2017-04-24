@@ -1,6 +1,6 @@
 <?php
 
-namespace whiterook6\Babypool;
+namespace Babypool;
 
 use Illuminate\Database\Eloquent\Model;
 

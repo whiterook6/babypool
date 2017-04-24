@@ -11,8 +11,7 @@ class Bid extends Model {
 	protected $fillable = [
 		'pirate_id',
 		'amount',
-		'date',
-		'gender'
+		'date'
 	];
 
 	public function pirate(){

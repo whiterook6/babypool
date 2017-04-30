@@ -16,7 +16,7 @@ class CreateBidsTable extends Migration {
             $table->integer('bidder_id')->unsigned();
             $table->date('date');
             $table->integer('value')->unsigned();
-            $table->tinyint('confirmed')->default(0);
+            $table->boolean('confirmed')->default(false);
             $table->timestamps();
 
             $table->foreign('bidder_id')->references('id')->on('bidders');

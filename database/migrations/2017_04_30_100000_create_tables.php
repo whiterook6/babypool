@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePiratesTable extends Migration {
+class CreateTables extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up(){
-        Schema::create('pirates', function (Blueprint $table) {
+        Schema::create('bidders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email');
             $table->timestamps();
@@ -22,13 +22,13 @@ class CreatePiratesTable extends Migration {
 
         Schema::create('bids', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('pirate_id')->unsigned();
+            $table->integer('bidder_id')->unsigned();
             $table->date('date');
             $table->integer('value')->unsigned();
             $table->tinyint('confirmed')->default(0);
             $table->timestamps();
 
-            $table->foreign('pirate_id')->references('id')->on('pirates');
+            $table->foreign('bidder_id')->references('id')->on('bidders');
             $table->index(['date', 'value']);
             $table->index('created_at');
         });
@@ -41,6 +41,6 @@ class CreatePiratesTable extends Migration {
      */
     public function down(){
         Schema::dropIfExists('bids');
-        Schema::dropIfExists('pirates');
+        Schema::dropIfExists('bidders');
     }
 }

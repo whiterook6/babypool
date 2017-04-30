@@ -9,7 +9,7 @@ class Bid extends Model {
 
 	protected $table = 'bids';
 	protected $fillable = [
-		'pirate_id',
+		'bidder_id',
 		'amount',
 		'date'
 	];

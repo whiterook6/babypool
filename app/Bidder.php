@@ -4,9 +4,9 @@ namespace Babypool;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pirate extends Model {
+class Bidder extends Model {
 
-	protected $table = 'pirates';
+	protected $table = 'bidders';
 	protected $fillable = [
 		'email'
 	];

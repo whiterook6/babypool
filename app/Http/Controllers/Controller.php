@@ -25,7 +25,7 @@ class Controller extends BaseController {
         $validator = Validator::make($decrypted, $rules);
 
         if ($validator->fails()){
-
+            throw new ValidationExcaption();
         }
 
         return $decrypted;

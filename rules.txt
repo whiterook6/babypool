@@ -1,0 +1,45 @@
+baby pool rules
+
+- Pirates can bid on day/gender combinations
+- 10$ starting bids, 5$ increments
+- Once a time slot arrives, that slot is locked in and no more bets can be placed
+- Once labor begins, at the discretion of the mom and pop, all betting ceases
+- The pirate with the correct or closest day/gender combination wins half of the pot, and the rest goes to the happy couple
+
+Required features:
+
+Admin is able to
+- shut down bidding
+- lock certain days/genders
+- set winning day/gender
+- manually set minimum bids and increments on demand
+
+Pirates can
+- place a bid on an open day
+- view current and all bids for a certain day
+- view all bids and current total per pirate or for all
+- see empty / unallocated day/gender
+- calculate how much he/she is in for, and how much he/she will win if they put in another bid
+- view scheduled delivery date
+
+Models:
+
+- Pirate
+	- Name
+	- Bids
+
+- Bid
+	- Date
+	- Value
+
+
+Routes:
+/calendar
+/calendar/{date}
+/calendar/{date}/bid
+/bidders
+/bidders/{email}
+/bids
+/bids/{bid}
+/bids/{bid}/confirm
+/bids/total

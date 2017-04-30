@@ -9,12 +9,13 @@ class Bid extends Model {
 
 	protected $table = 'bids';
 	protected $fillable = [
-		'bidder_id',
 		'amount',
-		'date'
+		'bidder_id',
+		'confirmed',
+		'date',
 	];
 
 	public function pirate(){
-		return $this->belongsTo(Pirate::class);
+		return $this->belongsTo(Bidder::class);
 	}
 }

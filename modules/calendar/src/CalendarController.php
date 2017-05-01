@@ -16,15 +16,17 @@ class CalendarController extends Controller {
 			if (!$bids_by_week || empty($bids_by_week)){
 				$bids_by_week = [
 					$week => [
-						$day => [ $bid->toArray() ]
+						$day_of_week => [ $bid->toArray() ]
 					]
 				];
 			} else if (!array_key_exists($week, $bids_by_week)){
 				$bids_by_week[$week] = [
-					$day => [ $bid->toArray() ]
+					$day_of_week => [ $bid->toArray() ]
 				];
+			} else if (!array_key_exists($day_of_week, $bids_by_week[$week])){
+				$bids_by_week[$week][$day_of_week] = [$bid->toArray()];
 			} else {
-				array_push($bids_by_week[$week][$day], $bid->toArray());
+				array_push($bids_by_week[$week][$day_of_week], $bid->toArray());
 			}
 		});
 

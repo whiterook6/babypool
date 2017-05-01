@@ -31,6 +31,8 @@ class CalendarController extends Controller {
 			return $carry;
 		});
 
+		\Log::info($bids);
+
 		return view('calendar', [
 			'bids' => $bids
 		]);

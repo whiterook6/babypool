@@ -27,23 +27,25 @@
 						</tr>
 					</thead>
 					<tbody>
-@foreach($bids as $week)
+@for($week = 0; $week < 54; $week++)
 						<tr>
 							<td>April</td>
-	@foreach($week as $day)
+	@for($dow = 0; $dow < 7; $dow++)
 							<td class="date available">
-		@foreach($day as $bid)
+		if (!empty($bids[$week][$dow]))
+			@foreach ($bids[$week][$dow] as $bid)
 								<div class="bid">
-			@if ($bid['confirmed'])
+				@if ($bid['confirmed'])
 									<span class="fa fa-check"></span>
-			@else
+				@else
 									<span class="fa fa-clock-o"></span>
-			@endif
+				@endif
 									<span class="email">{{$bid['email']}}</span>
 									<span class="value">{{$bid['amount']}}</span>
 									<span class="date">{{$bid['date']}}</span>
 								</div>
-		@endforeach
+			@endforeach
+		@endif
 							</td>
 	@endforeach
 						</tr>

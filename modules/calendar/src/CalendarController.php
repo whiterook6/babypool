@@ -30,8 +30,6 @@ class CalendarController extends Controller {
 			}
 		});
 
-		\Log::info($bids_by_week);
-
 		return view('calendar', [
 			'bids' => $bids_by_week
 		]);

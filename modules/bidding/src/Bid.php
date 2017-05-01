@@ -22,9 +22,10 @@ class Bid extends Model {
 	}
 
 	public function scopeCalendar(Builder $query){
-		$query->addSelect(DB::raw(
-			'weekofyear(date) as week',
-			'dayofweek(date) as day'
-		))->orderBy('date', 'asc');
+		$query->select([
+			'bids.*',
+			DB::raw('weekofyear(date) as week'),
+			DB::raw('dayofweek(date) as day')
+		])->orderBy('date', 'asc');
 	}
 }

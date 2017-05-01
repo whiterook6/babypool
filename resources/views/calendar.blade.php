@@ -32,7 +32,7 @@
 							<td>April</td>
 	@for($dow = 0; $dow < 7; $dow++)
 							<td class="date available">
-		if (!empty($bids[$week][$dow]))
+		@if (!empty($bids[$week][$dow]))
 			@foreach ($bids[$week][$dow] as $bid)
 								<div class="bid">
 				@if ($bid['confirmed'])
@@ -47,9 +47,9 @@
 			@endforeach
 		@endif
 							</td>
-	@endforeach
+	@endfor
 						</tr>
-@endforeach
+@endfor
 					</tbody>
 				</table>
 			</div>

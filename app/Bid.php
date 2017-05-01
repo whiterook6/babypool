@@ -15,7 +15,7 @@ class Bid extends Model {
 		'date',
 	];
 
-	public function pirate(){
+	public function bidder(){
 		return $this->belongsTo(Bidder::class);
 	}
 }

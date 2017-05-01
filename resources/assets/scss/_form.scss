@@ -1,0 +1,46 @@
+.form {
+	.label, .input, .button {
+		display: block;
+		font-family: 'Source Sans Pro', Helvetica, sans-serif;
+		border: 0;
+		outline: 0;
+		font-size: 1rem;
+		padding: 6px 12px;
+	}
+
+	.label {
+		font-weight: 600;
+	}
+
+	.input {
+		border: 2px solid $theme-accent;
+		border-radius: 0.25rem;
+		width: 100%;
+
+		&:focus {
+			@include glow($theme-accent);
+		}
+	}
+
+	.button {
+		text-align: center;
+
+		background-color: $theme-accent;
+		color: white;
+		cursor: pointer;
+		border-radius: 0.25rem;
+		border: 2px solid $theme-accent;
+
+		&.block {
+			width: 100%;
+			display: block;
+		}
+
+		&:hover {
+			@include glow($theme-accent);
+			color: $theme-accent;
+			background-color: white;
+		}
+	}
+
+}

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600');
+
+html {
+	font-family: 'Source Sans Pro', Helvetica, sans-serif;
+}
+
+.wrapper {
+	font-weight: 300;
+
+	h1, h2, h3, h4 {
+		font-weight: 300;
+		line-height: 1.5;
+		letter-spacing: -0.025em;
+		margin-bottom: .5rem;
+	}
+
+	h1 {
+		font-size: 2rem;
+
+		small {
+			font-size: 1.5rem;
+		}
+	}
+
+	h2 {
+		font-size: 1.5rem;
+
+		small {
+			font-size: 1.25rem;
+		}
+	}
+}
+
+.calendar {
+	thead .td {
+		font-weight: 600;
+	}
+
+	td.month {
+		font-weight: 600;
+	}
+}

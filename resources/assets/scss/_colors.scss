@@ -1,0 +1,59 @@
+$font-gray: #636363;
+$font-disabled: #CCC;
+
+$theme-dark: #00A388;
+$theme-mid: #79BD8F;
+$theme-bright: #FFFF9D;
+$theme-accent: #FF3D7F;
+$theme-disabled: #EEE;
+
+@mixin glow($color){
+	-webkit-box-shadow: 0px 0px 4px 0px $color;
+	-moz-box-shadow: 0px 0px 4px 0px $color;
+	box-shadow: 0px 0px 4px 0px $color;
+}
+
+body {
+	background: linear-gradient(135deg, $theme-bright 15%, $theme-dark 85%) fixed;
+}
+
+.container {
+	border-radius: 0.25rem;
+	background-color: white;
+
+	h1 {
+		color: $font-gray;
+
+		&:after {
+			background: linear-gradient(90deg, $theme-bright 15%, $theme-dark 85%);
+		}
+	}
+}
+
+.link {
+	color: $theme-accent;
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+.calendar {	
+	td {
+		border-radius: 0.25rem;
+
+		&.disabled{
+			background-color: $theme-disabled;
+			color: $font-disabled;
+			cursor: not-allowed;
+		}
+
+		&.available:hover {
+			background-color: $theme-accent;
+			color: white;
+			cursor: pointer;
+		}
+
+		&.highlight {
+			border: 2px solid $theme-accent;
+		}
+	}
+}

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PirateController extends Controller {
 
 	public function calendar(Request $request){
-		return response('calendar', 200);
+		return view('calendar');
 	}
 
 	public function date($date, Request $request){

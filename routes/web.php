@@ -1,28 +1,22 @@
 <?php
 
-namespace Babypool;
-
-use Babypool\CalendarController;
-use Babypool\BidderController;
-use Babypool\BidController;
-
-Route::get('/', CalendarController::class . '@calendar');
+Route::get('/', '\Babypool\CalendarController@calendar');
 
 Route::group(['prefix' => 'calendar'], function () {
-	Route::get( '/',       CalendarController::class . '@calendar');
-	Route::get( '/{date}', CalendarController::class . '@date');
-	Route::post('/{date}', CalendarController::class . '@place_bid');
+	Route::get( '/',       '\Babypool\CalendarController@calendar');
+	Route::get( '/{date}', '\Babypool\CalendarController@date');
+	Route::post('/{date}', '\Babypool\CalendarController@place_bid');
 });
 
 Route::group(['prefix' => 'bidders'], function(){
-	Route::get('/',        BidderController::class . '@bidders');
-	Route::get('/me',      BidderController::class . '@me');
-	Route::get('/{email}', BidderController::class . '@bidder');
+	Route::get('/',        '\Babypool\BidderController@bidders');
+	Route::get('/me',      '\Babypool\BidderController@me');
+	Route::get('/{email}', '\Babypool\BidderController@bidder');
 });
 
 Route::group(['prefix' => 'bids'], function(){
-	Route::get('/',              BidController::class . '@bids');
-	Route::get('/total',         BidController::class . '@total');
-	Route::get('/{bid}',         BidController::class . '@bid');
-	Route::any('/{bid}/confirm', BidController::class . '@confirm');
+	Route::get('/',              '\Babypool\BidController@bids');
+	Route::get('/total',         '\Babypool\BidController@total');
+	Route::get('/{bid}',         '\Babypool\BidController@bid');
+	Route::any('/{bid}/confirm', '\Babypool\BidController@confirm');
 });

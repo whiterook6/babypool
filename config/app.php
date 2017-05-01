@@ -177,6 +177,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Babypool services
+         */
+        Babypool\Providers\BiddingServiceProvider::class,
+        Babypool\Providers\CalendarServiceProvider::class,
+
     ],
 
     /*

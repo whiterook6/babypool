@@ -1,8 +1,10 @@
 <?php
 
-namespace whiterook6\Babypool;
+namespace Babypool;
 
-use whiterook6\Babypool\Pirate;
+use Babypool\Bidder;
+use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Bid extends Model {
@@ -17,5 +19,12 @@ class Bid extends Model {
 
 	public function bidder(){
 		return $this->belongsTo(Bidder::class);
+	}
+
+	public function scopeCalendar(Builder $query){
+		$query->addSelect(DB::raw(
+			'weekofyear(date) as week',
+			'dayofweek(date) as day'
+		))->orderBy('date', 'asc');
 	}
 }

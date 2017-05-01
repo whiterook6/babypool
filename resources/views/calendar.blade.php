@@ -27,38 +27,27 @@
 						</tr>
 					</thead>
 					<tbody>
+@foreach($bids as $week)
 						<tr>
-							<td class="month">April</td>
-							<td class="date disabled">
-								<span class="day">26</span>
-								<span class="fa fa-check"></span>
-								<span class="value">$55</span>
-							</td>
-							<td class="date disabled">
-								<span class="day">27</span>
-							</td>
-							<td class="date disabled">
-								<span class="day">28</span>
-							</td>
-							<td class="date disabled">
-								<span class="day">29</span>
-							</td>
-							<td class="date disabled">
-								<span class="day">30</span>
-								<span class="fa fa-check"></span>
-								<span class="value">$55</span>
-							</td>
-							<td class="date disabled">
-								<span class="day">31</span>
-								<span class="fa fa-check"></span>
-								<span class="value">$55</span>
-							</td>
+							<td>April</td>
+	@foreach($week as $day)
 							<td class="date available">
-								<span class="day">1</span>
-								<span class="fa fa-check"></span>
-								<span class="value">$55</span>
+		@foreach($day as $bid)
+								<div class="bid">
+			@if ($bid['confirmed'])
+									<span class="fa fa-check"></span>
+			@else
+									<span class="fa fa-clock-o"></span>
+			@endif
+									<span class="email">{{$bid['email']}}</span>
+									<span class="value">{{$bid['amount']}}</span>
+									<span class="date">{{$bid['date']}}</span>
+								</div>
+		@endforeach
 							</td>
+	@endforeach
 						</tr>
+@endforeach
 					</tbody>
 				</table>
 			</div>

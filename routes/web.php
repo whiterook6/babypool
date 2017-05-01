@@ -17,7 +17,7 @@ use Babypool\BidController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('calendar');
 });
 
 Route::group(['prefix' => 'calendar'], function () {

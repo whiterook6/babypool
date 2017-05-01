@@ -5,7 +5,7 @@ namespace Babypool;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PirateController extends Controller {
+class CalendarController extends Controller {
 
 	public function calendar(Request $request){
 		return view('calendar');

@@ -8,33 +8,30 @@ use Illuminate\Http\Request;
 class CalendarController extends Controller {
 
 	public function calendar(Request $request){
-		$bids_by_week = Bid::calendar()->all();
-
-		$bids = $bids_by_week->reduce(function($carry, $bid){
+		$bids_by_week = [];
+		Bid::calendar()->each(function($bid) use ($bids_by_week){
 			$week = $bid->week;
 			$day_of_week = $bid->day;
 
-			if (!$carry || empty($carry)){
-				$carry = [
+			if (!$bids_by_week || empty($bids_by_week)){
+				$bids_by_week = [
 					$week => [
 						$day => [ $bid->toArray() ]
 					]
 				];
-			} else if (!array_key_exists($week, $carry)){
-				$carry[$week] = [
+			} else if (!array_key_exists($week, $bids_by_week)){
+				$bids_by_week[$week] = [
 					$day => [ $bid->toArray() ]
 				];
 			} else {
-				array_push($carry[$week][$day], $bid->toArray());
+				array_push($bids_by_week[$week][$day], $bid->toArray());
 			}
-
-			return $carry;
 		});
 
-		\Log::info($bids);
+		\Log::info($bids_by_week);
 
 		return view('calendar', [
-			'bids' => $bids
+			'bids' => $bids_by_week
 		]);
 	}
 

@@ -21,11 +21,12 @@ class CreateBidsTable extends Migration {
                 'confirmed',
                 'paid',
                 'cancelled'
-            ]);
+            ])->default('unconfirmed');
             $table->timestamps();
 
             $table->foreign('bidder_id')->references('id')->on('bidders');
             $table->index(['date', 'value']);
+            $table->index('status');
             $table->index('created_at');
         });
     }

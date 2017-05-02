@@ -38,7 +38,8 @@ class CalendarViewComposer {
 			}
 
 			array_push($calendar[$week]['days'], [
-				'day_of_month' => intval($current_date->format('d'))
+				'day_of_month' => intval($current_date->format('d')),
+				'date' => $current_date->format('Y-m-d'),
 			]);
 			$new_month = $current_date->format('F');
 

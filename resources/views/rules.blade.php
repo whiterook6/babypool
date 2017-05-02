@@ -17,7 +17,7 @@
 					<div class="col-6">
 						<h2>About Prizes</h2>
 						<ul>
-							<li>The total prize is the sum of all Successful Bids.</li>
+							<li>The total prize is the sum of all successful bids.</li>
 							<li>The bidder who has the highest bid on the date-of-birth wins half of the total prize.</li>
 							<li>The other half is delivered as a gift to the parents.</li>
 						</ul>
@@ -25,12 +25,7 @@
 						<h2>About Bidding</h2>
 						<ul>
 							<li>All bids are public.</li>
-						</ul>
-
-						You cannot bid at all if
-						<ul>
-							<li>the mother has gone into labor; or</li>
-							<li>you have at least one outstanding unconfirmed bid.</li>
+							<li>You cannot bid at all if the mother has gone into labor.</li>
 						</ul>
 
 						You cannot bid for a given date if
@@ -42,9 +37,9 @@
 
 						<h2>About Paying</h2>
 						<ul>
-							<li>Only the highest bid for a day counts ("Successful Bids")</li>
-							<li>If you have the highest bid for a day when that day begins, you owe that bid.</li>
-							<li>If you have the highest bid for a day when the pool is locked, you owe that bid.</li>
+							<li>Only the highest confirmed bid for a day counts ("Successful Bid")</li>
+							<li>If you have the successful bid for a day when that day begins, you owe that bid.</li>
+							<li>If you have the successful bid for a day when the pool is locked, you owe that bid.</li>
 						</ul>
 					</div>
 					<div class="col-6">

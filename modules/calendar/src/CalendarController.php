@@ -12,6 +12,7 @@ class CalendarController extends Controller {
 		$bounds = [];
 
 		Bid::calendar()
+			->active()
 			->orderBy('value', 'desc')
 			->each(function($bid, $key) use (&$bids_by_week, &$bounds){
 				$year = $bid->year;

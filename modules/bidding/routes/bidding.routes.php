@@ -15,3 +15,7 @@ Route::group(['prefix' => 'bids'], function(){
 	Route::get('/{bid}',         BidController::class . '@bid');
 	Route::any('/{bid}/confirm', BidController::class . '@confirm');
 });
+
+Route::any('/rules', function(){
+	return view('rules');
+});

@@ -16,7 +16,7 @@
 				<table class="calendar">
 					<thead>
 						<tr>
-							<th>
+							<th></th>
 							<th>Sunday</th>
 							<th>Monday</th>
 							<th>Tuesday</th>

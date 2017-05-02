@@ -16,11 +16,17 @@ class CreateBidsTable extends Migration {
             $table->integer('bidder_id')->unsigned();
             $table->date('date');
             $table->integer('value')->unsigned();
-            $table->boolean('confirmed')->default(false);
+            $table->enum('status', [
+                'unconfirmed',
+                'confirmed',
+                'paid',
+                'cancelled'
+            ]);
             $table->timestamps();
 
             $table->foreign('bidder_id')->references('id')->on('bidders');
             $table->index(['date', 'value']);
+            $table->index('status');
             $table->index('created_at');
         });
     }

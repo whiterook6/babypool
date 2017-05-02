@@ -13,7 +13,7 @@ class Bid extends Model {
 	protected $fillable = [
 		'amount',
 		'bidder_id',
-		'confirmed',
+		'status',
 		'date',
 	];
 
@@ -22,7 +22,7 @@ class Bid extends Model {
 	}
 
 	public function scopeCalendar(Builder $query){
-		$query->select([
+		return $query->select([
 			'bids.*',
 			DB::raw('weekofyear(date) as week'),
 			DB::raw('dayofweek(date) as dow'),
@@ -30,5 +30,9 @@ class Bid extends Model {
 			DB::raw('dayofmonth(date) as dom'),
 			DB::raw('year(date) as year'),
 		])->orderBy('date', 'asc');
+	}
+
+	public function scopeActive(Builder $query){
+		return $query->where('status', '!=', 'cancelled');
 	}
 }

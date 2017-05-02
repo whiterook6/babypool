@@ -25,7 +25,9 @@ class Bid extends Model {
 		$query->select([
 			'bids.*',
 			DB::raw('weekofyear(date) as week'),
-			DB::raw('dayofweek(date) as day')
+			DB::raw('dayofweek(date) as dow'),
+			DB::raw('month(date) as month'),
+			DB::raw('dayofmonth(date) as dom'),
 		])->orderBy('date', 'asc');
 	}
 }

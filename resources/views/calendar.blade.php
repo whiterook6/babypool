@@ -12,7 +12,9 @@
 						$50
 					</div>
 				</h1>
-
+				{!! $bounds !!}
+				{!! $bids !!}
+<!-- 
 				<table class="calendar">
 					<thead>
 						<tr>
@@ -51,6 +53,6 @@
 						</tr>
 @endfor
 					</tbody>
-				</table>
+				</table> -->
 			</div>
 @endsection

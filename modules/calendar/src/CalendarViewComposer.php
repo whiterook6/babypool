@@ -2,10 +2,11 @@
 
 namespace Babypool;
 
+use DateTime;
 use Illuminate\View\View;
 
 class CalendarViewComposer {
-	public function Composer(View $view){
+	public function compose(View $view){
 		$start_year = intval(env('EARLIEST_BID_YEAR', 2017));
 		$start_week = intval(env('EARLIEST_BID_WEEK', 0));
 
@@ -36,7 +37,10 @@ class CalendarViewComposer {
 				];
 			}
 
-			array_push($calendar[$week]['days'], intval($current_date->format('d')));
+			array_push($calendar[$week]['days'], [
+				'day_of_month' => intval($current_date->format('d'))
+			]);
+			$new_month = $current_date->format('F');
 
 			$current_date->add($interval);
 			$day_of_week ++;
@@ -46,7 +50,6 @@ class CalendarViewComposer {
 				$day_of_week = 0;
 
 				// do we print the label?
-				$new_month = $current_date->format('F');
 				if ($new_month != $previous_month || $week == $start_week){
 					$calendar[$week]['label'] = $new_month;
 					$previous_month = $new_month;

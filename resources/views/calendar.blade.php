@@ -35,7 +35,7 @@
 	@endisset
 							</td>
 	@foreach ($week['days'] as $day)
-							<td class="available">{{$day}}</td>
+							<td class="available">{{$day['day_of_month']}}</td>
 	@endforeach
 						</tr>
 @endforeach

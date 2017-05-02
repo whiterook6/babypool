@@ -2,8 +2,8 @@
 
 namespace Babypool\Providers;
 
-use DateTime;
 use Babypool\CalendarController;
+use Babypool\CalendarViewComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 

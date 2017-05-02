@@ -9,28 +9,14 @@ class CalendarController extends Controller {
 
 	public function calendar(Request $request){
 		$bids_by_week = [];
-		$bounds = [];
 
 		Bid::calendar()
 			->active()
 			->orderBy('value', 'desc')
-			->each(function($bid, $key) use (&$bids_by_week, &$bounds){
+			->each(function($bid, $key) use (&$bids_by_week){
 				$year = $bid->year;
 				$week = $bid->week;
 				$day_of_week = $bid->day;
-
-				// calculate bounds for when to draw a calendar
-				if ($key == 0){
-					$bounds['min_date'] = [
-						'year' => $bid->year,
-						'week' => $bid->week,
-					];
-				}
-
-				$bounds['max_date'] = [
-					'year' => $bid->year,
-					'week' => $bid->week,
-				];
 
 				// order the bids by week, then by day of week
 				if (!array_key_exists($week, $bids_by_week)){
@@ -45,8 +31,7 @@ class CalendarController extends Controller {
 			});
 
 		return view('calendar', [
-			'bids' => $bids_by_week,
-			'bounds' => $bounds,
+			'bids' => $bids_by_week
 		]);
 	}
 

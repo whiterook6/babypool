@@ -27,7 +27,7 @@
 						</tr>
 					</thead>
 					<tbody>
-@for($week = $bounds['min_date']['week']; $week <= $bounds['max_date']['week']; $week++)
+@for($week = $min_week; $week <= $max_week; $week++)
 						<tr>
 							<td></td>
 	 <!-- mysql DOW goes from [1-7] -->

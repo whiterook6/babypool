@@ -16,7 +16,7 @@
 				<table class="calendar">
 					<thead>
 						<tr>
-							<th></th>
+							<th>
 							<th>Sunday</th>
 							<th>Monday</th>
 							<th>Tuesday</th>
@@ -27,30 +27,18 @@
 						</tr>
 					</thead>
 					<tbody>
-@for($week = $min_week; $week <= $max_week; $week++)
+@foreach ($calendar as $week)
 						<tr>
-							<td></td>
-	 <!-- mysql DOW goes from [1-7] -->
-	 @for($dow = 1; $dow < 8; $dow++)
-							<td class="date available">
-		@if (!empty($bids[$week][$dow]))
-			@foreach ($bids[$week][$dow] as $bid)
-								<div class="bid">
-				@if ($bid['confirmed'])
-									<span class="fa fa-check"></span>
-				@else
-									<span class="fa fa-clock-o"></span>
-				@endif
-									<span class="email">{{$bid['email']}}</span>
-									<span class="value">{{$bid['amount']}}</span>
-									<span class="date">{{$bid['date']}}</span>
-								</div>
-			@endforeach
-		@endif
+							<td class="month">
+	@isset ($week['label'])
+		{{ $week['label'] }}
+	@endisset
 							</td>
-	@endfor
+	@foreach ($week['days'] as $day)
+							<td class="available">{{$day}}</td>
+	@endforeach
 						</tr>
-@endfor
+@endforeach
 					</tbody>
 				</table>
 			</div>

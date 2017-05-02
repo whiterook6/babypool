@@ -11,3 +11,5 @@ npm-debug.log
 .env
 yarn.lock
 adminer.php
+.sass-cache/
+public/css/

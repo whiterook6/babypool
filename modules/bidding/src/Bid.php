@@ -28,6 +28,7 @@ class Bid extends Model {
 			DB::raw('dayofweek(date) as dow'),
 			DB::raw('month(date) as month'),
 			DB::raw('dayofmonth(date) as dom'),
+			DB::raw('year(date) as year'),
 		])->orderBy('date', 'asc');
 	}
 }

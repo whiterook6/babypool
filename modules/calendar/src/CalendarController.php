@@ -12,8 +12,8 @@ class CalendarController extends Controller {
 		$bounds = [];
 
 		Bid::calendar()
-			->order('date', 'asc')
-			->each(function($bid, $key) use ($bids_by_week, $bounds){
+			->orderBy('value', 'desc')
+			->each(function($bid, $key) use (&$bids_by_week, &$bounds){
 				$year = $bid->year;
 				$week = $bid->week;
 				$day_of_week = $bid->day;
@@ -32,13 +32,7 @@ class CalendarController extends Controller {
 				];
 
 				// order the bids by week, then by day of week
-				if (!$bids_by_week || empty($bids_by_week)){
-					$bids_by_week = [
-						$week => [
-							$day_of_week => [ $bid->toArray() ]
-						]
-					];
-				} else if (!array_key_exists($week, $bids_by_week)){
+				if (!array_key_exists($week, $bids_by_week)){
 					$bids_by_week[$week] = [
 						$day_of_week => [ $bid->toArray() ]
 					];

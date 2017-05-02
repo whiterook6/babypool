@@ -12,9 +12,7 @@
 						$50
 					</div>
 				</h1>
-				{!! $bounds !!}
-				{!! $bids !!}
-<!-- 
+
 				<table class="calendar">
 					<thead>
 						<tr>
@@ -29,7 +27,7 @@
 						</tr>
 					</thead>
 					<tbody>
-@for($week = 0; $week < 54; $week++)
+@for($week = $bounds['max_date']['week']; $week <= $bounds['max_date']['week']; $week++)
 						<tr>
 							<td>April</td>
 	@for($dow = 0; $dow < 7; $dow++)
@@ -53,6 +51,6 @@
 						</tr>
 @endfor
 					</tbody>
-				</table> -->
+				</table>
 			</div>
 @endsection

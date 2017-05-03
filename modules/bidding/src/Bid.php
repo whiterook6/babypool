@@ -21,18 +21,19 @@ class Bid extends Model {
 		return $this->belongsTo(Bidder::class);
 	}
 
-	public function scopeCalendar(Builder $query){
-		return $query->select([
-			'bids.*',
-			DB::raw('weekofyear(date) as week'),
-			DB::raw('dayofweek(date) as dow'),
-			DB::raw('month(date) as month'),
-			DB::raw('dayofmonth(date) as dom'),
-			DB::raw('year(date) as year'),
-		])->orderBy('date', 'asc');
-	}
-
 	public function scopeActive(Builder $query){
 		return $query->where('status', '!=', 'cancelled');
+	}
+
+	public function scopeHighestPerDate(Builder $query){
+		$query->join('bids as b', function($join){
+			$join->on('bids.value', '=', 'b.value')
+				->on('bids.date', '=', 'b.date')
+				->select('b.date, max(b.value) as value')
+				->where('status', '!=', 'cancelled')
+				->groupBy('date');
+		})->select('b.*');
+
+		return $query;
 	}
 }

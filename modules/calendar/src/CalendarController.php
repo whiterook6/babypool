@@ -13,7 +13,7 @@ class CalendarController extends Controller {
 		$bids = [];
 		$dates = Bid::where('status', '!=', 'cancelled')->distinct('date')->orderBy('date', 'asc')->pluck('date');
 		$dates->each(function($date) use (&$bids){
-			$bid = Bid::where('date', $date)->where('status', '!=', 'cancelled')->orderBy('value', 'desc')->firstOrNull();
+			$bid = Bid::where('date', $date)->where('status', '!=', 'cancelled')->orderBy('value', 'desc')->first();
 			if ($bid){
 				$bids[$date] = $bid;
 			}

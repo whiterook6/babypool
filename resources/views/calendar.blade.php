@@ -48,6 +48,11 @@
 							<span class="fa fa-check"></span>
 <?php
 			break;
+		case 'paid':
+?>
+							<span class="fa fa-money"></span>
+<?php
+			break;
 	}
 ?>
 							<span class="value">{{$bid['value']}}</span>

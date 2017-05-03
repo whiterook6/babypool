@@ -3,35 +3,24 @@
 namespace Babypool;
 
 use App\Http\Controllers\Controller;
+use Babypool\Bid;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller {
 
 	public function calendar(Request $request){
-		$bids_by_week = [];
 
-		Bid::calendar()
-			->active()
-			->orderBy('value', 'desc')
-			->each(function($bid, $key) use (&$bids_by_week){
-				$year = $bid->year;
-				$week = $bid->week;
-				$day_of_week = $bid->day;
-
-				// order the bids by week, then by day of week
-				if (!array_key_exists($week, $bids_by_week)){
-					$bids_by_week[$week] = [
-						$day_of_week => [ $bid->toArray() ]
-					];
-				} else if (!array_key_exists($day_of_week, $bids_by_week[$week])){
-					$bids_by_week[$week][$day_of_week] = [$bid->toArray()];
-				} else {
-					array_push($bids_by_week[$week][$day_of_week], $bid->toArray());
-				}
-			});
+		$bids = [];
+		$dates = Bid::where('status', '!=', 'cancelled')->distinct('date')->orderBy('date', 'asc')->pluck('date');
+		$dates->each(function($date) use (&$bids){
+			$bid = Bid::where('date', $date)->where('status', '!=', 'cancelled')->orderBy('value', 'desc')->first();
+			if ($bid){
+				$bids[$date] = $bid;
+			}
+		});
 
 		return view('calendar', [
-			'bids' => $bids_by_week
+			'bids' => $bids
 		]);
 	}
 

@@ -21,17 +21,6 @@ class Bid extends Model {
 		return $this->belongsTo(Bidder::class);
 	}
 
-	public function scopeCalendar(Builder $query){
-		return $query->select([
-			'bids.*',
-			DB::raw('weekofyear(date) as week'),
-			DB::raw('dayofweek(date) as dow'),
-			DB::raw('month(date) as month'),
-			DB::raw('dayofmonth(date) as dom'),
-			DB::raw('year(date) as year'),
-		])->orderBy('date', 'asc');
-	}
-
 	public function scopeActive(Builder $query){
 		return $query->where('status', '!=', 'cancelled');
 	}

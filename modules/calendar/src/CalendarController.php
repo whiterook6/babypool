@@ -4,6 +4,7 @@ namespace Babypool;
 
 use App\Http\Controllers\Controller;
 use Babypool\Bid;
+use DateTime;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller {
@@ -26,7 +27,7 @@ class CalendarController extends Controller {
 
 	public function date($date, Request $request){
 
-		$bids = Bid::where('date', $date)->active()->get();
+		$bids = Bid::where('date', $date)->active()->highest()->get();
 		$head = $bids->first();
 		$tail = $bids->slice(1);
 
@@ -39,7 +40,7 @@ class CalendarController extends Controller {
 		return view('day', [
 			'current_bid' => $head,
 			'date' => $date,
-			'date_string' => Date::createFromFormat('Y-m-d')->format('l, F jS'),
+			'date_string' => DateTime::createFromFormat('Y-m-d', $date)->format('l, F jS'),
 			'next_value' => $next_value,
 			'previous_bids' => $tail,
 		]);

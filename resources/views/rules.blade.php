@@ -27,7 +27,7 @@
 							<li>All bids are public.</li>
 							<li>You cannot bid at all if the mother has gone into labor.</li>
 							<li>The minimum bid for a day is ${{$minimum_bid}}.</li>
-							<li>The minimum raise on an existing bid is ${{minimum_raise}}.</li>
+							<li>The minimum raise on an existing bid is ${{$minimum_raise}}.</li>
 						</ul>
 
 						You cannot bid for a given date if
@@ -48,7 +48,7 @@
 						<h2>To Bid</h2>
 						<ol>
 							<li>Select a valid day.</li>
-							<li>Enter your email address and a bid value that is at least 1$ higher than the current highest bid.</li>
+							<li>Enter your email address and a bid value that is at least ${{$minimum_raise}} higher than the current highest bid.</li>
 							<li>Press <span class="fake-button">place bid</span>.</li>
 							<li>In your inbox, open the confirmation email and click <span class="fake-button">confirm bid</span>.</li>
 						</ol>

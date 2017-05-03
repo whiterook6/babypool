@@ -34,6 +34,7 @@
 
 						<div class="bids">
 	@foreach($previous_bids as $previous_bid)
+	{{ json_encode($previous_bids) }}
 							<div class="bid disabled">
 
 		@if($previous_bid['status'] == 'paid')

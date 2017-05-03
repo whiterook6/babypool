@@ -13,33 +13,29 @@
 					</div>
 				</h1>
 
-				<table class="calendar">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Sunday</th>
-							<th>Monday</th>
-							<th>Tuesday</th>
-							<th>Wednesday</th>
-							<th>Thursday</th>
-							<th>Friday</th>
-							<th>Saturday</th>
-						</tr>
-					</thead>
-					<tbody>
+				<div class="calendar">
+					<div class="row header">
+						<div class="cell"></div>
+						<div class="cell">Sunday</div>
+						<div class="cell">Monday</div>
+						<div class="cell">Tuesday</div>
+						<div class="cell">Wednesday</div>
+						<div class="cell">Thursday</div>
+						<div class="cell">Friday</div>
+						<div class="cell">Saturday</div>
+					</div>
 @foreach ($calendar as $week)
-						<tr>
-							<td class="month">
+					<div class="row">
+						<div class="cell month">
 	@isset ($week['label'])
 		{{ $week['label'] }}
 	@endisset
-							</td>
+						</div>
 	@foreach ($week['days'] as $day)
-							<td class="available">{{$day['day_of_month']}}</td>
+						<a href="/calendar/{{$day['date']}}" class="cell available">{{$day['day_of_month']}}</a>
 	@endforeach
-						</tr>
+					</div>
 @endforeach
-					</tbody>
-				</table>
+				</div>
 			</div>
 @endsection

@@ -27,7 +27,7 @@ class CalendarController extends Controller {
 
 	public function date($date, Request $request){
 
-		$bids = Bid::where('date', $date)->active()->highest()->get();
+		$bids = Bid::where('date', $date)->active()->highest()->with('bidder')->get();
 		$head = $bids->first();
 		$tail = $bids->slice(1);
 

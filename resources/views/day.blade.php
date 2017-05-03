@@ -34,7 +34,6 @@
 
 						<div class="bids">
 	@foreach($previous_bids as $previous_bid)
-	{{ json_encode($previous_bids) }}
 							<div class="bid disabled">
 
 		@if($previous_bid['status'] == 'paid')
@@ -44,8 +43,8 @@
 		@elseif($previous_bid['status'] == 'unconfirmed')
 								<span class="fa fa-clock-o"></span>
 		@endif
-								<span class="email">{{$previous_bid['email']}}</span>
-								<span class="value">${{$previous_bid['value']}}</span>
+								<span class="email">{{$previous_bid['bidder']['email']}}</span>
+								<span class="value">${{$previous_bid['bidder']['value']}}</span>
 							</div>
 	@endforeach
 						</div>

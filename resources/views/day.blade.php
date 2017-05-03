@@ -21,8 +21,8 @@
 	@elseif($current_bid['status'] == 'unconfirmed')
 								<span class="fa fa-clock-o"></span>
 	@endif
-								<span class="email">{{$previous_bid['bidder']['email']}}</span>
-								<span class="value">${{$previous_bid['value']}}</span>
+								<span class="email">{{$current_bid['bidder']['email']}}</span>
+								<span class="value">${{$current_bid['value']}}</span>
 							</div>
 						</div>
 @endif

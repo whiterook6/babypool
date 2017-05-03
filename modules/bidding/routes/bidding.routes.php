@@ -17,5 +17,8 @@ Route::group(['prefix' => 'bids'], function(){
 });
 
 Route::any('/rules', function(){
-	return view('rules');
+	return view('rules', [
+		'minimum_bid' => ENV('MINIMUM_BID', 5),
+		'minimum_raise' => ENV('MINIMUM_RAISE', 1)
+	]);
 });

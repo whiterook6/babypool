@@ -26,6 +26,8 @@
 						<ul>
 							<li>All bids are public.</li>
 							<li>You cannot bid at all if the mother has gone into labor.</li>
+							<li>The minimum bid for a day is ${{$minimum_bid}}.</li>
+							<li>The minimum raise on an existing bid is ${{minimum_raise}}.</li>
 						</ul>
 
 						You cannot bid for a given date if

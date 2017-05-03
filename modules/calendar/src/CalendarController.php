@@ -11,9 +11,9 @@ class CalendarController extends Controller {
 	public function calendar(Request $request){
 
 		$bids = [];
-		$dates = Bid::where('status', '!=', 'cancelled')->distinct('date')->orderBy('date', 'asc')->pluck('date');
+		$dates = Bid::where('status', '!=', 'cancelled')->distinct('date')->pluck('date');
 		$dates->each(function($date) use (&$bids){
-			$bid = Bid::where('date', $date)->where('status', '!=', 'cancelled')->orderBy('value', 'desc')->first();
+			$bid = Bid::where('date', $date)->active()->highest()->first();
 			if ($bid){
 				$bids[$date] = $bid;
 			}
@@ -25,8 +25,23 @@ class CalendarController extends Controller {
 	}
 
 	public function date($date, Request $request){
+
+		$bids = Bid::where('date', $date)->active()->get();
+		$head = $bids->first();
+		$tail = $bids->slice(1);
+
+		if ($head){
+			$next_value = $head->value + env('MINIMUM_INCREMENT', 1);
+		} else {
+			$next_value = env('MINIMUM_BID', 5);
+		}
+
 		return view('day', [
-			'date' => $date
+			'current_bid' => $head,
+			'date' => $date,
+			'date_string' => Date::createFromFormat('Y-m-d')->format('l, F jS'),
+			'next_value' => $next_value,
+			'previous_bids' => $tail,
 		]);
 	}
 

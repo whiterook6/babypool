@@ -1,59 +1,57 @@
 @extends('templates.app') <!-- Refers to templates/app.blade.php -->
 
-@section('title', 'Title')
+@section('title', $date_string)
 
 @section('content')
 			<div class="container">
 				<h1>
-					{{$date}}
+					{{$date_string}}
 				</h1>
 				<div class="row">
 					<div class="col-sm-4">
-						<h2>Current Bid: <small>$50</small></h2>
+
+@if($current_bid)
+						<h2>Current Bid: <small>${{$current_bid['value']}}</small></h2>
 						<div class="bids">
 							<div class="bid">
-								<span class="fa fa-clock-o"></span>
-								<span class="email">whiterook6@gmail.com</span>
-								<span class="value">$55</span>
-								<span class="date">May 4th</span>
-							</div>
-
-							<div class="bid">
+	@if($current_bid['status'] == 'paid')
+								<span class="fa fa-money"></span>
+	@elseif($current_bid['status'] == 'confirmed')
 								<span class="fa fa-check"></span>
-								<span class="email">whiterook6@gmail.com</span>
-								<span class="value">$55</span>
-								<span class="date">May 4th</span>
+	@elseif($current_bid['status'] == 'unconfirmed')
+								<span class="fa fa-clock-o"></span>
+	@endif
+
+								<span class="email">{{$current_bid['email']}}</span>
+								<span class="value">${{$current_bid['value']}}</span>
 							</div>
 						</div>
+@endif
 
+
+@if($previous_bids)
 						<h2>Previous Bids</h2>
 
 						<div class="bids">
+	@foreach($previous_bids as $previous_bid)
 							<div class="bid disabled">
-								<span class="fa fa-check"></span>
-								<span class="email">whiterook6@gmail.com</span>
-								<span class="value">$55</span>
-								<span class="date">May 4th</span>
-							</div>
 
-							<div class="bid disabled">
+		@if($previous_bid['status'] == 'paid')
+								<span class="fa fa-money"></span>
+		@elseif($previous_bid['status'] == 'confirmed')
 								<span class="fa fa-check"></span>
-								<span class="email">whiterook6@gmail.com</span>
-								<span class="value">$55</span>
-								<span class="date">May 4th</span>
+		@elseif($previous_bid['status'] == 'unconfirmed')
+								<span class="fa fa-clock-o"></span>
+		@endif
+								<span class="email">{{$previous_bid['email']}}</span>
+								<span class="value">${{$previous_bid['value']}}</span>
 							</div>
-
-							<div class="bid disabled">
-								<span class="fa fa-check"></span>
-								<span class="email">whiterook6@gmail.com</span>
-								<span class="value">$55</span>
-								<span class="date">May 4th</span>
-							</div>
+	@endforeach
 						</div>
+@endif
 					</div>
-
 					<div class="col-sm-8">
-						<h2>To Raise: <small>$55</small></h2>
+						<h2>To Raise: <small>${{$next_value}}</small></h2>
 						<form class="form">
 							<div class="row">
 								<div class="col-xs-6">
@@ -62,7 +60,7 @@
 								</div>
 								<div class="col-xs-6">
 									<label class="label" for="bid">Bid in Dollars</label>
-									<input class="input" id="bid" type="number" placeholder="55" />
+									<input class="input" id="bid" type="number" placeholder="{{$next_value}}" />
 								</div>
 							</div>
 							<div class="row">

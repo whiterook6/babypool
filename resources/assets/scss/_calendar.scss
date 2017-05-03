@@ -1,0 +1,43 @@
+.calendar {	
+	display: table;
+	width: 100%;
+
+	.row {
+		display: table-row;
+
+		&.header{
+			font-weight: 600;
+
+			.cell {
+				text-align: right;
+			}
+		}
+	}
+
+	.cell {
+		width: 12.5%;
+		display: table-cell;
+		border-radius: 0.25rem;
+		padding: 1rem;
+
+		&.disabled{
+			background-color: $theme-disabled;
+			color: $font-disabled;
+			cursor: not-allowed;
+		}
+
+		&.available:hover {
+			background-color: $theme-accent;
+			color: white;
+			cursor: pointer;
+		}
+
+		&.highlight {
+			border: 2px solid $theme-accent;
+		}
+
+		.month {
+			text-align: right;
+		}
+	}
+}

@@ -35,25 +35,3 @@ body {
 	text-decoration: underline;
 	font-weight: 600;
 }
-
-.calendar {	
-	td {
-		border-radius: 0.25rem;
-
-		&.disabled{
-			background-color: $theme-disabled;
-			color: $font-disabled;
-			cursor: not-allowed;
-		}
-
-		&.available:hover {
-			background-color: $theme-accent;
-			color: white;
-			cursor: pointer;
-		}
-
-		&.highlight {
-			border: 2px solid $theme-accent;
-		}
-	}
-}

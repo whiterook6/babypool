@@ -15,10 +15,12 @@
 	}
 
 	.cell {
-		width: 12.5%;
-		display: table-cell;
 		border-radius: 0.25rem;
+		color: inherit;
+		display: table-cell;
 		padding: 1rem;
+		text-decoration: inherit;
+		width: 12.5%;
 
 		&.disabled{
 			background-color: $theme-disabled;
@@ -36,8 +38,9 @@
 			border: 2px solid $theme-accent;
 		}
 
-		.month {
+		&.month {
 			text-align: right;
+			font-weight: 600;
 		}
 	}
 }

@@ -24,16 +24,4 @@ class Bid extends Model {
 	public function scopeActive(Builder $query){
 		return $query->where('status', '!=', 'cancelled');
 	}
-
-	public function scopeHighestPerDate(Builder $query){
-		$query->join('bids as b', function($join){
-			$join->on('bids.value', '=', 'b.value')
-				->on('bids.date', '=', 'b.date')
-				->select('b.date, max(b.value) as value')
-				->where('status', '!=', 'cancelled')
-				->groupBy('date');
-		})->select('b.*');
-
-		return $query;
-	}
 }

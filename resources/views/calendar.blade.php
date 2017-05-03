@@ -32,7 +32,27 @@
 	@endisset
 						</div>
 	@foreach ($week['days'] as $day)
-						<a href="/calendar/{{$day['date']}}" class="cell available">{{$day['day_of_month']}}</a>
+						<a href="/calendar/{{$day['date']}}" class="cell available">
+							<span class="day">{{$day['day_of_month']}}</span>
+		@isset ($bids[$day['date']])
+<?php
+	$bid = $bids[$day['date']];
+	switch ($bid['status']){
+		case 'unconfirmed':
+?>
+							<span class="fa fa-clock-o"></span>
+<?php
+			break;
+		case 'confirmed':
+?>
+							<span class="fa fa-check"></span>
+<?php
+			break;
+	}
+?>
+							<span class="value">{{$bid['value']}}</span>
+		@endisset
+						</a>
 	@endforeach
 					</div>
 @endforeach

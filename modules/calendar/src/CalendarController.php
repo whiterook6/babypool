@@ -25,7 +25,9 @@ class CalendarController extends Controller {
 	}
 
 	public function date($date, Request $request){
-		return response("calendar/{$date}", 200);
+		return view('day', [
+			'date' => $date
+		]);
 	}
 
 	public function place_bid($date, Request $request){

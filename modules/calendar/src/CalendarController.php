@@ -12,7 +12,7 @@ class CalendarController extends Controller {
 	public function calendar(Request $request){
 
 		$bids = [];
-		$dates = Bid::where('status', '!=', 'cancelled')->distinct('date')->pluck('date');
+		$dates = Bid::active()->distinct('date')->pluck('date');
 		$dates->each(function($date) use (&$bids){
 			$bid = Bid::where('date', $date)->active()->highest()->first();
 			if ($bid){

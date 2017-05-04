@@ -8,6 +8,9 @@ class ValidationException extends Exception {
 	protected $validator;
 
 	public function __construct($validator = [], $message = null) {
+		if (!$message && $validator){
+			$message = implode(' ', $validator->errors()->all());
+		}
 		parent::__construct($message);
 		$this->validator = $validator;
 	}

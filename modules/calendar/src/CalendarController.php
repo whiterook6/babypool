@@ -52,6 +52,10 @@ class CalendarController extends BabbyController {
 	}
 
 	public function place_bid($date, Request $request){
+		if (env('LOCKED', false)){
+			throw new \Exception('All bidding is locked.');
+		}
+
 		$minimum_bid = env('MINIMUM_BID', 5);
 		$minimum_increment = env('MINIMUM_INCREMENT', 1);
 
@@ -71,6 +75,14 @@ class CalendarController extends BabbyController {
 
 		$tomorrow = (new DateTime('tomorrow'))->format('Y-m-d');
 
+		$minimum_date = new DateTime();
+		$minimum_date->setISODate(env('EARLIEST_BID_YEAR'), env('EARLIEST_BID_WEEK'));
+		$minimum_date = $minimum_date->format('Y-m-d');
+
+		$maximum_date = new DateTime();
+		$maximum_date->setISODate(env('LATEST_BID_YEAR'), env('LATEST_BID_WEEK'), 6);
+		$maximum_date = $maximum_date->format('Y-m-d');
+
 		$this->validate_array([
 			'date' => $date,
 			'value' => $value,
@@ -80,7 +92,15 @@ class CalendarController extends BabbyController {
 		]);
 
 		if ($date < $tomorrow){
-			throw new \Exception('Bids must be placed for future days.');
+			throw new \Exception('Bids must be placed in the future.');
+		}
+
+		if ($date < $minimum_date){
+			throw new \Exception("Bids must be placed later than {$minimum_date}");
+		}
+
+		if ($date > $maximum_date){
+			throw new \Exception("Bids must be placed no later than {$maximum_date}");
 		}
 
 		$bidder = Bidder::firstOrCreate([

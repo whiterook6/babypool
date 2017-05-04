@@ -26,11 +26,10 @@ class CalendarController extends BabbyController {
 
 	public function date($date, Request $request){
 		$this->validate_array([
-			'date' => $date
+			'date' => $date,
 		], [
-			'date' => 'required|date_format:"Y-m-d"'
+			'date' => 'required|date_format:"Y-m-d"',
 		]);
-		$date = $request->input('date');
 
 		$bids = Bid::where('date', $date)->active()->highest()->with('bidder')->get();
 		$head = $bids->first();
@@ -51,16 +50,14 @@ class CalendarController extends BabbyController {
 		]);
 	}
 
-	public function place_bid(Request $request){
+	public function place_bid($date, Request $request){
 		$minimum_bid = env('MINIMUM_BID', 5);
 		$minimum_increment = env('MINIMUM_INCREMENT', 1);
 
 		$this->validate($request, [
-			'date' => 'required|date_format:"Y-m-d"',
 			'email' => 'required|email',
 			'value' => "required|integer|min:{$minimum_bid}",
 		]);
-		$date=$request->input('date');
 		$value = $request->input('value');
 		$email = $request->input('email');
 
@@ -70,9 +67,11 @@ class CalendarController extends BabbyController {
 		) + $minimum_increment;
 
 		$this->validate_array([
-			'value' => $value
+			'date' => $date,
+			'value' => $value,
 		], [
-			'value' => 'min:$minimum_bid'
+			'date' => 'required|date_format:"Y-m-d"',
+			'value' => 'min:$minimum_bid',
 		]);
 
 		$bidder = Bidder::firstOrCreate([

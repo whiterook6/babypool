@@ -6,6 +6,7 @@ use Babypool\BabbyController;
 use Babypool\Bid;
 use DateTime;
 use Illuminate\Http\Request;
+use Mail;
 
 class CalendarController extends BabbyController {
 
@@ -61,10 +62,12 @@ class CalendarController extends BabbyController {
 		$value = $request->input('value');
 		$email = $request->input('email');
 
-		$min_value = max(
-			Bid::where('date', $date)->active()->select('value')->highest()->first()->value,
-			$minimum_bid
-		) + $minimum_increment;
+		$existing_bid = Bid::where('date', $date)->active()->select('value')->highest()->first();
+		if ($existing_bid){
+			$min_value = $existing_bid->value + $minimum_increment;
+		} else {
+			$min_value = $minimum_bid;
+		}
 
 		$this->validate_array([
 			'date' => $date,

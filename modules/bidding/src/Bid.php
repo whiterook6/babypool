@@ -24,4 +24,8 @@ class Bid extends Model {
 	public function scopeActive(Builder $query){
 		return $query->where('status', '!=', 'cancelled');
 	}
+
+	public function scopeHighest(Builder $query){
+		return $query->orderBy('value', 'desc');
+	}
 }

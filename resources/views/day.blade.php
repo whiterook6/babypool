@@ -28,9 +28,8 @@
 @endif
 
 
-@if($previous_bids)
 						<h2>Previous Bids</h2>
-
+@if($previous_bids && count($previous_bids) > 0)
 						<div class="bids">
 	@foreach($previous_bids as $previous_bid)
 							<div class="bid disabled">
@@ -47,6 +46,8 @@
 							</div>
 	@endforeach
 						</div>
+@elseif
+						No prevous bids.
 @endif
 					</div>
 					<div class="col-sm-8">

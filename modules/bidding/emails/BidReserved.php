@@ -2,6 +2,7 @@
 
 namespace Babypool;
 
+use Babypool\CalendarController;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -29,6 +30,13 @@ class BidReserved extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->view('emails.reserved');
+        $confirm_token = $this->bid->get_confirm_token();
+        $cancel_token = $this->bid->get_cancel_token();
+
+        return $this->view('emails.reserved')
+            ->with([
+                'confirm_url' => action('\\'.CalendarController::class.'@finalize_bid', ['token' => $confirm_token]),
+                'cancel_url' => action('\\'.CalendarController::class.'@finalize_bid', ['token' => $cancel_token]),
+            ]);
     }
 }

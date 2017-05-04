@@ -91,4 +91,27 @@ class CalendarController extends BabbyController {
 
 		return response('Check your email', 200);
 	}
+
+	public function finalize_bid(Request $request){
+		$decrypted = $this->get_token($request, [
+			'a' => 'required|in:cancel,confirm',
+			'bid' => 'required|exists:bids,id'
+		]);
+
+		$bid = Bid::findOrFail($decrypted->bid);
+		switch ($decrypted['a']){
+			case 'confirm':
+				if ($bid->status != 'unconfirmed'){
+					throw new \Exception("Can't confirm a bid that isn't unconfirmed");
+				}
+				$bid->confirm();
+				return response('confirmed');
+			case 'cancel':
+				if ($bid->status != 'unconfirmed'){
+					throw new \Exception("Can't cancel a bid that isn't unconfirmed");
+				}
+				$bid->confirm();
+				return response('cancelled');
+		}
+	}
 }

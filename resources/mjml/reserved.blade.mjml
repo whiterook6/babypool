@@ -1,0 +1,26 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Source Sans Pro" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+  </mj-head>
+  <mj-body>
+    <mj-container>
+      <mj-section>
+        <mj-column>
+
+          <mj-text font-size="36pt" color="#FF3D7F" font-family="Source Sans Pro, Helvetica">Baby Pool</mj-text>
+
+          <mj-divider border-color="#FF3D7F"></mj-divider>
+
+          <mj-text font-family="Source Sans Pro" font-size="12pt">You've reserved a bid for {{$bid['date']}} for ${{$bid['value']}}. If the bid is not confirmed within 10 minutes, or if you click cancel, the bid will be discarded.</mj-text>
+
+          <mj-button font-family="Source Sans Pro" href="{{$confirm_url}}" background-color="#FF3D7F" color="white">
+            Click to confirm.
+          </mj-button>
+          <mj-button font-family="Source Sans Pro" href="{{$cancel_url}}" background-color="#333333" color="white">
+            Click to cancel.
+          </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-container>
+  </mj-body>
+</mjml>

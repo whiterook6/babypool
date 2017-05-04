@@ -31,4 +31,16 @@ abstract class BabbyController extends Controller {
 			throw new ValidationException($validator);
 		}
 	}
+
+	/**
+	 * Decrypts a token, validates its contents, and returns the contents or throws an appropriate exception.
+	 */
+	public function get_token(Request $request, array $rules) {
+		$this->validate($request, [
+			'token' => 'required|string'
+		]);
+		$decrypted = decrypt($request->input('token'));
+		$this->validate_array($decrypted, $rules);
+		return $decrypted;
+	}
 }

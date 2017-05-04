@@ -28,4 +28,32 @@ class Bid extends Model {
 	public function scopeHighest(Builder $query){
 		return $query->orderBy('value', 'desc');
 	}
+
+	public function get_confirm_token(){
+		return encrypt([
+			'a' => 'confirm',
+			'bid' => $this->id
+		]);
+	}
+
+	public function get_cancel_token(){
+		return encrypt([
+			'a' => 'cancel',
+			'bid' => $this->id
+		]);
+	}
+
+	public function confirm(){
+		$this->status = 'confirmed';
+		$this->save();
+
+		return $this;
+	}
+
+	public function cancel(){
+		$this->status = 'cancelled';
+		$this->save();
+
+		return $this;
+	}
 }

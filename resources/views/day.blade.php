@@ -46,7 +46,7 @@
 							</div>
 	@endforeach
 						</div>
-@elseif
+@else
 						No prevous bids.
 @endif
 					</div>

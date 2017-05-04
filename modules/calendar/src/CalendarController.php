@@ -98,7 +98,7 @@ class CalendarController extends BabbyController {
 			'bid' => 'required|exists:bids,id'
 		]);
 
-		$bid = Bid::findOrFail($decrypted->bid);
+		$bid = Bid::findOrFail($decrypted['bid']);
 		switch ($decrypted['a']){
 			case 'confirm':
 				if ($bid->status != 'unconfirmed'){

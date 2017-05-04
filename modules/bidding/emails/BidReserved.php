@@ -21,8 +21,6 @@ class BidReserved extends Mailable {
     public function __construct(Bid $bid, Bidder $bidder) {
         $this->bid = $bid;
         $this->bidder = $bidder;
-        $this->confirm_url = 'confirm';
-        $this->cancel_url = 'cancel';
     }
 
     /**
@@ -31,6 +29,13 @@ class BidReserved extends Mailable {
      * @return $this
      */
     public function build() {
-        return $this->view('emails.reserved');
+        $confirm_token = $this->bid->get_confirm_token();
+        $cancel_token = $this->bid->get_cancel_token();
+
+        return $this->view('emails.reserved')
+            ->with([
+                'confirm_url' => action(BidController::class.'@finalize_bid', ['token' => $confirm_token]),
+                'cancel_url' => action(BidController::class.'@finalize_bid', ['token' => $cancel_token]),
+            ]);
     }
 }

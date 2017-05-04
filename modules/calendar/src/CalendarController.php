@@ -69,15 +69,19 @@ class CalendarController extends BabbyController {
 			$min_value = $minimum_bid;
 		}
 
-		$current_date = (new DateTime('tomorrow'))->format('Y-m-d');
+		$tomorrow = (new DateTime('tomorrow'))->format('Y-m-d');
 
 		$this->validate_array([
 			'date' => $date,
 			'value' => $value,
 		], [
-			'date' => 'required|date_format:"Y-m-d"|min:'.$current_date,
+			'date' => 'required|date_format:"Y-m-d"',
 			'value' => 'min:$minimum_bid',
 		]);
+
+		if ($date < $tomorrow){
+			throw new \Exception('Bids must be placed for future days.');
+		}
 
 		$bidder = Bidder::firstOrCreate([
 			'email' => $email

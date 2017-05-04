@@ -24,8 +24,10 @@ class CalendarController extends BabbyController {
 		]);
 	}
 
-	public function date(Request $request){
-		$this->validate($request, [
+	public function date($date, Request $request){
+		$this->validate_array([
+			'date' => $date
+		], [
 			'date' => 'required|date_format:"Y-m-d"'
 		]);
 		$date = $request->input('date');

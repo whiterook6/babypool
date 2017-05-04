@@ -69,11 +69,13 @@ class CalendarController extends BabbyController {
 			$min_value = $minimum_bid;
 		}
 
+		$current_date = (new DateTime('tomorrow'))->format('Y-m-d');
+
 		$this->validate_array([
 			'date' => $date,
 			'value' => $value,
 		], [
-			'date' => 'required|date_format:"Y-m-d"',
+			'date' => 'required|date_format:"Y-m-d"|min:'.$current_date,
 			'value' => 'min:$minimum_bid',
 		]);
 
@@ -110,7 +112,7 @@ class CalendarController extends BabbyController {
 				if ($bid->status != 'unconfirmed'){
 					throw new \Exception("Can't cancel a bid that isn't unconfirmed");
 				}
-				$bid->confirm();
+				$bid->cancel();
 				return response('cancelled');
 		}
 	}

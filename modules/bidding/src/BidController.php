@@ -2,11 +2,11 @@
 
 namespace Babypool;
 
-use Babypool\Pirate;
-use App\Http\Controllers\Controller;
+use Babypool\Bidder;
+use Babypool\BabbyController;
 use Illuminate\Http\Request;
 
-class BidController extends Controller {
+class BidController extends BabbyController {
 
 	public function bids(Request $request){
 		return response('bids', 200);

@@ -52,15 +52,15 @@
 					</div>
 					<div class="col-sm-8">
 						<h2>To Raise: <small>${{$next_value}}</small></h2>
-						<form class="form">
+						<form class="form" method="POST">
 							<div class="row">
 								<div class="col-xs-6">
 									<label class="label" for="email">Email Address</label>
-									<input class="input" id="email" type="email" placeholder="example@gmail.com" />
+									<input class="input" id="email" name="email" type="email" placeholder="example@gmail.com" />
 								</div>
 								<div class="col-xs-6">
-									<label class="label" for="bid">Bid in Dollars</label>
-									<input class="input" id="bid" type="number" placeholder="{{$next_value}}" />
+									<label class="label" for="value">Bid in Dollars</label>
+									<input class="input" id="value" name="value" type="number" placeholder="{{$next_value}}" />
 								</div>
 							</div>
 							<div class="row">

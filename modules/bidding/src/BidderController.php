@@ -2,10 +2,10 @@
 
 namespace Babypool;
 
-use App\Http\Controllers\Controller;
+use Babypool\BabbyController;
 use Illuminate\Http\Request;
 
-class BidderController extends Controller {
+class BidderController extends BabbyController {
 
 	public function bidders(Request $request){
 		return response('bidders', 200);

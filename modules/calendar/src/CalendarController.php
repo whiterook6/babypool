@@ -2,15 +2,15 @@
 
 namespace Babypool;
 
-use App\Http\Controllers\Controller;
+use Babypool\BabbyController;
 use Babypool\Bid;
 use DateTime;
 use Illuminate\Http\Request;
+use Mail;
 
-class CalendarController extends Controller {
+class CalendarController extends BabbyController {
 
 	public function calendar(Request $request){
-
 		$bids = [];
 		$dates = Bid::active()->distinct('date')->pluck('date');
 		$dates->each(function($date) use (&$bids){
@@ -26,6 +26,11 @@ class CalendarController extends Controller {
 	}
 
 	public function date($date, Request $request){
+		$this->validate_array([
+			'date' => $date,
+		], [
+			'date' => 'required|date_format:"Y-m-d"',
+		]);
 
 		$bids = Bid::where('date', $date)->active()->highest()->with('bidder')->get();
 		$head = $bids->first();
@@ -47,6 +52,43 @@ class CalendarController extends Controller {
 	}
 
 	public function place_bid($date, Request $request){
-		return response("calendar/{$date}/place_bid", 201);
+		$minimum_bid = env('MINIMUM_BID', 5);
+		$minimum_increment = env('MINIMUM_INCREMENT', 1);
+
+		$this->validate($request, [
+			'email' => 'required|email',
+			'value' => "required|integer|min:{$minimum_bid}",
+		]);
+		$value = $request->input('value');
+		$email = $request->input('email');
+
+		$existing_bid = Bid::where('date', $date)->active()->select('value')->highest()->first();
+		if ($existing_bid){
+			$min_value = $existing_bid->value + $minimum_increment;
+		} else {
+			$min_value = $minimum_bid;
+		}
+
+		$this->validate_array([
+			'date' => $date,
+			'value' => $value,
+		], [
+			'date' => 'required|date_format:"Y-m-d"',
+			'value' => 'min:$minimum_bid',
+		]);
+
+		$bidder = Bidder::firstOrCreate([
+			'email' => $email
+		]);
+		$bid = Bid::create([
+			'bidder_id' => $bidder->id,
+			'value' => $value,
+			'date' => $date,
+			'status' => 'unconfirmed'
+		]);
+
+		Mail::to($bidder->email)->send(new BidReserved($bid, $bidder));
+
+		return response('Check your email', 200);
 	}
 }

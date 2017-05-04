@@ -11,7 +11,7 @@ class Bid extends Model {
 
 	protected $table = 'bids';
 	protected $fillable = [
-		'amount',
+		'value',
 		'bidder_id',
 		'status',
 		'date',

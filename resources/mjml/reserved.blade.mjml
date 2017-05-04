@@ -11,7 +11,7 @@
 
           <mj-divider border-color="#FF3D7F"></mj-divider>
 
-          <mj-text font-family="Source Sans Pro" font-size="12pt">You've reserved a bid for {{$date}} for ${{$value}}. If the bid is not confirmed within 10 minutes, or if you click cancel, the bid will be discarded.</mj-text>
+          <mj-text font-family="Source Sans Pro" font-size="12pt">You've reserved a bid for {{$bid['date']}} for ${{$bid['value']}}. If the bid is not confirmed within 10 minutes, or if you click cancel, the bid will be discarded.</mj-text>
 
           <mj-button font-family="Source Sans Pro" href="{{$confirm_url}}" background-color="#FF3D7F" color="white">
             Click to confirm.

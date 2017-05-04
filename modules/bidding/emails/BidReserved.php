@@ -21,6 +21,8 @@ class BidReserved extends Mailable {
     public function __construct(Bid $bid, Bidder $bidder) {
         $this->bid = $bid;
         $this->bidder = $bidder;
+        $this->confirm_url = 'confirm';
+        $this->cancel_url = 'cancel';
     }
 
     /**

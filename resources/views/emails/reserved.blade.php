@@ -126,7 +126,7 @@
                     </tr>
                     <tr>
                       <td style="word-break:break-word;font-size:0px;padding:10px 25px;" align="left">
-                        <div class="" style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">You've reserved a bid for {{$date}} for ${{$value}}. If the bid is not confirmed within 10 minutes, or if you click cancel, the bid will be discarded.</div>
+                        <div class="" style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">You've reserved a bid for {{$bid['date']}} for ${{$bid['value']}}. If the bid is not confirmed within 10 minutes, or if you click cancel, the bid will be discarded.</div>
                       </td>
                     </tr>
                     <tr>

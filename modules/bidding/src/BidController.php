@@ -43,7 +43,12 @@ class BidController extends BabbyController {
 			Mail::to($bidder->email)->send(new BidReserved($bid, $bidder));
 		});
 
-		return response('Check your email', 200);
+		$date_time = DateTime::createFromFormat('Y-m-d', $date);
+		$date_string = $date_time->format('l, F jS');
+		return view('reserved', [
+			'value' => $value,
+			'date_string' => $date_string
+		]);
 	}
 
 	public function finalize_bid(Request $request){
@@ -53,20 +58,36 @@ class BidController extends BabbyController {
 		]);
 
 		$bid = Bid::findOrFail($decrypted['bid']);
+
 		switch ($decrypted['a']){
 			case 'confirm':
 				if ($bid->status != 'unconfirmed'){
 					throw new \Exception("Can't confirm a bid that isn't unconfirmed");
 				}
 				$bid->confirm();
-				return response('confirmed');
+
+				$result_title = 'Bid Confirmed';
+				$result = 'confirmed';
+				break;
 			case 'cancel':
 				if ($bid->status != 'unconfirmed'){
 					throw new \Exception("Can't cancel a bid that isn't unconfirmed");
 				}
 				$bid->cancel();
-				return response('cancelled');
+
+				$result_title = 'Bid Cancelled';
+				$result = 'cancelled';
+				break;
 		}
+
+		$date_time = DateTime::createFromFormat('Y-m-d', $bid->date);
+		$date_string = $date_time->format('l, F jS');
+		return view('finalize', [
+			'result_title' => $result_title,
+			'result' => $result,
+			'value' => $bid->value,
+			'date_string' => $date_string
+		]);
 	}
 
 	private function validate_date($date){

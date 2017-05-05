@@ -18,8 +18,9 @@
 						<h2>About Prizes</h2>
 						<ul>
 							<li>The total prize is the sum of all successful bids.</li>
-							<li>The bidder who has the highest bid on the date-of-birth wins half of the total prize.</li>
-							<li>The other half is delivered as a gift to the parents.</li>
+							<li>The half is delivered as a gift to the parents.</li>
+							<li>The bidder who has the highest bid on or closest to the date-of-birth wins half of the total prize.</li>
+							<li>If two people have the closest bids, they split the winner's half of the prize: 1/4 to each winner, and 1/2 to the parents.</li>
 						</ul>
 
 						<h2>About Bidding</h2>

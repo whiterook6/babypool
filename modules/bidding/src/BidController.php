@@ -43,9 +43,11 @@ class BidController extends BabbyController {
 			Mail::to($bidder->email)->send(new BidReserved($bid, $bidder));
 		});
 
+		$date_time = DateTime::createFromFormat('Y-m-d', $date);
+		$date_string = DateTime::format('l, F jS');
 		return view('reserved', [
-			'value' => $bid->value,
-			'date_string' => $bid->value
+			'value' => $value,
+			'date_string' => $date_string
 		]);
 	}
 

@@ -61,5 +61,11 @@
 						</ol>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-12 form">
+						<a class="button inline"
+							href="/calendar">Calendar</a>
+					</div>
+				</div>
 			</div>
 @endsection

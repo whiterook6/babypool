@@ -6,6 +6,11 @@
 		outline: 0;
 		font-size: 1rem;
 		padding: 6px 12px;
+		text-decoration: none;
+
+		&.inline {
+			display: inline-block;
+		}
 	}
 
 	.label {

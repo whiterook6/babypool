@@ -29,11 +29,27 @@ html {
 }}
 
 @media (min-width: 950px){
+.container h1 .left {
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: left;
+
+	.fa {
+		margin-right: 1rem;
+	}
+}}
+
+@media (min-width: 950px){
 .container h1 .right {
 	position: absolute;
 	right: 0;
 	top: 0;
 	text-align: right;
+
+	.fa {
+		margin-left: 1rem;
+	}
 }}
 
 .container {
@@ -48,7 +64,7 @@ html {
 			height: 2px;
 			width: 100%;
 			display: block;
-    		content: '';
+			content: '';
 		}
 	}
 }

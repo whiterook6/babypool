@@ -41,12 +41,24 @@ class CalendarController extends BabbyController {
 			$next_value = env('MINIMUM_BID', 5);
 		}
 
+		$date_time = DateTime::createFromFormat('Y-m-d', $date);
+
+		$minus_one_day = date_interval_create_from_date_string("-1 day");
+		$previous_date = clone $date_time;
+		$previous_date->add($minus_one_day);
+
+		$plus_one_day = date_interval_create_from_date_string("1 day");
+		$next_date = clone $date_time;
+		$next_date->add($plus_one_day);
+
 		return view('day', [
 			'current_bid' => $head,
 			'date' => $date,
-			'date_string' => DateTime::createFromFormat('Y-m-d', $date)->format('l, F jS'),
+			'date_string' => $date_time->format('l, F jS'),
+			'next_date' => $next_date->format('Y-m-d'),
 			'next_value' => $next_value,
 			'previous_bids' => $tail,
+			'previous_date' => $previous_date->format('Y-m-d'),
 		]);
 	}
 }

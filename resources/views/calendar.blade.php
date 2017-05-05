@@ -61,6 +61,12 @@
 	@endforeach
 					</div>
 @endforeach
+				<div class="row">
+					<div class="col-12 form">
+						<a class="button inline"
+							href="/rules">Rules</a>
+					</div>
+				</div>
 				</div>
 			</div>
 @endsection

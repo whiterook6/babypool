@@ -1,6 +1,6 @@
 @extends('templates.app') <!-- Refers to templates/app.blade.php -->
 
-@section('title', 'Title')
+@section('title', 'Calendar')
 
 @section('content')
 			<div class="container">

@@ -6,7 +6,6 @@ use Babypool\BabbyController;
 use Babypool\Bid;
 use DateTime;
 use Illuminate\Http\Request;
-use Mail;
 
 class CalendarController extends BabbyController {
 

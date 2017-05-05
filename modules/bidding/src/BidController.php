@@ -2,9 +2,14 @@
 
 namespace Babypool;
 
-use Babypool\Bidder;
 use Babypool\BabbyController;
+use Babypool\Bid;
+use Babypool\Bidder;
+use Babypool\BidReserved;
+use DateTime;
+use DB;
 use Illuminate\Http\Request;
+use Mail;
 
 class BidController extends BabbyController {
 
@@ -15,7 +20,7 @@ class BidController extends BabbyController {
 
 		$this->validate($request, [
 			'email' => 'required|email',
-			'value' => "required|integer|min:{$minimum_bid}",
+			'value' => 'required|integer',
 		]);
 		$value = $request->input('value');
 		$email = $request->input('email');

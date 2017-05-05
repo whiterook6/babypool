@@ -43,7 +43,10 @@ class BidController extends BabbyController {
 			Mail::to($bidder->email)->send(new BidReserved($bid, $bidder));
 		});
 
-		return response('Check your email', 200);
+		return view('reserved', [
+			'value' => $bid->value,
+			'date_string' => $bid->value
+		]);
 	}
 
 	public function finalize_bid(Request $request){
@@ -59,13 +62,23 @@ class BidController extends BabbyController {
 					throw new \Exception("Can't confirm a bid that isn't unconfirmed");
 				}
 				$bid->confirm();
-				return response('confirmed');
+				return view('finalize', [
+					'result_title' => 'Bid Confirmed',
+					'result' => 'confirmed',
+					'value' => $bid->value,
+					'date_string' => $bid->value
+				]);
 			case 'cancel':
 				if ($bid->status != 'unconfirmed'){
 					throw new \Exception("Can't cancel a bid that isn't unconfirmed");
 				}
 				$bid->cancel();
-				return response('cancelled');
+				return view('finalize', [
+					'result_title' => 'Bid Cancelled',
+					'result' => 'cancelled',
+					'value' => $bid->value,
+					'date_string' => $bid->value
+				]);
 		}
 	}
 

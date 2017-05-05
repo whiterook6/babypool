@@ -6,7 +6,6 @@ use Babypool\BabbyController;
 use Babypool\Bid;
 use DateTime;
 use Illuminate\Http\Request;
-use Mail;
 
 class CalendarController extends BabbyController {
 
@@ -49,69 +48,5 @@ class CalendarController extends BabbyController {
 			'next_value' => $next_value,
 			'previous_bids' => $tail,
 		]);
-	}
-
-	public function place_bid($date, Request $request){
-		$minimum_bid = env('MINIMUM_BID', 5);
-		$minimum_increment = env('MINIMUM_INCREMENT', 1);
-
-		$this->validate($request, [
-			'email' => 'required|email',
-			'value' => "required|integer|min:{$minimum_bid}",
-		]);
-		$value = $request->input('value');
-		$email = $request->input('email');
-
-		$existing_bid = Bid::where('date', $date)->active()->select('value')->highest()->first();
-		if ($existing_bid){
-			$min_value = $existing_bid->value + $minimum_increment;
-		} else {
-			$min_value = $minimum_bid;
-		}
-
-		$this->validate_array([
-			'date' => $date,
-			'value' => $value,
-		], [
-			'date' => 'required|date_format:"Y-m-d"',
-			'value' => 'min:$minimum_bid',
-		]);
-
-		$bidder = Bidder::firstOrCreate([
-			'email' => $email
-		]);
-		$bid = Bid::create([
-			'bidder_id' => $bidder->id,
-			'value' => $value,
-			'date' => $date,
-			'status' => 'unconfirmed'
-		]);
-
-		Mail::to($bidder->email)->send(new BidReserved($bid, $bidder));
-
-		return response('Check your email', 200);
-	}
-
-	public function finalize_bid(Request $request){
-		$decrypted = $this->get_token($request, [
-			'a' => 'required|in:cancel,confirm',
-			'bid' => 'required|exists:bids,id'
-		]);
-
-		$bid = Bid::findOrFail($decrypted['bid']);
-		switch ($decrypted['a']){
-			case 'confirm':
-				if ($bid->status != 'unconfirmed'){
-					throw new \Exception("Can't confirm a bid that isn't unconfirmed");
-				}
-				$bid->confirm();
-				return response('confirmed');
-			case 'cancel':
-				if ($bid->status != 'unconfirmed'){
-					throw new \Exception("Can't cancel a bid that isn't unconfirmed");
-				}
-				$bid->confirm();
-				return response('cancelled');
-		}
 	}
 }

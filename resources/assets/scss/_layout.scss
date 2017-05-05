@@ -34,6 +34,10 @@ html {
 	left: 0;
 	top: 0;
 	text-align: left;
+
+	.fa {
+		margin-right: 1rem;
+	}
 }}
 
 @media (min-width: 950px){
@@ -42,6 +46,10 @@ html {
 	right: 0;
 	top: 0;
 	text-align: right;
+
+	.fa {
+		margin-left: 1rem;
+	}
 }}
 
 .container {

@@ -5,17 +5,17 @@
 @section('content')
 			<div class="container">
 				<h1>
-@isset($previous_day_url)
-					<div class="left">
+@isset($previous_date)
+					<div class="left form">
 						<a class="button"
-							href="{{$previous_date}}">Previous Day</a>
+							href="{{$previous_date}}"><span class="fa fa-chevron-left"></span>Previous Day</a>
 					</div>
 @endisset
 					{{$date_string}}
-@isset($next_day_url)
-					<div class="right">
+@isset($date_string)
+					<div class="right form">
 						<a class="button"
-							href="{{$next_date}}">Next Day</a>
+							href="{{$next_date}}"><span class="fa fa-chevron-right"></span>Next Day</a>
 					</div>
 @endisset
 				</h1>

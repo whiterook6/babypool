@@ -29,6 +29,14 @@ html {
 }}
 
 @media (min-width: 950px){
+.container h1 .left {
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: left;
+}}
+
+@media (min-width: 950px){
 .container h1 .right {
 	position: absolute;
 	right: 0;
@@ -48,7 +56,7 @@ html {
 			height: 2px;
 			width: 100%;
 			display: block;
-    		content: '';
+			content: '';
 		}
 	}
 }

@@ -7,14 +7,14 @@
 				<h1>
 @isset($previous_date)
 					<div class="left form">
-						<a class="button"
+						<a class="button inline"
 							href="{{$previous_date}}"><span class="fa fa-chevron-left"></span> Previous Day</a>
 					</div>
 @endisset
 					{{$date_string}}
 @isset($date_string)
 					<div class="right form">
-						<a class="button"
+						<a class="button inline"
 							href="{{$next_date}}">Next Day <span class="fa fa-chevron-right"></span></a>
 					</div>
 @endisset
@@ -87,7 +87,7 @@
 				</div>
 				<div class="row">
 					<div class="col-12 form">
-						<a class="button"
+						<a class="button inline"
 							href="/calendar">Back</a>
 					</div>
 				</div>					

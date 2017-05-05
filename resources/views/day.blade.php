@@ -5,7 +5,19 @@
 @section('content')
 			<div class="container">
 				<h1>
+@isset($previous_day_url)
+					<div class="left">
+						<a class="button"
+							href="{{$previous_date}}">Previous Day</a>
+					</div>
+@endisset
 					{{$date_string}}
+@isset($next_day_url)
+					<div class="right">
+						<a class="button"
+							href="{{$next_date}}">Next Day</a>
+					</div>
+@endisset
 				</h1>
 				<div class="row">
 					<div class="col-sm-4">

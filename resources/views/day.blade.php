@@ -60,7 +60,7 @@
 								</div>
 								<div class="col-xs-6">
 									<label class="label" for="value">Bid in Dollars</label>
-									<input class="input" id="value" name="value" type="number" placeholder="{{$next_value}}" />
+									<input class="input" id="value" name="value" value="{{$next_value}}" type="number" placeholder="{{$next_value}}" />
 								</div>
 							</div>
 							<div class="row">

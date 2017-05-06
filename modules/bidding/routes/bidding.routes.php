@@ -4,8 +4,7 @@ use Babypool\BidderController;
 use Babypool\BidController;
 
 Route::group([
-	'prefix' => 'bids',
-	'middleware' => 'web'
+	'prefix' => 'bids'
 ], function(){
 	Route::get('/finalize', BidController::class . '@finalize_bid');
 	Route::post('/{date}',  BidController::class . '@place_bid');
@@ -16,4 +15,4 @@ Route::any('/rules', function(){
 		'minimum_bid' => ENV('MINIMUM_BID', 5),
 		'minimum_raise' => ENV('MINIMUM_RAISE', 1)
 	]);
-})->middleware('web');
+});

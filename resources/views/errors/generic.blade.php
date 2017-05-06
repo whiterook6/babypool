@@ -1,6 +1,6 @@
 @extends('templates.app') <!-- Refers to templates/app.blade.php -->
 
-@section('title', 'Calendar')
+@section('title', $exception->getMessage())
 
 @section('content')
 
@@ -8,7 +8,9 @@
 	<div class="row">
 		<div class="col-12">
 			<span class="fa fa-exclamation-triangle"></span>
-			{{$error_msg}}
+			{{$exception->getMessage()}}
 		</div>
 	</div>
 </div>
+
+@endsection

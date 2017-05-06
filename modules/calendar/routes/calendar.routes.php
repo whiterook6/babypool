@@ -2,12 +2,10 @@
 
 use Babypool\CalendarController;
 
-Route::get('/', CalendarController::class . '@calendar')
-	->middleware('web');
+Route::get('/', CalendarController::class . '@calendar');
 
 Route::group([
-	'prefix' => 'calendar',
-	'middleware' => 'web'
+	'prefix' => 'calendar'
 ], function () {
 	Route::get( '/',         CalendarController::class . '@calendar');
 	Route::get( '/{date}',   CalendarController::class . '@date');

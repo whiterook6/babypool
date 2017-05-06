@@ -41,8 +41,7 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception){
-        return view('errors.generic', [
-            $error_msg => $exception->getMessage()
-        ]);
+        return response()->view('errors.generic', [
+            'exception' => $exception]);
     }
 }

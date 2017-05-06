@@ -22,7 +22,7 @@ class BidController extends BabbyController {
 			'email' => 'required|email',
 			'value' => 'required|integer',
 		]);
-		$value = $request->input('value');
+		$value = intval($request->input('value'));
 		$email = $request->input('email');
 
 		$this->validate_date($date);
@@ -138,11 +138,9 @@ class BidController extends BabbyController {
 			$min_value = $minimum_bid;
 		}
 
-		$this->validate_array([
-			'value' => $value,
-		], [
-			'value' => 'min:$minimum_bid',
-		]);
+		if ($value < $min_value){
+			throw new \Exception("The minimum bid for {$date} is $$min_value.");
+		}
 
 		if ($existing_bid && $existing_bid->bidder){
 			if ($existing_bid->bidder->email == $email){

@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule) {
 	   $schedule->call(function () {
-			DB::where('status', 'unconfirmed')->whereRaw('created_at <= DATE_SUB(NOW(),INTERVAL 15 MINUTE)')->update([
+			DB::table('bids')->where('status', 'unconfirmed')->whereRaw('created_at <= DATE_SUB(NOW(),INTERVAL 10 MINUTE)')->update([
 				'status' => 'cancelled'
 			]);
-		})->everyThirtyMinutes();
+		})->everyTenMinutes();
 	}
 }

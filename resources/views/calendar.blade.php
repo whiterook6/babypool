@@ -32,7 +32,11 @@
 	@endisset
 						</div>
 	@foreach ($week['days'] as $day)
+		@if ($day['is_due_date'])
+						<a href="/calendar/{{$day['date']}}" class="cell available highlight">
+		@else
 						<a href="/calendar/{{$day['date']}}" class="cell available">
+		@endif
 							<span class="day">{{$day['day_of_month']}}</span>
 		@isset ($bids[$day['date']])
 <?php

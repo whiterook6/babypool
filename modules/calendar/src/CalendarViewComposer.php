@@ -20,6 +20,8 @@ class CalendarViewComposer {
 		$end_date = new DateTime();
 		$end_date->setISODate($end_year, $end_week, 6);
 
+		$due_date = env('DUE_DATE', '0001-01-01');
+
 		$interval = date_diff($start_date, $end_date); // get interval between start and end
 		$days = intval($interval->format('%a')) + 1; // get days of interval
 
@@ -37,9 +39,12 @@ class CalendarViewComposer {
 				];
 			}
 
+			$current_date_string = $current_date->format('Y-m-d');
+
 			array_push($calendar[$week]['days'], [
+				'date' => $current_date_string,
 				'day_of_month' => intval($current_date->format('d')),
-				'date' => $current_date->format('Y-m-d'),
+				'is_due_date' => ($due_date == $current_date_string),
 			]);
 			$new_month = $current_date->format('F');
 

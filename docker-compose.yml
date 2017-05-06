@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+    web:
+        build: "."
+        command: "php artisan serve --host=0.0.0.0"
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./:/babypool
+        working_dir: /babypool
+        links:
+            - mysql
+            - mailcatcher
+
+    mysql:
+        image: "mysql:5.7"
+        environment:
+            MYSQL_ROOT_PASSWORD: "secret"
+            MYSQL_DATABASE: "babypool"
+            MYSQL_USER: "babypool"
+            MYSQL_PASSWORD: "secret"
+
+    mailcatcher:
+        image: "schickling/mailcatcher"
+        ports:
+            - "1080:1080"

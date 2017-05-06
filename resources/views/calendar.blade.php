@@ -8,7 +8,7 @@
 					Baby Pool
 					<small>for John and Caitlin</small>
 					<div class="right">
-						<small>Total raised:</small>
+						<small>Total Prize Pool:</small>
 						$50
 					</div>
 				</h1>

@@ -145,11 +145,9 @@ class BidController extends BabbyController {
 		]);
 
 		if ($existing_bid && $existing_bid->bidder){
-			$this->validate_array([
-				'email' => $email,
-			], [
-				'email' => "different:{$existing_bid->bidder->email}"
-			]);
+			if ($existing_bid->bidder->email == $email){
+				throw new \Exception('Cannot bid on a day you already control.');
+			}
 		}
 	}
 }

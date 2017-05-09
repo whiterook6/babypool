@@ -2,7 +2,6 @@
 
 namespace Babypool\Providers;
 
-use Babypool\BidderController;
 use Babypool\BidController;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,9 +27,6 @@ class BiddingServiceProvider extends ServiceProvider {
 	 * Register the application services.
 	 */
 	public function register() {
-		$this->app->singleton(BidderController::class, function ($app) {
-			return new BidderController;
-		});
 		$this->app->singleton(BidController::class, function ($app) {
 			return new BidController;
 		});

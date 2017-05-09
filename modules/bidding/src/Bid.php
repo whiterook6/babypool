@@ -2,7 +2,7 @@
 
 namespace Babypool;
 
-use Babypool\Bidder;
+use Babypool\User;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -12,13 +12,13 @@ class Bid extends Model {
 	protected $table = 'bids';
 	protected $fillable = [
 		'value',
-		'bidder_id',
+		'user_id',
 		'status',
 		'date',
 	];
 
-	public function bidder(){
-		return $this->belongsTo(Bidder::class);
+	public function user(){
+		return $this->belongsTo(User::class);
 	}
 
 	public function scopeActive(Builder $query){

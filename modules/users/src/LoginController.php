@@ -9,10 +9,6 @@ use Auth;
 
 class LoginController extends BabbyController {
 
-	public function login_form(){
-		return view('login');
-	}
-
 	public function login(Request $request){
 		$this->validate($request, [
 			'email' => 'required|email|exists:users,email',

@@ -20,11 +20,14 @@ class LoginController extends BabbyController {
 		$password = $request->input('password');
 		$remember = $request->has('remember');
 
-		if (Auth::attempt($email, $password, $remember)){
+		if (Auth::attempt([
+			'email' => $email,
+			'password' => $password
+		], $remember)){
 			$continue = $request->input('continue', '/');
-			return redirect($continue);
+			return redirect('/calendar');
 		} else {
-			throw new Exception('Cannot log in with those credentials.');
+			throw new \Exception('Cannot log in with those credentials.');
 		}
 	}
 

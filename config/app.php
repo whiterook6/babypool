@@ -183,6 +183,7 @@ return [
          */
         Babypool\Providers\BiddingServiceProvider::class,
         Babypool\Providers\CalendarServiceProvider::class,
+        Babypool\Providers\UserServiceProvider::class,
 
     ],
 

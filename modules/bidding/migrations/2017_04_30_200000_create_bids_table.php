@@ -13,7 +13,7 @@ class CreateBidsTable extends Migration {
     public function up(){
         Schema::create('bids', function (Blueprint $table){
             $table->increments('id');
-            $table->integer('bidder_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->date('date');
             $table->integer('value')->unsigned();
             $table->enum('status', [
@@ -24,7 +24,7 @@ class CreateBidsTable extends Migration {
             ]);
             $table->timestamps();
 
-            $table->foreign('bidder_id')->references('id')->on('bidders');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->index(['date', 'value']);
             $table->index('status');
             $table->index('created_at');

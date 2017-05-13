@@ -18,7 +18,7 @@
 						<h2>About Prizes</h2>
 						<ul>
 							<li>The total prize is the sum of all successful bids.</li>
-							<li>The half is delivered as a gift to the parents.</li>
+							<li>Half of the total prize is delivered as a gift to the parents.</li>
 							<li>The bidder who has the highest bid on or closest to the date-of-birth wins half of the total prize.</li>
 							<li>If two people have the closest bids, they split the winner's half of the prize: 1/4 to each winner, and 1/2 to the parents.</li>
 						</ul>
@@ -40,25 +40,21 @@
 
 						<h2>About Paying</h2>
 						<ul>
-							<li>Only the highest confirmed bid for a day counts ("Successful Bid")</li>
-							<li>If you have the successful bid for a day when that day begins, you owe that bid.</li>
-							<li>If you have the successful bid for a day when the pool is locked, you owe that bid.</li>
+							<li>You must pay for each bid.</li>
+							<li>You must only pay the difference when raising your bid.</li>
 						</ul>
 					</div>
 					<div class="col-6">
 						<h2>To Bid</h2>
 						<ol>
 							<li>Select a valid day.</li>
-							<li>Enter your email address and a bid value that is at least ${{$minimum_raise}} higher than the current highest bid.</li>
-							<li>Press <span class="fake-button">place bid</span>.</li>
-							<li>In your inbox, open the confirmation email and click <span class="fake-button">confirm bid</span>.</li>
+							<li>Choose a value for your bid. It must be the same as or greater than the minimum bid for that day.</li>
+							<li>You may be asked to log in.</li>
 						</ol>
-
-						If you do not confirm your bid within ten minutes, the bid is canceled.
 
 						<h2>To Pay</h2>
 						<ol>
-							<li>Give Tim the amount owed once you owe it. Bids will be marked as "paid" once the money is collected.</li>
+							<li>BABBY uses Stripe for payment processing. This requires a valid credit card.</li>
 						</ol>
 					</div>
 				</div>

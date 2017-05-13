@@ -2,10 +2,11 @@
 
 namespace Babypool\Providers;
 
-use Babypool\BidController;
+use Babypool\LoginController;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class BiddingServiceProvider extends ServiceProvider {
+class UserServiceProvider extends ServiceProvider {
 	/**
 	 * Bootstrap the application services.
 	 */
@@ -27,8 +28,8 @@ class BiddingServiceProvider extends ServiceProvider {
 	 * Register the application services.
 	 */
 	public function register() {
-		$this->app->singleton(BidController::class, function ($app) {
-			return new BidController;
+		$this->app->singleton(LoginController::class, function ($app) {
+			return new LoginController;
 		});
 	}
 }

@@ -47,23 +47,6 @@
 		@isset ($bids[$day['date']])
 <?php
 	$bid = $bids[$day['date']];
-	switch ($bid['status']){
-		case 'unconfirmed':
-?>
-							<span class="fa fa-clock-o"></span>
-<?php
-			break;
-		case 'confirmed':
-?>
-							<span class="fa fa-check"></span>
-<?php
-			break;
-		case 'paid':
-?>
-							<span class="fa fa-money"></span>
-<?php
-			break;
-	}
 ?>
 							<span class="value">{{$bid['value']}}</span>
 		@endisset

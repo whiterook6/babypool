@@ -3,6 +3,7 @@
 namespace Babypool\Providers;
 
 use Babypool\LoginController;
+use Babypool\UserController;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,9 @@ class UserServiceProvider extends ServiceProvider {
 	public function register() {
 		$this->app->singleton(LoginController::class, function ($app) {
 			return new LoginController;
+		});
+		$this->app->singleton(UserController::class, function ($app) {
+			return new UserController;
 		});
 	}
 }

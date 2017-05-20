@@ -12,9 +12,9 @@ class CalendarController extends BabbyController {
 
 	public function calendar(Request $request){
 		$bids = [];
-		$dates = Bid::active()->distinct('date')->pluck('date');
+		$dates = Bid::distinct('date')->pluck('date');
 		$dates->each(function($date) use (&$bids){
-			$bid = Bid::where('date', $date)->active()->highest()->first();
+			$bid = Bid::where('date', $date)->highest()->first();
 			if ($bid){
 				$bids[$date] = $bid;
 			}

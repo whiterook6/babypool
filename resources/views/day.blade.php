@@ -12,7 +12,7 @@
 					</div>
 @endisset
 					{{$date_string}}
-@isset($date_string)
+@isset($next_date)
 					<div class="right form">
 						<a class="button"
 							href="{{$next_date}}">Next Day <span class="fa fa-chevron-right"></span></a>
@@ -26,13 +26,6 @@
 						<h2>Current Bid: <small>${{$current_bid['value']}}</small></h2>
 						<div class="bids">
 							<div class="bid">
-	@if($current_bid['status'] == 'paid')
-								<span class="fa fa-money"></span>
-	@elseif($current_bid['status'] == 'confirmed')
-								<span class="fa fa-check"></span>
-	@elseif($current_bid['status'] == 'unconfirmed')
-								<span class="fa fa-clock-o"></span>
-	@endif
 								<span class="email">{{$current_bid['bidder']['email']}}</span>
 								<span class="value">${{$current_bid['value']}}</span>
 							</div>
@@ -45,14 +38,6 @@
 						<div class="bids">
 	@foreach($previous_bids as $previous_bid)
 							<div class="bid disabled">
-
-		@if($previous_bid['status'] == 'paid')
-								<span class="fa fa-money"></span>
-		@elseif($previous_bid['status'] == 'confirmed')
-								<span class="fa fa-check"></span>
-		@elseif($previous_bid['status'] == 'unconfirmed')
-								<span class="fa fa-clock-o"></span>
-		@endif
 								<span class="email">{{$previous_bid['bidder']['email']}}</span>
 								<span class="value">${{$previous_bid['value']}}</span>
 							</div>

@@ -3,6 +3,7 @@
 namespace Babypool;
 
 use DB;
+use Babypool\Bid;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Builder;
@@ -42,4 +43,7 @@ class User extends Model implements AuthenticatableContract {
 		'stripe_token',
 	];
 
+	public function bids(){
+		return $this->hasMany(Bid::class);
+	}
 }

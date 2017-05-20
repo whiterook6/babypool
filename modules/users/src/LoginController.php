@@ -19,23 +19,25 @@ class LoginController extends BabbyController {
 		$email = $request->input('email');
 		$password = $request->input('password');
 		$remember = $request->has('remember');
+		$continue = $request->input('continue', '/calendar');
 
 		if (Auth::attempt([
 			'email' => $email,
 			'password' => $password
 		], $remember)){
-			$continue = $request->input('continue', '/');
-			return redirect('/calendar');
+			return redirect($continue);
 		} else {
-			throw new \Exception('Cannot log in with those credentials.');
+			return view('login', [
+				'exception' => new \Exception('Invalid login')
+			]);
 		}
 	}
 
 	public function register(Request $request){
 		$this->validate($request, [
-			'email' => 'required|email',
-			'initials' => 'required|size:2',
-			'password' => 'required|confirmed|min:15',
+			'email' => 'required|email|unique:users,email',
+			'initials' => 'required|size:2|unique:users,initials',
+			'password' => 'required|confirmed|min:8',
 		]);
 
 		$user = User::create([
@@ -45,16 +47,15 @@ class LoginController extends BabbyController {
 		]);
 
 		Auth::login($user);
+		$continue = $request->input('continue', '/calendar');
 
-		return view('registered', [
-			'new_user' => $user
-		]);
+		return redirect($continue);
 	}
 
 	public function logout(Request $request){
 		Auth::logout();
 
-		$continue = $request->input('continue', '/');
+		$continue = $request->input('continue', '/calendar');
 		return redirect($continue);
 	}
 }

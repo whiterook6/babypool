@@ -2,6 +2,7 @@
 
 namespace Babypool;
 
+use Auth;
 use Babypool\BabbyController;
 use Babypool\Bid;
 use DateTime;
@@ -19,9 +20,15 @@ class CalendarController extends BabbyController {
 			}
 		});
 
-		return view('calendar', [
+		$data = [
 			'bids' => $bids
-		]);
+		];
+
+		if (Auth::user()){
+			$data['user'] = Auth::user();
+		}
+
+		return view('calendar', $data);
 	}
 
 	public function date($date, Request $request){

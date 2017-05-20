@@ -6,7 +6,13 @@
 			<div class="container">
 				<h1>
 					Baby Pool
-					<small>for John and Caitlin</small>
+					<small>for John and Caitlin</small>			
+@isset($user)
+					<div class="left">
+						<small>Logged in as </small>
+						{{$user['initials']}}
+					</div>
+@endisset
 					<div class="right">
 						<small>Total Prize Pool:</small>
 						$50

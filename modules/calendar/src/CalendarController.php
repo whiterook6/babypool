@@ -38,7 +38,7 @@ class CalendarController extends BabbyController {
 			'date' => 'required|date_format:"Y-m-d"',
 		]);
 
-		$bids = Bid::where('date', $date)->active()->highest()->with('bidder')->get();
+		$bids = Bid::where('date', $date)->highest()->with('user')->get();
 		$head = $bids->first();
 		$tail = $bids->slice(1);
 

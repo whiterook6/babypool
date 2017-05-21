@@ -48,7 +48,7 @@
 <?php
 	$bid = $bids[$day['date']];
 ?>
-							<span class="value">{{$bid['value']}}</span>
+							<span class="value">${{$bid['value']}}</span>
 		@endisset
 						</a>
 	@endforeach

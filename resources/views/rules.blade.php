@@ -23,6 +23,12 @@
 							<li>If two people have the closest bids, they split the winner's half of the prize: 1/4 to each winner, and 1/2 to the parents.</li>
 						</ul>
 
+						<h2>About Paying</h2>
+						<ul>
+							<li>You must pay for each bid, even if you wind up out-bid.</li>
+							<li>You must only pay the difference when raising your bid.</li>
+						</ul>
+
 						<h2>About Bidding</h2>
 						<ul>
 							<li>All bids are public.</li>
@@ -36,12 +42,6 @@
 							<li>that day has already started;</li>
 							<li>another bidder has an unconfirmed bid for that day; or</li>
 							<li>you already have the highest bid for that day.</li>
-						</ul>
-
-						<h2>About Paying</h2>
-						<ul>
-							<li>You must pay for each bid.</li>
-							<li>You must only pay the difference when raising your bid.</li>
 						</ul>
 					</div>
 					<div class="col-6">

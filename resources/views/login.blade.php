@@ -37,5 +37,14 @@
 						</div>
 					</div>
 				</form>
+				<div class="row form">
+					<div class="col-12">
+						<a class="button inline"
+							href="/calendar">Calendar</a>
+						<a class="button inline"
+							href="/rules">Rules</a>
+						</div>
+					</div>
+				</div>
 			</div>
 @endsection

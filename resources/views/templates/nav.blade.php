@@ -4,7 +4,7 @@
 						href="/calendar">Calendar</a>
 					<a class="button inline"
 						href="/rules">Rules</a>
-@if(isset($user))
+@if(Auth::check())
 					<a class="button inline"
 						href="/me">Your Bids</a>
 					<a class="right button inline"

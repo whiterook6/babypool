@@ -2,6 +2,7 @@
 
 namespace Babypool;
 
+use Auth;
 use Babypool\BabbyController;
 use Babypool\Bid;
 use Babypool\Bidder;
@@ -19,28 +20,24 @@ class BidController extends BabbyController {
 		}
 
 		$this->validate($request, [
-			'email' => 'required|email',
 			'value' => 'required|integer',
 		]);
 		$value = intval($request->input('value'));
-		$email = $request->input('email');
 
 		$this->validate_date($date);
+		$user = Auth::user();
 
-		DB::transaction(function() use ($date, $value, $email){
-			$this->validate_bids($date, $value, $email);
+		DB::transaction(function() use ($date, $value, $user){
+			$this->validate_bids($date, $value, $user);
 
-			$bidder = Bidder::firstOrCreate([
-				'email' => $email
-			]);
 			$bid = Bid::create([
-				'bidder_id' => $bidder->id,
+				'user_id' => $user->id,
 				'value' => $value,
 				'date' => $date,
 				'status' => 'unconfirmed'
 			]);
 
-			Mail::to($bidder->email)->send(new BidReserved($bid, $bidder));
+			Mail::to($user->email)->send(new BidReserved($bid, $user));
 		});
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);
@@ -122,13 +119,12 @@ class BidController extends BabbyController {
 		]);
 	}
 
-	private function validate_bids($date, $value, $email){
+	private function validate_bids($date, $value, $user){
 		$minimum_bid = intval(env('MINIMUM_BID', 5));
 		$minimum_increment = intval(env('MINIMUM_INCREMENT', 1));
 
 		$existing_bid = Bid::where('date', $date)
-			->with('bidder')
-			->active()
+			->with('user')
 			->highest()
 			->first();
 
@@ -142,8 +138,8 @@ class BidController extends BabbyController {
 			throw new \Exception("The minimum bid for {$date} is $$min_value.");
 		}
 
-		if ($existing_bid && $existing_bid->bidder){
-			if ($existing_bid->bidder->email == $email){
+		if ($existing_bid && $existing_bid->user){
+			if ($existing_bid->user->id == $user->id){
 				throw new \Exception('Cannot bid on a day you already control.');
 			}
 		}

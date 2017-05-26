@@ -26,7 +26,7 @@
 						<h2>Current Bid: <small>${{$current_bid['value']}}</small></h2>
 						<div class="bids">
 							<div class="bid">
-								<span class="email">{{$current_bid['bidder']['email']}}</span>
+								<span class="email">{{$current_bid['user']['initials']}}</span>:
 								<span class="value">${{$current_bid['value']}}</span>
 							</div>
 						</div>
@@ -38,7 +38,7 @@
 						<div class="bids">
 	@foreach($previous_bids as $previous_bid)
 							<div class="bid disabled">
-								<span class="email">{{$previous_bid['bidder']['email']}}</span>
+								<span class="email">{{$previous_bid['user']['initials']}}</span>:
 								<span class="value">${{$previous_bid['value']}}</span>
 							</div>
 	@endforeach
@@ -47,20 +47,15 @@
 						No prevous bids.
 @endif
 					</div>
-					<div class="col-sm-8">
+					<div class="col-sm-4">
 						<h2>To Raise: <small>${{$next_value}}</small></h2>
+@if(isset($current_bid) && $current_bid['user_id'] != Auth::id())
 						<form class="form" method="POST" action="/bids/{{$date}}">
 							<div class="row">
-								<div class="col-xs-6">
-									<label class="label" for="email">Email Address</label>
-									<input class="input" id="email" name="email" type="email" placeholder="example@gmail.com" />
-								</div>
-								<div class="col-xs-6">
+								<div class="col-12">
 									<label class="label" for="value">Bid in Dollars</label>
 									<input class="input" id="value" name="value" value="{{$next_value}}" type="number" min="{{$next_value}}" placeholder="{{$next_value}}" />
 								</div>
-							</div>
-							<div class="row">
 								<div class="col-12">
 									<input class="button inline" type="submit" value="Place Bid" />
 								</div>
@@ -68,6 +63,9 @@
 						</form>
 
 						<p>After clicking Place Bid, check your email. Your bid is reserved for 10 minutes.</p>
+@else
+						You already have the highest bid.
+@endif
 					</div>
 				</div>
 	@include('templates.nav')

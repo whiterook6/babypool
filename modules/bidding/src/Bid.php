@@ -13,7 +13,6 @@ class Bid extends Model {
 	protected $fillable = [
 		'value',
 		'user_id',
-		'status',
 		'date',
 	];
 

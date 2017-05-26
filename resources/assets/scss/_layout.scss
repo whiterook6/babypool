@@ -22,6 +22,12 @@ html {
 	width: auto;
 }}
 
+@media (max-width: $small-screen-width){
+.wrapper {
+	margin: 1rem;
+	width: auto;
+}}
+
 @media (min-width: $large-screen-width){
 .wrapper {
 	margin: 1rem auto;
@@ -68,3 +74,13 @@ html {
 		}
 	}
 }
+
+@media (max-width: $large-screen-width){
+.container {
+	padding: 1rem 50px;
+}}
+
+@media (max-width: $small-screen-width){
+.container {
+	padding: 1rem 1rem;
+}}

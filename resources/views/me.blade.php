@@ -77,5 +77,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
 </script>
 	@endif
 				</div>
+@include('templates.nav')
 			</div>
 @endsection

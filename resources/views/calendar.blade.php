@@ -55,11 +55,6 @@
 					</div>
 @endforeach
 				</div>
-				<div class="row">
-					<div class="col-12 form">
-						<a class="button inline"
-							href="/rules">Rules</a>
-					</div>
-				</div>
+@include('templates.nav')
 			</div>
 @endsection

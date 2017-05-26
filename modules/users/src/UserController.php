@@ -12,7 +12,7 @@ class UserController extends BabbyController {
 		$user->load('bids');
 
 		$total_bid = $user->bids->sum('value');
-		$total_paid = $user->bids->sum('paid');
+		$total_paid = 0;
 
 		return view('me', [
 			'total_bid' => $total_bid,

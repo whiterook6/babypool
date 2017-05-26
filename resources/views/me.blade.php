@@ -13,14 +13,18 @@
 		@foreach ($user['bids'] as $bid)
 						<div>
 							{{$bid['date']}}: ${{$bid['value']}}
-			@if ($bid['paid'] < $bid['value'])
-							(Only ${{$bid['paid']}} paid.)
-			@endif
 						</div>
 		@endforeach
 	@else
 						<div>No bids.</div>
 	@endif
+						<h2>Payments</h2>
+						<div>
+							Paid $123 on December 12th, 2017
+						</div>
+						<div>
+							No payments captured.
+						</div>
 					</div>
 					<div class="col-sm-4">
 						<h2>Total Bid</h2>

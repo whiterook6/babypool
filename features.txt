@@ -1,0 +1,11 @@
+required features:
+- log in and out [done]
+- place or increase a bid for a given day
+	- must be logged in
+- see all bids for a given day [done]
+- see all days' greatest bids
+- see all own bids [done]
+- see total of all bids
+- be able to pay
+	- only have to pay the difference for a new day
+- be able to see how much is owing

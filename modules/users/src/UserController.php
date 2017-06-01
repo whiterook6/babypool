@@ -11,7 +11,9 @@ class UserController extends BabbyController {
 		$user = Auth::user();
 		$user->load('bids');
 
-		$total_bid = $user->bids->sum('value');
+		$total_bid = $user->bids->filter(function($bid){
+			return $bid->status != 'cancelled';
+		})->sum('value');
 		$total_paid = 0;
 
 		return view('me', [

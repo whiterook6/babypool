@@ -30,3 +30,12 @@ html {
 		}
 	}
 }
+
+a {
+	color: $theme-accent;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

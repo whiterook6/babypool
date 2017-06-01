@@ -14,7 +14,7 @@
 				</h1>
 
 				<div class="row">
-					<div class="col-6">
+					<div class="col-sm-6">
 						<h2>About Prizes</h2>
 						<ul>
 							<li>The total prize is the sum of all successful bids.</li>
@@ -44,7 +44,7 @@
 							<li>you already have the highest bid for that day.</li>
 						</ul>
 					</div>
-					<div class="col-6">
+					<div class="col-sm-6">
 						<h2>To Bid</h2>
 						<ol>
 							<li>Select a valid day.</li>
@@ -52,9 +52,15 @@
 							<li>You may be asked to log in.</li>
 						</ol>
 
-						<h2>To Pay</h2>
+						<h2>To Pay with Credit Card</h2>
 						<ol>
 							<li>BABBY uses Stripe for payment processing. This requires a valid credit card.</li>
+							<li>You can see your balanced owed, and pay, <a href="/me">here.</a></li>
+						</ol>
+
+						<h2>To Pay with Cash</h2>
+						<ol>
+							<li>Bring cash to Tim.</li>
 						</ol>
 					</div>
 				</div>

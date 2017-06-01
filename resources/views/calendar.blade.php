@@ -10,12 +10,12 @@
 @isset($user)
 					<div class="left">
 						<small>Logged in as </small>
-						{{$user['initials']}}
+						<a href="/me">{{$user['initials']}}</a>
 					</div>
 @endisset
 					<div class="right">
 						<small>Total Prize Pool:</small>
-						$50
+						${{$total_pot}}
 					</div>
 				</h1>
 

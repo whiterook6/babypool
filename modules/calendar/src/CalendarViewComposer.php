@@ -4,9 +4,12 @@ namespace Babypool;
 
 use DateTime;
 use Illuminate\View\View;
+use DB;
 
 class CalendarViewComposer {
 	public function compose(View $view){
+		$total_pot = DB::table('bids')->sum('value');
+
 		$start_year = intval(env('EARLIEST_BID_YEAR', 2017));
 		$start_week = intval(env('EARLIEST_BID_WEEK', 0));
 
@@ -65,6 +68,11 @@ class CalendarViewComposer {
 			}
 		}
 
-		$view->with('calendar', $calendar);
+		\Log::info($calendar);
+
+		$view->with([
+			'total_pot' => $total_pot,
+			'calendar' => $calendar
+		]);
 	}
 }

@@ -30,12 +30,14 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-4 offset-sm-4">
-							<input class="button block" type="submit" value="Login" />
+							<input class="button block" type="submit" value="Register" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-4 offset-sm-4">
-							<span class="text">Or <a href="/login">login</a>.</span>
+							<span class="text">
+								Or <a href="/login">login</a>.
+							</span>
 						</div>
 					</div>
 				</form>

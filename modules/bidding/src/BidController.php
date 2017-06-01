@@ -26,26 +26,42 @@ class BidController extends BabbyController {
 
 		$this->validate_date($date);
 		$user = Auth::user();
+		$new_bid = true;
 
-		DB::transaction(function() use ($date, $value, $user){
+		DB::transaction(function() use ($date, $value, $user, &$new_bid){
 			$this->validate_bids($date, $value, $user);
 
-			$bid = Bid::create([
+			$bid = Bid::firstOrCreate([
 				'user_id' => $user->id,
-				'value' => $value,
 				'date' => $date,
+			], [
+				'value' => $value,
 				'status' => 'unconfirmed'
 			]);
 
-			Mail::to($user->email)->send(new BidReserved($bid, $user));
+			if ($bid->value != $value){
+				$bid->value = $value;
+				$bid->save();
+			}
+
+			$new_bid = ($bid->status == 'unconfirmed');
+			Mail::to($user->email)->send(new BidReserved($bid, $new_bid));
 		});
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);
 		$date_string = $date_time->format('l, F jS');
-		return view('reserved', [
-			'value' => $value,
-			'date_string' => $date_string
-		]);
+
+		if ($new_bid){
+			return view('reserved', [
+				'value' => $value,
+				'date_string' => $date_string
+			]);
+		} else {
+			return view('updated', [
+				'value' => $value,
+				'date_string' => $date_string
+			]);
+		}
 	}
 
 	public function finalize_bid(Request $request){

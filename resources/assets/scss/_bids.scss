@@ -1,0 +1,7 @@
+.bids {
+	.bid {
+		&.cancelled {
+			text-decoration: line-through;
+		}
+	}
+}

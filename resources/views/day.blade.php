@@ -49,7 +49,7 @@
 					</div>
 					<div class="col-sm-4">
 						<h2>To Raise: <small>${{$next_value}}</small></h2>
-@if(isset($current_bid) && $current_bid['user_id'] != Auth::id())
+@if (!isset($current_bid) || $current_bid['user_id'] != Auth::id())
 						<form class="form" method="POST" action="/bids/{{$date}}">
 							<div class="row">
 								<div class="col-12">

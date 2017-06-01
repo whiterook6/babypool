@@ -10,11 +10,17 @@
 					<div class="col-sm-4">
 						<h2>Bids</h2>
 	@if (!empty($user['bids']))
+						<div class="bids">
 		@foreach ($user['bids'] as $bid)
-						<div>
-							{{$bid['date']}}: ${{$bid['value']}}
-						</div>
+			@if($bid['status'] == 'cancelled')
+							<div class="bid cancelled">
+			@else
+							<div class="bid">
+			@endif
+								<a href="/calendar/{{$bid['date']}}">{{$bid['date']}}</a>: ${{$bid['value']}}
+							</div>
 		@endforeach
+						</div>
 	@else
 						<div>No bids.</div>
 	@endif

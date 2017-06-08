@@ -15,10 +15,12 @@ class UserController extends BabbyController {
 			return $bid->status != 'cancelled';
 		})->sum('value');
 		$total_paid = 0;
+		$total_owing = $total_bid - $total_paid;
 
 		return view('me', [
 			'total_bid' => $total_bid,
-			'total_owing' => $total_bid - $total_paid,
+			'total_owing' => $total_owing,
+			'owing_encrypted' => encrypt($total_owing),
 			'total_paid' => $total_paid,
 			'user' => $user,
 		]);

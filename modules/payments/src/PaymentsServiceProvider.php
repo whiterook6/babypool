@@ -2,7 +2,7 @@
 
 namespace Babypool\Providers;
 
-use Babypool\BidController;
+use Babypool\PaymentController;
 use Illuminate\Support\ServiceProvider;
 
 class PaymentsServiceProvider extends ServiceProvider {
@@ -18,17 +18,17 @@ class PaymentsServiceProvider extends ServiceProvider {
 		// 	__DIR__.'/../factories/' => base_path('/database/factories'),
 		// ], 'factories');
 
-		// $this->publishes([
-		// 	__DIR__.'/../routes/' => base_path('/routes'),
-		// ], 'routes');
+		$this->publishes([
+			__DIR__.'/../routes/' => base_path('/routes'),
+		], 'routes');
 	}
 
 	/**
 	 * Register the application services.
 	 */
 	public function register() {
-		// $this->app->singleton(BidController::class, function ($app) {
-		// 	return new BidController;
-		// });
+		$this->app->singleton(PaymentController::class, function ($app) {
+			return new PaymentController;
+		});
 	}
 }

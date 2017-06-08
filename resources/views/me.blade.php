@@ -44,45 +44,60 @@
 					<script src="https://js.stripe.com/v3/"></script>
 					<div class="col-sm-4">
 						<h2>Pay with Stripe</h2>
-						<form method="POST" action="/pay" class="form">
+						<form method="POST" action="/pay" class="form" id="stripe-form">
+							<input type="hidden" name="owing_encrypted" value="{{$owing_encrypted}}" />
 							<label for="cardholder-name" class="label">Name</label>
 							<input id="cardholder-name" name="cardholder-name" class="input" placeholder="Jane Doe" />
 							<label for="card-element" class="label">Credit Card</label>
 							<div id="card-element" class="input"></div>
 							<p>Clicking below will charge your credit card ${{$total_owing}}. If you increase your existing bids,
 								or place any more bids, you will be required to make another payment.</p>
-							<button id="submit" type="submit" class="button block">Pay ${{$total_owing}}</button>
+							<button class="button block">Pay ${{$total_owing}}</button>
 						</form>
 					</div>
-					<script>
+<script>
 var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 var elements = stripe.elements();
-
+var form = document.querySelector('form#stripe-form');
 var card = elements.create('card', {
-  style: {
-    base: {
-      iconColor: '#666EE8',
-      color: '#31325F',
-      lineHeight: '1rem',
-      fontWeight: 300,
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSize: '15px',
-
-      '::placeholder': {
-        color: '#CFD7E0',
-      },
-    },
-  }
+	style: {
+		base: {
+			iconColor: '#666EE8',
+			color: '#31325F',
+			lineHeight: '1rem',
+			fontWeight: 300,
+			fontFamily: '"Source Sans Pro", Helvetica, sans-serif',
+			fontSize: '15px',
+			'::placeholder': {
+				color: '#CFD7E0',
+			},
+		},
+	}
 });
+
 card.mount('#card-element');
 
-document.querySelector('form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = document.querySelector('form');
-  var extraDetails = {
-    name: form.querySelector('input[name=cardholder-name]').value,
-  };
-  stripe.createToken(card, extraDetails).then(setOutcome);
+function stripeTokenHandler(token){
+	var hidden_input = document.createElement('input');
+	hidden_input.setAttribute('type', 'hidden');
+	hidden_input.setAttribute('name', 'token');
+	hidden_input.setAttribute('value', token);
+	form.appendChild(hidden_input);
+	form.submit();
+}
+
+form.addEventListener('submit', function(e) {
+	e.preventDefault();
+	var extraDetails = {
+		name: form.querySelector('input#cardholder-name').value,
+	};
+	stripe.createToken(card, extraDetails).then(function(response){
+		if (response.token){
+			stripeTokenHandler(response.token.id)
+		} else {
+			console.log(response);
+		}
+	});
 });
 </script>
 	@endif

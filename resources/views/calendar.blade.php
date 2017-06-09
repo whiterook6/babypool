@@ -10,7 +10,7 @@
 @isset($user)
 					<div class="left">
 						<small>Logged in as </small>
-						<a href="/me">{{$user['initials']}}</a>
+						<a href="/users/me">{{$user['initials']}}</a>
 					</div>
 @endisset
 					<div class="right">
@@ -40,10 +40,12 @@
 	@foreach ($week['days'] as $day)
 		@if ($day['is_due_date'])
 						<a href="/calendar/{{$day['date']}}" class="cell available highlight">
+							<span class="day"><span class="fa fa-birthday-cake"></span></span>
 		@else
 						<a href="/calendar/{{$day['date']}}" class="cell available">
-		@endif
 							<span class="day">{{$day['day_of_month']}}</span>
+		@endif
+							
 		@isset ($bids[$day['date']])
 <?php
 	$bid = $bids[$day['date']];

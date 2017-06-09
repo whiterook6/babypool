@@ -13,6 +13,7 @@ Route::group(['prefix' => 'bids', 'middleware' => 'auth'], function () {
 
 Route::any('/rules', function(){
 	return view('rules', [
+		'total_pot' => DB::table('bids')->sum('value'),
 		'minimum_bid' => ENV('MINIMUM_BID', 5),
 		'minimum_raise' => ENV('MINIMUM_RAISE', 1)
 	]);

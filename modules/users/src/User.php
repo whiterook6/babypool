@@ -4,6 +4,7 @@ namespace Babypool;
 
 use DB;
 use Babypool\Bid;
+use Babypool\Payment;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Builder;
@@ -45,5 +46,9 @@ class User extends Model implements AuthenticatableContract {
 
 	public function bids(){
 		return $this->hasMany(Bid::class);
+	}
+
+	public function payments(){
+		return $this->hasMany(Payment::class);
 	}
 }

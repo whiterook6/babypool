@@ -2,6 +2,7 @@
 
 namespace Babypool;
 
+use Auth;
 use Babypool\BabbyController;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
@@ -14,20 +15,21 @@ class PaymentController extends BabbyController {
 			'token' => 'required|string',
 			'owing_encrypted' => 'required|string'
 		]);
+		$user = Auth::user();
 
 		$owing = intval(decrypt($request->input('owing_encrypted')));
 		$token = $request->input('token');
 		$name = $request->input('cardholder-name');
 
-		Stripe::setApiKey("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
+		Stripe::setApiKey('sk_test_BQokikJOvBiI2HlWgH4olfQ2');
 		$charge = Charge::create([
-			"amount" => $owing,
-			"currency" => "cad",
-			"description" => "Babypool Payment",
-			"source" => $token,
+			'amount' => $owing,
+			'currency' => 'cad',
+			'description' => 'Babypool Payment',
+			'source' => $token,
 		]);
 
-		\Log::info($charge);
-		return 'success';
+		$payment = Payment::create_from_charge($user, $charge);
+		return redirect('/me');
 	}
 }

@@ -13,7 +13,6 @@ Route::get('/register', function(){
 Route::post('/login', LoginController::class . '@login');
 Route::any('/logout', LoginController::class . '@logout');
 Route::post('/register', LoginController::class . '@register');
-Route::get('/me', UserController::class . '@me');
 
 Route::group([
 	'prefix' => 'users',

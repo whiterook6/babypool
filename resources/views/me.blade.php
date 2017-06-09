@@ -25,12 +25,17 @@
 						<div>No bids.</div>
 	@endif
 						<h2>Payments</h2>
-						<div>
-							Paid $123 on December 12th, 2017
+	@if (!empty($user['payments']))
+						<div class="payments">
+		@foreach ($user['payments'] as $payment)
+							<div class="payment">
+								Paid ${{$payment['amount']}} on {{$payment['created_at']}}.
+							</div>
+		@endforeach
 						</div>
-						<div>
-							No payments captured.
-						</div>
+	@else
+						No payments captured.
+	@endif
 					</div>
 					<div class="col-sm-4">
 						<h2>Total Bid</h2>
@@ -40,10 +45,10 @@
 						${{$total_paid}}
 						(${{$total_owing}} owing.)
 					</div>
-	@if ($total_owing > 0)
-					<script src="https://js.stripe.com/v3/"></script>
 					<div class="col-sm-4">
 						<h2>Pay with Stripe</h2>
+	@if ($total_owing > 0)
+						<script src="https://js.stripe.com/v3/"></script>
 						<form method="POST" action="/pay" class="form" id="stripe-form">
 							<input type="hidden" name="owing_encrypted" value="{{$owing_encrypted}}" />
 							<label for="cardholder-name" class="label">Name</label>
@@ -54,8 +59,7 @@
 								or place any more bids, you will be required to make another payment.</p>
 							<button class="button block">Pay ${{$total_owing}}</button>
 						</form>
-					</div>
-<script>
+						<script>
 var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 var elements = stripe.elements();
 var form = document.querySelector('form#stripe-form');
@@ -99,7 +103,10 @@ form.addEventListener('submit', function(e) {
 		}
 	});
 });
-</script>
+						</script>
+	@else
+						No payments needed.
+					</div>
 	@endif
 				</div>
 @include('templates.nav')

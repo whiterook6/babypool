@@ -8,8 +8,8 @@
 					Rules
 					<small>and instructions</small>
 					<div class="right">
-						<small>Total raised:</small>
-						$50
+						<small>Total Prize Pool:</small>
+						${{$total_pot}}
 					</div>
 				</h1>
 

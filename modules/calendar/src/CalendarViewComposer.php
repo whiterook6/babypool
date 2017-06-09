@@ -68,8 +68,6 @@ class CalendarViewComposer {
 			}
 		}
 
-		\Log::info($calendar);
-
 		$view->with([
 			'total_pot' => $total_pot,
 			'calendar' => $calendar

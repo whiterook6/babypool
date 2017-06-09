@@ -9,12 +9,14 @@ class UserController extends BabbyController {
 	
 	public function me(){
 		$user = Auth::user();
-		$user->load('bids');
+		$user->load('bids', 'payments');
 
 		$total_bid = $user->bids->filter(function($bid){
 			return $bid->status != 'cancelled';
 		})->sum('value');
-		$total_paid = 0;
+		$total_paid = $user->payments->filter(function($payment){
+			return $payment->captured;
+		})->sum('amount');
 		$total_owing = $total_bid - $total_paid;
 
 		return view('me', [

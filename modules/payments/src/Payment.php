@@ -37,7 +37,7 @@ class Payment extends Model {
 	public static function create_from_charge(User $user, Charge $charge){
 		return static::create([
 			'user_id' => $user->id,
-			'amount' => $charge->amount,
+			'amount' => floatval($charge->amount) / 100.0,
 			'captured' => $charge->captured,
 			'status' => $charge->status,
 			'stripe_balance_transaction_id' => $charge->balance_transaction,

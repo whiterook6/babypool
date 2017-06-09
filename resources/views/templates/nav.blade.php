@@ -6,7 +6,7 @@
 						href="/rules">Rules</a>
 @if(Auth::check())
 					<a class="button inline"
-						href="/me">Your Bids</a>
+						href="/users/me">Your Bids</a>
 					<a class="right button inline"
 						href="/logout">Log Out</a>
 @else

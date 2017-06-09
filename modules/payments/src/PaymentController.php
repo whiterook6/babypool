@@ -23,7 +23,7 @@ class PaymentController extends BabbyController {
 
 		Stripe::setApiKey('sk_test_BQokikJOvBiI2HlWgH4olfQ2');
 		$charge = Charge::create([
-			'amount' => $owing,
+			'amount' => $owing * 100,
 			'currency' => 'cad',
 			'description' => 'Babypool Payment',
 			'source' => $token,

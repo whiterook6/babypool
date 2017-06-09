@@ -11,7 +11,6 @@ use Stripe\Charge;
 class PaymentController extends BabbyController {
 	public function pay(Request $request){
 		$this->validate($request, [
-			'cardholder-name' => 'required|string',
 			'token' => 'required|string',
 			'owing_encrypted' => 'required|string'
 		]);
@@ -19,7 +18,6 @@ class PaymentController extends BabbyController {
 
 		$owing = intval(decrypt($request->input('owing_encrypted')));
 		$token = $request->input('token');
-		$name = $request->input('cardholder-name');
 
 		Stripe::setApiKey('sk_test_BQokikJOvBiI2HlWgH4olfQ2');
 		$charge = Charge::create([
@@ -30,6 +28,6 @@ class PaymentController extends BabbyController {
 		]);
 
 		$payment = Payment::create_from_charge($user, $charge);
-		return redirect('/me');
+		return redirect(action('\\'.UserController::class.'@me'));
 	}
 }

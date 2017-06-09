@@ -55,12 +55,12 @@
 						<h2>To Pay with Credit Card</h2>
 						<ol>
 							<li>BABBY uses Stripe for payment processing. This requires a valid credit card.</li>
-							<li>You can see your balanced owed, and pay, <a href="/me">here.</a></li>
+							<li>You can see your balanced owed, and pay, <a href="/users/me">here.</a></li>
 						</ol>
 
 						<h2>To Pay with Cash</h2>
 						<ol>
-							<li>Bring cash to Tim.</li>
+							<li>Bring cash to Tim and hope he's good for it.</li>
 						</ol>
 					</div>
 				</div>

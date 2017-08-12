@@ -9,6 +9,7 @@ use Babypool\Bidder;
 use Babypool\BidReserved;
 use DateTime;
 use DB;
+use Exception;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -74,19 +75,21 @@ class BidController extends BabbyController {
 
 		switch ($decrypted['a']){
 			case 'confirm':
-				if ($bid->status != 'unconfirmed'){
-					throw new \Exception("Can't confirm a bid that isn't unconfirmed");
+				if ($bid->status == 'cancelled'){
+					throw new Exception("Can't confirm this bid: it's already cancelled. Place a new bid instead.");
+				} else if ($bid->status == 'unconfirmed'){
+					$bid->confirm();
 				}
-				$bid->confirm();
 
 				$result_title = 'Bid Confirmed';
 				$result = 'confirmed';
 				break;
 			case 'cancel':
-				if ($bid->status != 'unconfirmed'){
-					throw new \Exception("Can't cancel a bid that isn't unconfirmed");
+				if ($bid->status == 'confirmed'){
+					throw new Exception("Can't cancel this bid: it's already confirmed.");
+				} else if ($bid->status == 'cancelled'){
+					$bid->cancel();
 				}
-				$bid->cancel();
 
 				$result_title = 'Bid Cancelled';
 				$result = 'cancelled';

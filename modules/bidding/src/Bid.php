@@ -11,10 +11,11 @@ class Bid extends Model {
 
 	protected $table = 'bids';
 	protected $fillable = [
-		'value',
+		'date',
+		'enable_rebid',
 		'status',
 		'user_id',
-		'date',
+		'value',
 	];
 
 	public function user(){

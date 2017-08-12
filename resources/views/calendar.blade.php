@@ -15,7 +15,10 @@
 @endisset
 					<div class="right">
 						<small>Total Prize Pool:</small>
-						${{$total_pot}}
+						${{$total_pot['confirmed']}}
+@if($total_pot['unconfirmed'] > 0)
+						<small> (+ ${{$total_pot['unconfirmed']}})</small>
+@endif
 					</div>
 				</h1>
 

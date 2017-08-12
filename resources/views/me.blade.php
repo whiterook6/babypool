@@ -38,12 +38,16 @@
 	@endif
 					</div>
 					<div class="col-sm-4">
-						<h2>Total Bid</h2>
+						<h2>Total Amount Bid</h2>
 						${{$total_bid}}
 
-						<h2>Total Paid</h2>
+						<h2>Total Amount Paid</h2>
 						${{$total_paid}}
+	@if ($total_owing > 0)
 						(${{$total_owing}} owing.)
+	@elseif ($total_owing < 0)
+						(${{-$total_owing}} extra.)
+	@endif
 					</div>
 					<div class="col-sm-4">
 						<h2>Pay with Stripe</h2>

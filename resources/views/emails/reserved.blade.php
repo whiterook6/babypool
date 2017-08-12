@@ -133,6 +133,11 @@
                       </td>
                     </tr>
                     <tr>
+                      <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
+                        <div style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">By confirming this bid, you agree to pay this amount, even if you are out-bid later. You can pay the difference to bid again on this day. See the rules.</div>
+                      </td>
+                    </tr>
+                    <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="center">
                         <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="center" border="0">
                           <tbody>

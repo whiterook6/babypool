@@ -14,6 +14,11 @@
 						If the bid is not confirmed within 10 minutes, or if you click cancel, the bid will be discarded.
 					</mj-text>
 
+					<mj-text font-family="Source Sans Pro" font-size="12pt">
+						By confirming this bid, you agree to pay this amount, even if you are out-bid later. You can
+						pay the difference to bid again on this day. See the rules.
+					</mj-text>
+
 					<mj-button font-family="Source Sans Pro" href="{{$confirm_url}}" background-color="#FF3D7F" color="white">
 						Click to confirm.
 					</mj-button>

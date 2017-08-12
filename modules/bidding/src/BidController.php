@@ -68,7 +68,7 @@ class BidController extends BabbyController {
 	public function finalize_bid(Request $request){
 		$decrypted = $this->get_token($request, [
 			'a' => 'required|in:cancel,confirm',
-			'bid' => 'required|exists:bids,id'
+			'bid' => 'required|exists:bids,id',
 		]);
 
 		$bid = Bid::findOrFail($decrypted['bid']);
@@ -79,6 +79,8 @@ class BidController extends BabbyController {
 					throw new Exception("Can't confirm this bid: it's already cancelled. Place a new bid instead.");
 				} else if ($bid->status == 'unconfirmed'){
 					$bid->confirm();
+
+					$this->prepare_rebids($bid);
 				}
 
 				$result_title = 'Bid Confirmed';
@@ -102,6 +104,38 @@ class BidController extends BabbyController {
 			'result_title' => $result_title,
 			'result' => $result,
 			'value' => $bid->value,
+			'date_string' => $date_string
+		]);
+	}
+
+	public function rebid(Request $request){
+		$decrypted = $this->get_token($request, [
+			'bid' => 'required|exists:bids,id',
+			'v' => 'required|numeric'
+		]);
+
+		$bid = Bid::findOrFail($decrypted['bid']);
+
+		if (!$bid->rebid_enabled){
+			throw new Exception("Can't rebid: this bid does not have rebidding enabled.");
+		} else if ($bid->status == 'cancelled'){
+			throw new Exception("Can't rebid: this bid has been marked as cancelled.");
+		}
+
+		$rebid_value = intval($decrypted['v']);
+		if ($bid->value >= $rebid_value){
+			throw new Exception("Can't rebid: this bid has a higher bid already.");
+		}
+
+		$bid->value = $rebid_value;
+		$bid->save();
+		$this->prepare_rebids($bid);
+
+		$date_time = DateTime::createFromFormat('Y-m-d', $bid->date);
+		$date_string = $date_time->format('l, F jS');
+
+		return view('rebid', [
+			'bid' => $bid,
 			'date_string' => $date_string
 		]);
 	}
@@ -162,5 +196,23 @@ class BidController extends BabbyController {
 				throw new \Exception('Cannot bid on a day you already control.');
 			}
 		}
+	}
+
+	private function prepare_rebids(Bid $new_bid){
+		$min_value = $new_bid->value + intval(intval(env('MINIMUM_INCREMENT', 1)));
+
+		Bid::join('users', 'user_id', '=', 'users.id')
+			->where('bids.enable_rebid', true)
+			->where('bids.status', 'confirmed')
+			->where('bids.value', '<', $min_value)
+			->select([
+				'users.id as user_id',
+				'initials',
+				'bids.id as bid_id',
+				'value',
+				'date'])
+			->each(function(Bid $loser_bid) use ($min_value){
+
+			});
 	}
 }

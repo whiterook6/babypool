@@ -5,6 +5,7 @@ use Babypool\BidController;
 
 Route::group(['prefix' => 'bids'], function(){
 	Route::get('/finalize', BidController::class . '@finalize_bid');
+	Route::get('/rebid', BidController::class . '@rebid');
 });
 
 Route::group(['prefix' => 'bids', 'middleware' => 'auth'], function () {

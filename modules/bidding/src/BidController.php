@@ -7,6 +7,7 @@ use Babypool\BabbyController;
 use Babypool\Bid;
 use Babypool\Bidder;
 use Babypool\BidReserved;
+use Babypool\Rebid;
 use DateTime;
 use DB;
 use Exception;
@@ -116,7 +117,7 @@ class BidController extends BabbyController {
 
 		$bid = Bid::findOrFail($decrypted['bid']);
 
-		if (!$bid->rebid_enabled){
+		if (!$bid->enable_rebid){
 			throw new Exception("Can't rebid: this bid does not have rebidding enabled.");
 		} else if ($bid->status == 'cancelled'){
 			throw new Exception("Can't rebid: this bid has been marked as cancelled.");
@@ -202,17 +203,16 @@ class BidController extends BabbyController {
 		$min_value = $new_bid->value + intval(intval(env('MINIMUM_INCREMENT', 1)));
 
 		Bid::join('users', 'user_id', '=', 'users.id')
-			->where('bids.enable_rebid', true)
+			->where('bids.enable_rebid', 1)
 			->where('bids.status', 'confirmed')
 			->where('bids.value', '<', $min_value)
 			->select([
-				'users.id as user_id',
-				'initials',
-				'bids.id as bid_id',
+				'users.email as email',
+				'bids.id as id',
 				'value',
 				'date'])
-			->each(function(Bid $loser_bid) use ($min_value){
-
+			->each(function(Bid $existing_bid) use ($new_bid, $min_value){
+				Mail::to($existing_bid->email)->send(new Rebid($existing_bid, $new_bid, $min_value));
 			});
 	}
 }

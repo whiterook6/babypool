@@ -47,7 +47,12 @@ class BidController extends BabbyController {
 			}
 
 			$new_bid = ($bid->status == 'unconfirmed');
-			Mail::to($user->email)->send(new BidReserved($bid, $new_bid));
+
+			if ($new_bid){
+				Mail::to($user->email)->send(new BidReserved($bid, $new_bid));
+			} else {
+				$this->prepare_rebids($bid);
+			}
 		});
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);
@@ -203,6 +208,7 @@ class BidController extends BabbyController {
 		$min_value = $new_bid->value + intval(intval(env('MINIMUM_INCREMENT', 1)));
 
 		Bid::join('users', 'user_id', '=', 'users.id')
+			->where('bids.id', '!=', $new_bid->id)
 			->where('bids.enable_rebid', 1)
 			->where('bids.status', 'confirmed')
 			->where('bids.value', '<', $min_value)

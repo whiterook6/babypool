@@ -37,11 +37,12 @@ class LoginController extends BabbyController {
 		$this->validate($request, [
 			'email' => 'required|email|unique:users,email',
 			'initials' => 'required|size:2|unique:users,initials',
-			'password' => 'required|confirmed|min:8',
+			'password' => 'required|confirmed|min:8'
 		]);
 
 		$user = User::create([
 			'email' => $request->input('email'),
+			'enable_notifications' => $request->has('enable_notifications'),
 			'initials' => $request->input('initials'),
 			'password' => bcrypt($request->input('password')),
 		]);

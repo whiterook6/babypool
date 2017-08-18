@@ -26,6 +26,8 @@
 							<input class="input" id="password" name="password" type="password" />
 							<label class="label" for="password_confirmation">Password Again</label>
 							<input class="input" id="password_confirmation" name="password_confirmation" type="password" />
+							<label class="label" for="enable_notifications">Enable Email Notifications</label>
+							<label><input type="checkbox" id="enable_notifications" name="enable_notifications" />Check this to be notified when you are outbid</label>
 						</div>
 					</div>
 					<div class="row">

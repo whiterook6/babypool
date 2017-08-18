@@ -30,11 +30,14 @@ class BidController extends BabbyController {
 		DB::transaction(function() use ($date, $value, $user){
 			$this->validate_bids($date, $value, $user);
 
-			$bid = Bid::create([
+			$bid = Bid::updateOrCreate([
 				'user_id' => $user->id,
 				'date' => $date,
+			], [
 				'value' => $value,
 			]);
+
+			Mail::to($user->email)->send(new BidReserved($bid));
 		});
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);

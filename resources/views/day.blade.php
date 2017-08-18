@@ -62,7 +62,10 @@
 							</div>
 						</form>
 
-						<p>After clicking Place Bid, check your email. Your bid is reserved for 10 minutes.</p>
+						<p>
+							Placing this bid means you commit to paying for it, even if you do not win or are outbid.
+							You will only need to pay the difference if you bid for the same day again.
+						</p>
 @else
 						You already have the highest bid.
 @endif

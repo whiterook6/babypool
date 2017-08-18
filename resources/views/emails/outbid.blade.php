@@ -130,7 +130,12 @@
                     </tr>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                        <div style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">You've placed a new bid for {{$date_string}} for ${{$bid['value']}}.</div>
+                        <div style="cursor:auto;color:#FF3D7F;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">You've been outbid!</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
+                        <div style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">Your bid of ${{$old_bid_value}} on {{$date_string}} has been outbid. The newest bid at this time is for ${{$new_bid_value}}.</div>
                       </td>
                     </tr>
                     <tr>
@@ -138,7 +143,7 @@
                         <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="center" border="0">
                           <tbody>
                             <tr>
-                              <td style="border:none;border-radius:3px;color:white;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FF3D7F"><a href="{{$me_url}}" style="text-decoration:none;background:#FF3D7F;color:white;font-family:Source Sans Pro;font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">View Your Bids</a></td>
+                              <td style="border:none;border-radius:3px;color:white;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#FF3D7F"><a href="{{$date_url}}" style="text-decoration:none;background:#FF3D7F;color:white;font-family:Source Sans Pro;font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">View Bids on {{$date_string}}</a></td>
                             </tr>
                           </tbody>
                         </table>

@@ -28,6 +28,7 @@ class User extends Model implements AuthenticatableContract {
 	 */
 	protected $fillable = [
 		'email',
+		'enable_notifications',
 		'initials',
 		'password'
 	];

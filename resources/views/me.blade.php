@@ -21,7 +21,7 @@
 						<div>No bids.</div>
 	@endif
 						<h2>Payments</h2>
-	@if (!empty($user['payments']))
+	@if (count($user['payments']) > 0)
 						<div class="payments">
 		@foreach ($user['payments'] as $payment)
 							<div class="payment">

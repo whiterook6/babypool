@@ -6,6 +6,7 @@ use Auth;
 use Babypool\BabbyController;
 use Babypool\Bid;
 use Babypool\Bidder;
+use Babypool\OutbidEmail;
 use DateTime;
 use DB;
 use Exception;
@@ -38,6 +39,7 @@ class BidController extends BabbyController {
 			]);
 
 			Mail::to($user->email)->send(new BidReserved($bid));
+			$this->notify_users($bid);
 		});
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);
@@ -103,5 +105,22 @@ class BidController extends BabbyController {
 				throw new \Exception('Cannot bid on a day you already control.');
 			}
 		}
+	}
+
+	private function notify_users($bid){
+		Bid::join('users', 'user_id', '=', 'users.id')
+			->where('date', $bid->date)
+			->where('user_id', '!=', $bid->user_id)
+			->where('enable_notifications', 1)
+			->select(
+				'bids.id as id',
+				'users.id as user_id',
+				'bids.value as value',
+				'bids.date as date',
+				'users.email as email',
+				'users.initials as initials'
+			)->each(function($other_bid) use ($bid){
+				Mail::to($other_bid->email)->send(new OutbidEmail($other_bid, $bid));
+			});
 	}
 }

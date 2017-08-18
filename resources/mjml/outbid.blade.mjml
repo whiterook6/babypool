@@ -9,12 +9,16 @@
 					<mj-text font-size="36pt" color="#FF3D7F" font-family="Source Sans Pro, Helvetica">Baby Pool</mj-text>
 					<mj-divider border-color="#FF3D7F"></mj-divider>
 
+					<mj-text font-family="Source Sans Pro" font-size="12pt" color="#FF3D7F">
+					You've been outbid!
+					</mj-text>
+					
 					<mj-text font-family="Source Sans Pro" font-size="12pt">
-						You've placed a new bid for {{$date_string}} for ${{$bid['value']}}.
+					Your bid of ${{$old_bid_value}} on {{$date_string}} has been outbid. The newest bid at this time is for ${{$new_bid_value}}.
 					</mj-text>
 
-					<mj-button font-family="Source Sans Pro" href="{{$me_url}}" background-color="#FF3D7F" color="white">
-						View Your Bids
+					<mj-button font-family="Source Sans Pro" href="{{$date_url}}" background-color="#FF3D7F" color="white">
+						View Bids on {{$date_string}}
 					</mj-button>
 				</mj-column>
 			</mj-section>

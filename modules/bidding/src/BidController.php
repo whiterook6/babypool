@@ -6,6 +6,7 @@ use Auth;
 use Babypool\BabbyController;
 use Babypool\Bid;
 use Babypool\Bidder;
+use Babypool\OutbidEmail;
 use DateTime;
 use DB;
 use Exception;
@@ -116,9 +117,10 @@ class BidController extends BabbyController {
 				'users.id as user_id',
 				'bids.value as value',
 				'bids.date as date',
-				'users.email as email'
+				'users.email as email',
+				'users.initials as initials'
 			)->each(function($other_bid) use ($bid){
-
+				Mail::to($other_bid->email)->send(new OutbidEmail($other_bid, $bid));
 			});
 	}
 }

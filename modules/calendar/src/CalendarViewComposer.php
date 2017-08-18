@@ -9,9 +9,7 @@ use DB;
 class CalendarViewComposer {
 	public function compose(View $view){
 		$total_pot = DB::table('bids')
-			->groupBy('status')
-			->selectRaw('status, sum(value) as sum')
-			->pluck('sum', 'status');
+			->sum('value');
 
 		$start_year = intval(env('EARLIEST_BID_YEAR', 2017));
 		$start_week = intval(env('EARLIEST_BID_WEEK', 0));

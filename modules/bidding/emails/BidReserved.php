@@ -14,16 +14,14 @@ class BidReserved extends Mailable {
     use Queueable, SerializesModels;
 
     public $bid;
-    public $new_bid;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Bid $bid, bool $new_bid) {
+    public function __construct(Bid $bid) {
         $this->bid = $bid;
-        $this->new_bid = $new_bid;
     }
 
     /**
@@ -32,14 +30,12 @@ class BidReserved extends Mailable {
      * @return $this
      */
     public function build() {
-        $confirm_token = $this->bid->get_confirm_token();
-        $cancel_token = $this->bid->get_cancel_token();
+        $me_url = url('/users/me');
 
         return $this->view('emails.reserved')
             ->with([
-                'cancel_url' => action('\\'.BidController::class.'@finalize_bid', ['token' => $cancel_token]),
-                'confirm_url' => action('\\'.BidController::class.'@finalize_bid', ['token' => $confirm_token]),
-                'new_bid' => $this->new_bid,
+                'me_url' => $me_url,
+                'bid' => $this->bid,
             ]);
     }
 }

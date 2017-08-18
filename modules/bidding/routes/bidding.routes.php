@@ -3,10 +3,6 @@
 use Babypool\BidderController;
 use Babypool\BidController;
 
-Route::group(['prefix' => 'bids'], function(){
-	Route::get('/finalize', BidController::class . '@finalize_bid');
-});
-
 Route::group(['prefix' => 'bids', 'middleware' => 'auth'], function () {
 	Route::post('/{date}',  BidController::class . '@place_bid');
 });

@@ -6,7 +6,6 @@ use Auth;
 use Babypool\BabbyController;
 use Babypool\Bid;
 use Babypool\Bidder;
-use Babypool\BidReserved;
 use DateTime;
 use DB;
 use Exception;
@@ -17,7 +16,7 @@ class BidController extends BabbyController {
 
 	public function place_bid($date, Request $request){
 		if (env('LOCKED', false)){
-			throw new \Exception('All bidding is locked.');
+			throw new \Exception('All bidding is locked. Could it be? It is over?');
 		}
 
 		$this->validate($request, [
@@ -27,88 +26,30 @@ class BidController extends BabbyController {
 
 		$this->validate_date($date);
 		$user = Auth::user();
-		$new_bid = true;
 
-		DB::transaction(function() use ($date, $value, $user, &$new_bid){
+		DB::transaction(function() use ($date, $value, $user){
 			$this->validate_bids($date, $value, $user);
 
-			$bid = Bid::firstOrCreate([
+			$bid = Bid::updateOrCreate([
 				'user_id' => $user->id,
 				'date' => $date,
 			], [
 				'value' => $value,
-				'status' => 'unconfirmed'
 			]);
 
-			if ($bid->value != $value){
-				$bid->value = $value;
-				$bid->save();
-			}
-
-			$new_bid = ($bid->status == 'unconfirmed');
-			Mail::to($user->email)->send(new BidReserved($bid, $new_bid));
+			Mail::to($user->email)->send(new BidReserved($bid));
 		});
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);
 		$date_string = $date_time->format('l, F jS');
 
-		if ($new_bid){
-			return view('reserved', [
-				'value' => $value,
-				'date_string' => $date_string
-			]);
-		} else {
-			return view('updated', [
-				'value' => $value,
-				'date_string' => $date_string
-			]);
-		}
-	}
-
-	public function finalize_bid(Request $request){
-		$decrypted = $this->get_token($request, [
-			'a' => 'required|in:cancel,confirm',
-			'bid' => 'required|exists:bids,id'
-		]);
-
-		$bid = Bid::findOrFail($decrypted['bid']);
-
-		switch ($decrypted['a']){
-			case 'confirm':
-				if ($bid->status == 'cancelled'){
-					throw new Exception("Can't confirm this bid: it's already cancelled. Place a new bid instead.");
-				} else if ($bid->status == 'unconfirmed'){
-					$bid->confirm();
-				}
-
-				$result_title = 'Bid Confirmed';
-				$result = 'confirmed';
-				break;
-			case 'cancel':
-				if ($bid->status == 'confirmed'){
-					throw new Exception("Can't cancel this bid: it's already confirmed.");
-				} else if ($bid->status == 'cancelled'){
-					$bid->cancel();
-				}
-
-				$result_title = 'Bid Cancelled';
-				$result = 'cancelled';
-				break;
-		}
-
-		$date_time = DateTime::createFromFormat('Y-m-d', $bid->date);
-		$date_string = $date_time->format('l, F jS');
-		return view('finalize', [
-			'result_title' => $result_title,
-			'result' => $result,
-			'value' => $bid->value,
+		return view('reserved', [
+			'value' => $value,
 			'date_string' => $date_string
 		]);
 	}
 
 	private function validate_date($date){
-		$tomorrow = (new DateTime('tomorrow'))->format('Y-m-d');
-
 		$this->validate_array([
 			'date' => $date,
 		], [

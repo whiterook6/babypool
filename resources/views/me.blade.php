@@ -12,11 +12,7 @@
 	@if (!empty($user['bids']))
 						<div class="bids">
 		@foreach ($user['bids'] as $bid)
-			@if($bid['status'] == 'cancelled')
-							<div class="bid cancelled">
-			@else
 							<div class="bid">
-			@endif
 								<a href="/calendar/{{$bid['date']}}">{{$bid['date']}}</a>: ${{$bid['value']}}
 							</div>
 		@endforeach

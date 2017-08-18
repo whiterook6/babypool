@@ -20,10 +20,6 @@
 					<mj-button font-family="Source Sans Pro" href="{{$date_url}}" background-color="#FF3D7F" color="white">
 						View Bids on {{$date_string}}
 					</mj-button>
-
-					<mj-button font-family="Source Sans Pro" href="{{$date_url}}">
-						Stop Receiving Notifications
-					</mj-button>
 				</mj-column>
 			</mj-section>
 		</mj-container>

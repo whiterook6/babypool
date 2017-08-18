@@ -149,17 +149,6 @@
                         </table>
                       </td>
                     </tr>
-                    <tr>
-                      <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="center">
-                        <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="center" border="0">
-                          <tbody>
-                            <tr>
-                              <td style="border:none;border-radius:3px;color:#ffffff;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#414141"><a href="{{$date_url}}" style="text-decoration:none;background:#414141;color:#ffffff;font-family:Source Sans Pro;font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">Stop Receiving Notifications</a></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>

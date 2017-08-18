@@ -5,6 +5,7 @@ namespace Babypool;
 use Babypool\BidController;
 use Babypool\User;
 use Babypool\Bid;
+use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -34,7 +35,9 @@ class OutbidEmail extends Mailable {
 	public function build() {
 		$date_url = url("calendar/{$this->old_bid->date}");
 		$old_bid_value = $this->old_bid->value;
-		$date_string = $this->old_bid->date;
+
+		$date_time = DateTime::createFromFormat('Y-m-d', $this->old_bid->date);
+		$date_string = $date_time->format('l, F jS');
 		$new_bid_value = $this->new_bid->value;
 
 		return $this->view('emails.outbid')

@@ -10,7 +10,7 @@
 					<mj-divider border-color="#FF3D7F"></mj-divider>
 
 					<mj-text font-family="Source Sans Pro" font-size="12pt">
-						You've placed a new bid for {{$bid['date']}} for ${{$bid['value']}}.
+						You've placed a new bid for {{$date_string}} for ${{$bid['value']}}.
 					</mj-text>
 
 					<mj-button font-family="Source Sans Pro" href="{{$me_url}}" background-color="#FF3D7F" color="white">

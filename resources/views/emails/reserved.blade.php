@@ -130,7 +130,7 @@
                     </tr>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                        <div style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">You've placed a new bid for {{$bid['date']}} for ${{$bid['value']}}.</div>
+                        <div style="cursor:auto;color:#000000;font-family:Source Sans Pro;font-size:12pt;line-height:22px;text-align:left;">You've placed a new bid for {{$date_string}} for ${{$bid['value']}}.</div>
                       </td>
                     </tr>
                     <tr>

@@ -1,0 +1,29 @@
+<mjml>
+	<mj-head>
+		<mj-font name="Source Sans Pro" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+	</mj-head>
+	<mj-body>
+		<mj-container>
+			<mj-section>
+				<mj-column>
+					<mj-text font-size="36pt" color="#FF3D7F" font-family="Source Sans Pro, Helvetica">Baby Pool</mj-text>
+					<mj-divider border-color="#FF3D7F"></mj-divider>
+
+					<mj-text color="#FF3D7F" font-family="Source Sans Pro, Helvetica" font-size="12pt">You've been out-bid!</mj-text>
+
+					<mj-text font-family="Source Sans Pro" font-size="12pt">
+						Your current bid for {{$date_string}} is ${{$existing_bid->value}}, but the current highest bid is ${{$out_bid->value}}.
+					</mj-text>
+
+					<mj-text font-family="Source Sans Pro" font-size="12pt">
+						Click the button below to increase your bid to ${{$new_value}}. Your updated bid will stay confirmed and you will not receive a confirmation email.
+					</mj-text>
+
+					<mj-button font-family="Source Sans Pro" href="{{$rebid_url}}" background-color="#FF3D7F" color="white">
+						Click to rebid.
+					</mj-button>
+				</mj-column>
+			</mj-section>
+		</mj-container>
+	</mj-body>
+</mjml>

@@ -1,27 +1,31 @@
-.calendar {	
+.calendar {
 	display: table;
 	width: 100%;
+	background-color: white;
 
-	.row {
+	.week, .days-of-week {
 		display: table-row;
+	}
 
-		&.header{
-			font-weight: 600;
+	.days-of-week {
+		font-weight: 600;
 
-			.cell {
-				text-align: center;
-			}
+		.day {
+			height: 2rem;
 		}
 	}
 
-	.cell {
-		border-radius: 0.25rem;
+	.week .day {
+		height: 5rem;
+	}
+
+	.day {
 		color: inherit;
 		display: table-cell;
-		padding: 1rem;
-		text-decoration: inherit;
-		width: 12.5%;
-		text-align: center;
+		line-height: 2rem;
+		padding: 0;
+		text-align: left;
+		text-decoration: none;
 
 		&.disabled{
 			background-color: $theme-disabled;
@@ -33,24 +37,47 @@
 			background-color: $theme-accent;
 			color: white;
 			cursor: pointer;
+
+			.fa-birthday-cake {
+				color: white;
+			}
 		}
 
-		&.highlight {
-			border: 2px solid $theme-accent;
+		.fa-birthday-cake {
+			color: #FF3D7F;
 		}
+	}
+}
 
-		&.month {
-			text-align: right;
-			font-weight: 600;
+@media (min-width: $medium-screen-width+1){
+	.calendar {
+		.day {
+			border-radius: 0.25rem;
+			width: 12.5%;
+
+			&:first-child {
+				text-align: right;
+				font-weight: 600;
+				padding-right: 1rem;
+			}
 		}
+	}
+}
+
+@media (max-width: $medium-screen-width){
+	.calendar {
+		table-layout: fixed;
 
 		.day {
-			float: left;
+			width: 14.285%;
+
+			&:first-child {
+				display: none;
+			}
 		}
 
-		.value {
-			font-size: xx-large;
-			line-height: 1rem;
+		.not-mobile {
+			display: none;
 		}
 	}
 }

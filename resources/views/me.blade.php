@@ -106,8 +106,8 @@ form.addEventListener('submit', function(e) {
 						</script>
 	@else
 						No payments needed.
-					</div>
 	@endif
+					</div>
 				</div>
 @include('templates.nav')
 			</div>

@@ -47,6 +47,13 @@
 					</div>
 					<div class="col-sm-4">
 						<h2>Pay with Stripe</h2>
+	@if ($stripe_test == true)
+						<b>Note:</b> the App is in <b>Test Mode</b>.
+						Please use one of <a href="https://stripe.com/docs/testing#cards" target="_blank">Stripe's
+						test card numbers</a>, such as 4242 4242 4242 4242, and any valid date.
+	@else
+						<b>Note:</b> this will charge your credit card.
+	@endif
 	@if ($total_owing > 0)
 						<script src="https://js.stripe.com/v3/"></script>
 						<form method="POST" action="/pay" class="form" id="stripe-form">
@@ -60,7 +67,7 @@
 							<button class="button block">Pay ${{$total_owing}}</button>
 						</form>
 						<script>
-var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+var stripe = Stripe("{{$stripe_key}}");
 var elements = stripe.elements();
 var form = document.querySelector('form#stripe-form');
 var card = elements.create('card', {

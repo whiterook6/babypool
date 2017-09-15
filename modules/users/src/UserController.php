@@ -18,9 +18,11 @@ class UserController extends BabbyController {
 		$total_owing = $total_bid - $total_paid;
 
 		return view('me', [
+			'owing_encrypted' => encrypt($total_owing),
+			'stripe_test' => env('STRIPE_TEST', false),
+			'stripe_key' => env('STRIPE_KEY', ''),
 			'total_bid' => $total_bid,
 			'total_owing' => $total_owing,
-			'owing_encrypted' => encrypt($total_owing),
 			'total_paid' => $total_paid,
 			'user' => $user,
 		]);

@@ -54,6 +54,12 @@ class CalendarController extends BabbyController {
 		$today = new DateTime();
 		$today->setTime(0,0,0);
 
+		$start_year = intval(env('EARLIEST_BID_YEAR', 2017));
+		$start_week = intval(env('EARLIEST_BID_WEEK', 0));
+		$start_date = new DateTime();
+		$start_date->setISODate($start_year, $start_week);
+		$start_date->setTime(0,0,0);
+
 		$minus_one_day = date_interval_create_from_date_string("-1 day");
 		$previous_date = clone $date_time;
 		$previous_date->add($minus_one_day);
@@ -63,7 +69,7 @@ class CalendarController extends BabbyController {
 		$next_date->add($plus_one_day);
 
 		return view('day', [
-			'can_bid' => $date_time >= $today,
+			'can_bid' => $date_time >= $today && $date_time >= $start_date,
 			'current_bid' => $head,
 			'date' => $date,
 			'date_string' => $date_time->format('l, F jS'),

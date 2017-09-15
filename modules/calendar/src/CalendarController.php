@@ -49,6 +49,10 @@ class CalendarController extends BabbyController {
 		}
 
 		$date_time = DateTime::createFromFormat('Y-m-d', $date);
+		$date_time->setTime(0,0,0);
+
+		$today = new DateTime();
+		$today->setTime(0,0,0);
 
 		$minus_one_day = date_interval_create_from_date_string("-1 day");
 		$previous_date = clone $date_time;
@@ -59,6 +63,7 @@ class CalendarController extends BabbyController {
 		$next_date->add($plus_one_day);
 
 		return view('day', [
+			'can_bid' => $date_time >= $today,
 			'current_bid' => $head,
 			'date' => $date,
 			'date_string' => $date_time->format('l, F jS'),

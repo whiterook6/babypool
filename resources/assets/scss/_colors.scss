@@ -17,6 +17,11 @@ body {
 	background: linear-gradient(135deg, $theme-bright 15%, $theme-dark 85%) fixed;
 }
 
+@media (max-width: $medium-screen-width){
+body {
+	background: linear-gradient(180deg, $theme-bright 15%, $theme-dark 85%) fixed;
+}}
+
 .container {
 	border-radius: 0.25rem;
 	background-color: white;

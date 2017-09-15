@@ -16,6 +16,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>About Prizes</h2>
+						<i>tl;dr: winners split the pot with the parents.</i>
 						<ul>
 							<li>The total prize is the sum of all successful bids.</li>
 							<li>Half of the total prize is delivered as a gift to the parents.</li>
@@ -24,12 +25,15 @@
 						</ul>
 
 						<h2>About Paying</h2>
+						<i>tl;dr: don't bid unless you're willing to pay</i>
 						<ul>
+							<li>You do not need to pay immediately after placing a bid.</li>
 							<li>You must pay for each bid, even if you wind up out-bid.</li>
 							<li>You must only pay the difference when raising your bid.</li>
 						</ul>
 
 						<h2>About Bidding</h2>
+						<i>tl;dr: bids can be raised and out-bid.</i>
 						<ul>
 							<li>All bids are public.</li>
 							<li>You cannot bid at all if the mother has gone into labor.</li>
@@ -37,11 +41,8 @@
 							<li>The minimum raise on an existing bid is ${{$minimum_raise}}.</li>
 						</ul>
 
-						You cannot bid for a given date if
-						<ul>
-							<li>that day has already started;</li>
-							<li>another bidder has an unconfirmed bid for that day; or</li>
-							<li>you already have the highest bid for that day.</li>
+						You cannot bid for a given date if you already have the highest bid
+						for that day.
 						</ul>
 					</div>
 					<div class="col-sm-6">

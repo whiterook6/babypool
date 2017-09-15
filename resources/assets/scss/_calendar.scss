@@ -2,6 +2,9 @@
 	display: table;
 	width: 100%;
 	background-color: white;
+	border: 1px solid #fafafa;
+	border-width: 1px 0 0 1px;
+	margin-bottom: 1rem;
 
 	.week, .days-of-week {
 		display: table-row;
@@ -23,9 +26,10 @@
 		color: inherit;
 		display: table-cell;
 		line-height: 2rem;
-		padding: 0;
 		text-align: left;
 		text-decoration: none;
+		border: 1px solid #fafafa;
+		border-width: 0 1px 1px 0;
 
 		&.disabled{
 			background-color: $theme-disabled;
@@ -52,8 +56,14 @@
 @media (min-width: $medium-screen-width+1){
 	.calendar {
 		.day {
-			border-radius: 0.25rem;
 			width: 12.5%;
+			padding: 0 0.5rem;
+
+			.value {
+				font-size: x-large;
+				font-weight: bold;
+				text-align: center;
+			}
 
 			&:first-child {
 				text-align: right;
@@ -70,6 +80,12 @@
 
 		.day {
 			width: 14.285%;
+			padding: 0;
+
+			.value {
+				font-size: x-large;
+				font-weight: 600;
+			}
 
 			&:first-child {
 				display: none;

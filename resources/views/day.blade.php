@@ -71,7 +71,11 @@
 						You already have the highest bid.
 	@endif
 @else
+	@if (isset($current_bid) && $current_bid['user_id'] == Auth::id())
+						You already have the highest bid.
+	@else
 						You cannot bid on this day.
+	@endif
 @endif
 					</div>
 				</div>

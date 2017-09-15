@@ -21,6 +21,9 @@ class CalendarViewComposer {
 		$start_date->setISODate($start_year, $start_week);
 		$current_date = clone $start_date;
 
+		$today = new DateTime();
+		$today->setTime(0,0,0);
+
 		$end_date = new DateTime();
 		$end_date->setISODate($end_year, $end_week, 6);
 
@@ -48,6 +51,7 @@ class CalendarViewComposer {
 			array_push($calendar[$week]['days'], [
 				'date' => $current_date_string,
 				'day_of_month' => intval($current_date->format('d')),
+				'inactive' => $current_date < $today,
 				'is_due_date' => ($due_date == $current_date_string),
 			]);
 			$new_month = $current_date->format('F');

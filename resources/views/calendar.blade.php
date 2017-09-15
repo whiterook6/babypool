@@ -22,13 +22,13 @@
 				<div class="calendar">
 					<div class="days-of-week">
 						<div class="day"></div>
-						<div class="day">S<span class="not-mobile">unday</span></div>
 						<div class="day">M<span class="not-mobile">onday</span></div>
 						<div class="day">T<span class="not-mobile">uesday</span></div>
 						<div class="day">W<span class="not-mobile">ednesday</span></div>
 						<div class="day">T<span class="not-mobile">hursday</span></div>
 						<div class="day">F<span class="not-mobile">riday</span></div>
 						<div class="day">S<span class="not-mobile">aturday</span></div>
+						<div class="day">S<span class="not-mobile">unday</span></div>
 					</div>
 @foreach ($calendar as $week)
 					<div class="week">
@@ -38,21 +38,39 @@
 	@endisset
 						</div>
 	@foreach ($week['days'] as $day)
-		@if ($day['is_due_date'])
+		@if ($day['inactive'])
+			@if ($day['is_due_date'])
+						<div class="day disabled highlight">
+							<span class="date-string"><span class="fa fa-birthday-cake"></span></span>
+			@else
+						<div class="day disabled">
+							<span class="date-string">{{$day['day_of_month']}}</span>
+			@endif
+								
+			@isset ($bids[$day['date']])
+	<?php
+		$bid = $bids[$day['date']];
+	?>
+							<div class="value">${{$bid['value']}}</div>
+			@endisset
+						</div>
+		@else
+			@if ($day['is_due_date'])
 						<a href="/calendar/{{$day['date']}}" class="day available highlight">
 							<span class="date-string"><span class="fa fa-birthday-cake"></span></span>
-		@else
+			@else
 						<a href="/calendar/{{$day['date']}}" class="day available">
 							<span class="date-string">{{$day['day_of_month']}}</span>
-		@endif
-							
-		@isset ($bids[$day['date']])
+			@endif
+
+			@isset ($bids[$day['date']])
 <?php
 	$bid = $bids[$day['date']];
 ?>
 							<div class="value">${{$bid['value']}}</div>
-		@endisset
+			@endisset
 						</a>
+		@endif
 	@endforeach
 					</div>
 @endforeach

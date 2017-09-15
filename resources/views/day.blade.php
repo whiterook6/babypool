@@ -48,8 +48,9 @@
 @endif
 					</div>
 					<div class="col-sm-4">
+@if ($can_bid)
 						<h2>To Raise: <small>${{$next_value}}</small></h2>
-@if (!isset($current_bid) || $current_bid['user_id'] != Auth::id())
+	@if (!isset($current_bid) || $current_bid['user_id'] != Auth::id())
 						<form class="form" method="POST" action="/bids/{{$date}}">
 							<div class="row">
 								<div class="col-12">
@@ -64,10 +65,13 @@
 
 						<p>
 							Placing this bid means you commit to paying for it, even if you do not win or are outbid.
-							You will only need to pay the difference if you bid for the same day again.
+							You will only need to pay the difference if you increase your bid.
 						</p>
-@else
+	@else
 						You already have the highest bid.
+	@endif
+@else
+						You cannot bid on this day.
 @endif
 					</div>
 				</div>

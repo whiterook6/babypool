@@ -75,7 +75,7 @@ class BidController extends BabbyController {
 		$this->validate_array([
 			'date' => $date
 		], [
-			'date' => "after:today"
+			'date' => "after_or_equal:today"
 				."|after_or_equal:{$minimum_date}"
 				."|before_or_equal:{$maximum_date}"
 		]);

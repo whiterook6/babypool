@@ -112,7 +112,7 @@ form.addEventListener('submit', function(e) {
 });
 						</script>
 	@else
-						No payments needed.
+						<div>No payments needed.</div>
 	@endif
 					</div>
 				</div>

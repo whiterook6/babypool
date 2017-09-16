@@ -4,8 +4,11 @@ namespace Babypool;
 
 use Auth;
 use Babypool\BabbyController;
+use Babypool\Payment;
+use Babypool\PaymentMade;
 use Exception;
 use Illuminate\Http\Request;
+use Mail;
 use Stripe\Charge;
 use Stripe\Error\ApiConnection;
 use Stripe\Error\Authentication;
@@ -68,6 +71,8 @@ class PaymentController extends BabbyController {
 		}
 
 		$payment = Payment::create_from_charge($user, $charge);
+		Mail::to($user->email)->send(new PaymentMade($payment));
+
 		return redirect(action('\\'.UserController::class.'@me'));
 	}
 }

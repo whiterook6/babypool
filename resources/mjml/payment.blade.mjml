@@ -1,0 +1,41 @@
+<mjml>
+	<mj-head>
+		<mj-font name="Source Sans Pro" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+	</mj-head>
+	<mj-body>
+		<mj-container>
+			<mj-section>
+				<mj-column>
+					<mj-text font-size="36pt" color="#FF3D7F" font-family="Source Sans Pro, Helvetica">Baby Pool</mj-text>
+					<mj-divider border-color="#FF3D7F"></mj-divider>
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt" color="#FF3D7F">
+					Payment received!
+					</mj-text>
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+					You have made a successful payment of ${{$payment_value}}.
+					</mj-text>
+
+					<mj-button font-family="Source Sans Pro, Helvetica" href="{{$me_url}}" background-color="#FF3D7F" color="white">
+						View Your Bids and Payments
+					</mj-button>
+
+					<mj-divider border-width="1px" border-style="dashed" border-color="lightgrey" />
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt" color="#FF3D7F">
+					For your records...
+					</mj-text>
+
+					<mj-text font-family="Lucida Console, Courier New, monospace" font-size="12pt">
+					Charge ID:<br>{{$charge_id}}
+					</mj-text>
+
+					<mj-text font-family="Lucida Console, Courier New, monospace" font-size="12pt">
+					Transaction ID:<br>{{$transaction_id}}
+					</mj-text>
+				</mj-column>
+			</mj-section>
+		</mj-container>
+	</mj-body>
+</mjml>

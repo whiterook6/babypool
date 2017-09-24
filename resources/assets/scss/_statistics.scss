@@ -1,0 +1,23 @@
+.statistics {
+	display: table;
+	width: 100%;
+	margin-bottom: 2rem;
+	table-layout: fixed;
+
+	.statistic {
+		display: table-cell;
+		text-align: center;
+
+		.legend {
+			font-size: x-large;
+		}
+
+		.datum {
+			font-size: xx-large;
+		}
+
+		.source {
+			font-style: italic;
+		}
+	}
+}

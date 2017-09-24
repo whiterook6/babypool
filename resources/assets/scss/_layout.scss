@@ -73,6 +73,10 @@ html {
 			content: '';
 		}
 	}
+	
+	h2.center{
+		text-align: center;
+	}
 }
 
 @media (max-width: $large-screen-width){

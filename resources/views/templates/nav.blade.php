@@ -4,6 +4,8 @@
 						href="/calendar">Calendar</a>
 					<a class="button inline"
 						href="/rules">Rules</a>
+					<a class="button inline"
+						href="/charts">Statistics</a>
 @if(Auth::check())
 					<a class="button inline"
 						href="/users/me">Your Bids</a>

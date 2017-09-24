@@ -15,6 +15,11 @@
 
 				<div class="row">
 					<div class="col-sm-6">
+						<h2>About Winning</h2>
+						<ul>
+							<li>The winning date is the final date on the birth certificate.</li>
+						</ul>
+
 						<h2>About Prizes</h2>
 						<i>tl;dr: winners split the pot with the parents.</i>
 						<ul>
@@ -22,14 +27,6 @@
 							<li>Half of the total prize is delivered as a gift to the parents.</li>
 							<li>The bidder who has the highest bid on or closest to the date-of-birth wins half of the total prize.</li>
 							<li>If two people have the closest bids, they split the winner's half of the prize: 1/4 to each winner, and 1/2 to the parents.</li>
-						</ul>
-
-						<h2>About Paying</h2>
-						<i>tl;dr: don't bid unless you're willing to pay</i>
-						<ul>
-							<li>You do not need to pay immediately after placing a bid.</li>
-							<li>You must pay for each bid, even if you wind up out-bid.</li>
-							<li>You must only pay the difference when raising your bid.</li>
 						</ul>
 
 						<h2>About Bidding</h2>
@@ -41,9 +38,17 @@
 							<li>The minimum raise on an existing bid is ${{$minimum_raise}}.</li>
 						</ul>
 
+						<h2>About Paying</h2>
+						<i>tl;dr: don't bid unless you're willing to pay</i>
+						<ul>
+							<li>You do not need to pay immediately after placing a bid.</li>
+							<li>You must pay for each bid, even if you wind up out-bid.</li>
+							<li>You must only pay the difference when raising your bid.</li>
+						</ul>
+
 						You cannot bid for a given date if you already have the highest bid
 						for that day.
-						</ul>
+
 					</div>
 					<div class="col-sm-6">
 						<h2>To Bid</h2>
@@ -63,6 +68,22 @@
 						<ol>
 							<li>Bring cash to Tim and hope he's good for it.</li>
 						</ol>
+
+						<h2>Edge Conditions</h2>
+						<ul>
+							<li>
+								It is possible the baby is delivered before Tim can halt bidding on the pool.
+								In such an event, bids placed after the pool is closed will be considered invalid
+								and won't require payment.
+							</li>
+							<li>
+								To avoid problems, you do not have to pay immediately, especially if you think
+								the mother might have gone into labor.
+							</li>
+							<li>
+								In the event you pay for an invalid bid, you will be refunded.
+							</li>
+						</ul>
 					</div>
 				</div>
 	@include('templates.nav')

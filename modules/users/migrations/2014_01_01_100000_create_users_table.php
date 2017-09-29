@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->char('initials', 2)->unique();
 			$table->string('email')->unique();
-			$table->tinyint('enable_notifications')->default(false);
+			$table->boolean('enable_notifications')->default(false);
 			$table->string('stripe_token')->nullable();
 			$table->string('stripe_customer_id')->nullable();
 			$table->string('password');

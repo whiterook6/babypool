@@ -9,7 +9,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<h2>Bids</h2>
-	@if (!empty($user['bids']))
+	@if (count($user['bids']) > 0)
 						<div class="bids">
 		@foreach ($user['bids'] as $bid)
 							<div class="bid">

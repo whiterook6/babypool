@@ -19,6 +19,8 @@
 					</div>
 				</h1>
 
+				<h2 class="center">Due date: {{env('DUE_DATE')}}</h2>
+
 				<div class="calendar">
 					<div class="days-of-week">
 						<div class="day"></div>

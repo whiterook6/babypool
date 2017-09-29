@@ -73,7 +73,7 @@
 							id="term-length-distribution"
 							class="chart"
 							style="height: 500px"></canvas>
-						<a href="https://spacefem.com/pregnant/charts/duedate1.php">Source</a>
+						<a class="source" href="https://web.archive.org/web/20161229164402/https://spacefem.com/pregnant/charts/duedate1.php">Source (archive)</a>
 					</div>
 				</div>
 

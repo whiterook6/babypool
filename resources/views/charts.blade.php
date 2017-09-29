@@ -5,8 +5,8 @@
 @section('content')
 			<div class="container">
 				<h1>
-					Baby Pool
-					<small>for John and Caitlin</small>	
+					Charts
+					<small>and Statistics</small>
 				</h1>
 
 				<div class="statistics">
@@ -43,9 +43,9 @@
 							Standard deviation from due date
 						</div>
 						<div class="datum">
-							9.8 days (66%)
+							9.6 days (66%)
 						</div>
-						<a class="source" href="https://spacefem.com/pregnant/charts/duedate1.php">Source</a>
+						<a class="source" href="https://web.archive.org/web/20161229164402/https://spacefem.com/pregnant/charts/duedate1.php">Source (archive)</a>
 					</div>
 					<div class="statistic">
 						<div class="legend">
@@ -54,7 +54,7 @@
 						<div class="datum">
 							278 days
 						</div>
-						<a class="source" href="https://spacefem.com/pregnant/charts/duedate1.php">Source</a>
+						<a class="source" href="https://web.archive.org/web/20161229164402/https://spacefem.com/pregnant/charts/duedate1.php">Source (archive)</a>
 					</div>
 					<div class="statistic">
 						<div class="legend">

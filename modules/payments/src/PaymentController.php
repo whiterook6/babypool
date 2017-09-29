@@ -30,8 +30,7 @@ class PaymentController extends BabbyController {
 		$token = $request->input('token');
 
 		try {
-			Stripe::setApiKey('sk_test_BQokikJOvBiI2HlWgH4olfQ2');
-		
+			Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 		} catch (Authentication $e){
 			throw new Exception('Authentication error. Your card has not been charged.');
 		}

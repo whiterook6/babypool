@@ -67,7 +67,7 @@
 							<button class="button block">Pay ${{$total_owing}}</button>
 						</form>
 						<script>
-var stripe = Stripe("{{$stripe_key}}");
+var stripe = Stripe("{{$stripe_public_key}}");
 var elements = stripe.elements();
 var form = document.querySelector('form#stripe-form');
 var card = elements.create('card', {

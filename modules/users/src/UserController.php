@@ -20,7 +20,7 @@ class UserController extends BabbyController {
 		return view('me', [
 			'owing_encrypted' => encrypt($total_owing),
 			'stripe_test' => env('STRIPE_TEST', false),
-			'stripe_key' => env('STRIPE_KEY', ''),
+			'stripe_public_key' => env('STRIPE_PUBLIC_KEY', ''),
 			'total_bid' => $total_bid,
 			'total_owing' => $total_owing,
 			'total_paid' => $total_paid,

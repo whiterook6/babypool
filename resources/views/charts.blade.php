@@ -9,8 +9,8 @@
 					<small>and Statistics</small>
 				</h1>
 
-				<div class="statistics">
-					<div class="statistic">
+				<div class="row statistics">
+					<div class="col-md-4">
 						<div class="legend">
 							Average labor and delivery
 						</div>
@@ -19,7 +19,7 @@
 						</div>
 						<a class="source" href="http://www.parents.com/pregnancy/giving-birth/labor-and-delivery/labor-childbirth-phases/">Source</a>
 					</div>
-					<div class="statistic">
+					<div class="col-md-4">
 						<div class="legend">
 							Expected delivery date
 						</div>
@@ -27,7 +27,7 @@
 							November 16th
 						</div>
 					</div>
-					<div class="statistic">
+					<div class="col-md-4">
 						<div class="legend">
 							Average mass of newborns
 						</div>
@@ -37,8 +37,8 @@
 						<a class="source" href="https://www.healthlinkbc.ca/health-topics/te6295">Source</a>
 					</div>
 				</div>
-				<div class="statistics">
-					<div class="statistic">
+				<div class="row statistics">
+					<div class="col-md-4">
 						<div class="legend">
 							Standard deviation from due date
 						</div>
@@ -47,7 +47,7 @@
 						</div>
 						<a class="source" href="https://web.archive.org/web/20161229164402/https://spacefem.com/pregnant/charts/duedate1.php">Source (archive)</a>
 					</div>
-					<div class="statistic">
+					<div class="col-md-4">
 						<div class="legend">
 							Mean length of pregnancy
 						</div>
@@ -56,7 +56,7 @@
 						</div>
 						<a class="source" href="https://web.archive.org/web/20161229164402/https://spacefem.com/pregnant/charts/duedate1.php">Source (archive)</a>
 					</div>
-					<div class="statistic">
+					<div class="col-md-4">
 						<div class="legend">
 							Average height of newborns
 						</div>
@@ -66,8 +66,8 @@
 						<a class="source" href="https://www.healthlinkbc.ca/health-topics/te6295">Source</a>
 					</div>
 				</div>
-				<div class="statistics">
-					<div class="statistic">
+				<div class="row statistics">
+					<div class="col-12">
 						<div class="legend">Distribution of spontaneous birth dates from due date</div>
 						<canvas
 							id="term-length-distribution"

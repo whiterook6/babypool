@@ -21,7 +21,6 @@
 				</h1>
 				<div class="row">
 					<div class="col-sm-4">
-
 @if($current_bid)
 						<h2>Current Bid: <small>${{$current_bid['value']}}</small></h2>
 						<div class="bids">
@@ -30,9 +29,14 @@
 								<span class="value">${{$current_bid['value']}}</span>
 							</div>
 						</div>
+@elseif ($is_logged_in)
+						<h2>No Current Bid</h2>
+						This day is unclaimed!
+@else
+						<h2>No Current Bid</h2>
+						This day is unclaimed!
+						<a href="/login">Log in</a> or <a href="/register">register</a> to bid.
 @endif
-
-
 						<h2>Previous Bids</h2>
 @if($previous_bids && count($previous_bids) > 0)
 						<div class="bids">
@@ -70,11 +74,11 @@
 	@else
 						You already have the highest bid.
 	@endif
-@else
-	@if (isset($current_bid) && $current_bid['user_id'] == Auth::id())
-						You already have the highest bid.
+@elseif ($is_logged_in)
+	@if ($has_highest_bid)
+					You already have the highest bid.
 	@else
-						You cannot bid on this day.
+					You cannot bid on this day.
 	@endif
 @endif
 					</div>

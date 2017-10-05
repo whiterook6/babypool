@@ -68,11 +68,15 @@ class CalendarController extends BabbyController {
 		$next_date = clone $date_time;
 		$next_date->add($plus_one_day);
 
+		$is_logged_in = Auth::check();
+
 		return view('day', [
-			'can_bid' => $date_time >= $today && $date_time >= $start_date,
+			'can_bid' => $date_time >= $today && $date_time >= $start_date && $is_logged_in,
 			'current_bid' => $head,
 			'date' => $date,
 			'date_string' => $date_time->format('l, F jS'),
+			'has_highest_bid' => $head && $head['user_id'] == Auth::id(),
+			'is_logged_in' => $is_logged_in,
 			'next_date' => $next_date->format('Y-m-d'),
 			'next_value' => $next_value,
 			'previous_bids' => $tail,

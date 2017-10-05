@@ -74,13 +74,11 @@
 	@else
 						You already have the highest bid.
 	@endif
-@else
-	@if ($is_logged_in)
-		@if ($has_highest_bid)
-						You already have the highest bid.
-		@else
-						You cannot bid on this day.
-		@endif
+@elseif ($is_logged_in)
+	@if ($has_highest_bid)
+					You already have the highest bid.
+	@else
+					You cannot bid on this day.
 	@endif
 @endif
 					</div>

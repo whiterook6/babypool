@@ -1,15 +1,16 @@
 .log_line {
 	font-size: x-large;
+	margin: 3rem auto;
 	text-align: center;
-	margin: 1rem auto;
+
+	.call_to_action {
+		font-size: xx-large;
+		margin: 1rem;
+		color: #f61b82;
+	}
 }
 
-.call_to_action {
-	text-align: center;
-    font-size: xx-large;
-    margin: 1rem;
-    color: #f61b82;
-}
+
 
 .calendar {
 	display: table;

@@ -22,9 +22,10 @@
 				<div class="log_line">
 					Their fancy doctors say the 16th of November. When do <i>you</i> think
 					John and Caitlin's newborn will arrive?
+
+					<div class="call_to_action">Pick a date below and bid!</div>
 				</div>
 
-				<div class="call_to_action">Pick a date below and bid!</div>
 
 				<div class="calendar">
 					<div class="days-of-week">

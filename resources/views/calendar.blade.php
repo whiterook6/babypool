@@ -19,7 +19,12 @@
 					</div>
 				</h1>
 
-				<h2 class="center">Due date: {{env('DUE_DATE')}}</h2>
+				<div class="log_line">
+					Their fancy doctors say the 16th of November. When do <i>you</i> think
+					John and Caitlin's newborn will arrive?
+				</div>
+
+				<div class="call_to_action">Pick a date below and bid!</div>
 
 				<div class="calendar">
 					<div class="days-of-week">

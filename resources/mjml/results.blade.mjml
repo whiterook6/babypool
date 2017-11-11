@@ -1,0 +1,58 @@
+<mjml>
+	<mj-head>
+		<mj-font name="Source Sans Pro" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+	</mj-head>
+	<mj-body>
+		<mj-container>
+			<mj-section>
+				<mj-column>
+					<mj-text font-size="36pt" color="#FF3D7F" font-family="Source Sans Pro, Helvetica">Baby Pool Results</mj-text>
+					<mj-divider border-color="#FF3D7F"></mj-divider>
+
+@if ($is_winner)
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt" color="#FF3D7F">
+					{{$your_initials}}, your bid for ${{$left_bid['value']}} on {{$left_bid['date_string']}} was the winning bid!
+					</mj-text>
+	
+	@if ($sharing)
+	        <mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+					  The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}.
+					  You will split the pool with ${{$right_bid['initials']}}, who bid ${{$right_bid['value']}} for {{$right_bid['date_string']}}.
+					  <span style="color: #FF3D7F">You will both take home ${{$winner_pot}}.</span>
+					  Congratulations!
+					</mj-text>
+	@else
+		      <mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+					  The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}.
+					  <span style="color: #FF3D7F">You will take home the remaining ${{$winner_pot}}.</span>
+					  Congratulations!
+					</mj-text>
+	@endif
+@elseif ($sharing)
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+					Sorry, {{$your_initials}}, but you did not win the baby pool. The winners were <span style="color: #FF3D7F">{{$left_bid['initials']}}</span>, with a bid
+					of ${{$left_bid['value']}} on {{$left_bid['date_string']}}, and <span style="color: #FF3D7F">{{$right_bid['initials']}}</span>, with a bid
+					of ${{$right_bid['value']}} on {{$right_bid['date_string']}}.
+					Since the parents will take their half, ${{$parent_pot}}, this means {{$left_bid['initials']}} and {{$right_bid['initials']}} will split the remaining <span style="color: #FF3D7F">${{$winner_pot}}</span>.
+					</mj-text>
+@else
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+					Sorry, {{$your_initials}}, but you did not win the baby pool. The winner was <span style="color: #FF3D7F">{{$left_bid['initials']}}</span>,
+					with a bid of ${{$left_bid['value']}} on {{$left_bid['date_string']}}.
+					Since the parents will take their half, ${{$parent_pot}}, this means {{$left_bid['initials']}} will take home the remaining <span style="color: #FF3D7F">${{$winner_pot}}</span>.
+					</mj-text>
+@endif		
+					<mj-divider border-color="#FF3D7F"></mj-divider>
+					
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+					  A huge thank you to all the participants, congratulations to the proud parents!
+					</mj-text>
+					
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="10pt">
+					  Questions? You can reply to this email.
+					</mj-text>
+				</mj-column>
+			</mj-section>
+		</mj-container>
+	</mj-body>
+</mjml>

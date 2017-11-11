@@ -34,7 +34,9 @@
 
 @foreach($top_dates_by_value as $top_date)
 						<div>
-							{{$top_date['date']}}: ${{$top_date['total_value']}}
+							<a href="/calendar/{{$top_date['date']}}">
+								{{$top_date['date']}}
+							</a>: ${{$top_date['total_value']}}
 						</div>
 @endforeach
 					</div>
@@ -55,7 +57,7 @@
 							Expected delivery date
 						</div>
 						<div class="datum">
-							November 16th
+							<a href="/calendar/2017-11-16">November 16th</a>
 						</div>
 					</div>
 					<div class="col-md-4">

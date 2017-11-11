@@ -16,6 +16,7 @@ class ChartsController extends BabbyController {
 			'=',
 			'users.id'
 		)->orderBy('total_value', 'desc')
+			->orderBy('initials', 'asc')
 			->take(10)
 			->get();
 
@@ -25,6 +26,7 @@ class ChartsController extends BabbyController {
 			'=',
 			'users.id'
 		)->orderBy('count', 'desc')
+			->orderBy('initials', 'asc')
 			->take(10)
 			->get();
 

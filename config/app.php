@@ -181,6 +181,7 @@ return [
         /*
          * Babypool services
          */
+        Babypool\Providers\BabbyServiceProvider::class,
         Babypool\Providers\BiddingServiceProvider::class,
         Babypool\Providers\CalendarServiceProvider::class,
         Babypool\Providers\ChartsServiceProvider::class,

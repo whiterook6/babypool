@@ -11,6 +11,37 @@
 
 				<div class="row statistics">
 					<div class="col-md-4">
+						<div class="legend">Top Bidders by Total</div>
+
+@foreach($top_users_by_value as $user)
+						<div>
+							{{$user['initials']}}: ${{$user['total_value']}}
+						</div>
+@endforeach
+					</div>
+					<div class="col-md-4">
+						<div class="legend">Top Bidders by Count</div>
+
+@foreach($top_users_by_bid_count as $user)
+						<div>
+							{{$user['initials']}}: {{$user['count']}}
+						</div>
+@endforeach
+					</div>
+
+					<div class="col-md-4">
+						<div class="legend">Top Dates by Total</div>
+
+@foreach($top_dates_by_value as $top_date)
+						<div>
+							{{$top_date['date']}}: ${{$top_date['total_value']}}
+						</div>
+@endforeach
+					</div>
+
+				</div>
+				<div class="row statistics">
+					<div class="col-md-4">
 						<div class="legend">
 							Average labor and delivery
 						</div>

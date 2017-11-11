@@ -104,7 +104,7 @@ class SendConclusionEmail extends Command {
 					Mail::to($user->email)->send(new ResultsEmail(
 						$user, // current_user
 						$bids->first(), // left_bid,
-						$bids->second(), // right big
+						$bids->last(), // right big
 						$total_pot,
 						$english, // date of birth string
 						true // is winner

@@ -135,7 +135,7 @@
   @if ($sharing)
                     <tr>
                       <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
-                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}. You will split the pool with ${{$right_bid['initials']}}, who bid ${{$right_bid['value']}} for {{$right_bid['date_string']}}. <span style="color:#ff3d7f">You will both take home ${{$winner_pot}}.</span>                          Congratulations!</div>
+                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}. You will split the pool with {{$right_bid['initials']}}, who bid ${{$right_bid['value']}} for {{$right_bid['date_string']}}. <span style="color:#ff3d7f">You will both take home ${{$winner_pot}}.</span>                          Congratulations!</div>
                       </td>
                     </tr>
   @else

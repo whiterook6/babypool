@@ -4,7 +4,9 @@ namespace Babypool;
 
 use Babypool\Bid;
 use DateTime;
+use DB;
 use Illuminate\Console\Command;
+use Mail;
 
 class SendConclusionEmail extends Command {
 
@@ -32,6 +34,7 @@ class SendConclusionEmail extends Command {
 	public function handle(){
 		$birth_date = null;
 		$date_of_birth_string = "";
+		$english = "";
 
 		do {
 			$today_string = date('Y-m-d');
@@ -59,17 +62,76 @@ class SendConclusionEmail extends Command {
 			$bids = $this->get_highest_bids(collect([$l_date, $r_date]));
 		}
 
-		// $bids has the winning bid or bids, if split between two dates.
+		if ($bids->count() == 0){
+			$this->error('No bids in range. Aborting!');
+			return;
+		}
 
-		// edge cases:
-		// one person owns both closest dates
+		$total_pot = DB::table('bids')->sum('value');
+		$users = User::has('bids')->get();
 
-		// prompt for date of baby
-		// Calculate winner
-		// email winner
+		if ($bids->count() == 1){
+			$this->info('One winning bid: ');
+			$this->info($bids->first()->toJson());
 
-		// calculate who owes money
-		// email those who owe money
+			$users->each(function($user) use ($bids, $english, $total_pot){
+				$this->info("Sending email to {$user->email}");
+				$is_winner = ($user->id == $bids->first()->user_id);
+				
+				Mail::to($user->email)->send(new ResultsEmail(
+					$user, // current_user
+					$bids->first(), // left_bid,
+					null,
+					$total_pot,
+					$english, // date of birth string
+					$is_winner // is winner
+				));
+			});
+
+		} else if ($bids->count() > 2){
+			$this->error('Too many winning bids. Aborting!');
+			return;
+
+		} else {
+			$this->info('Two winning bids:');
+			$this->info($bids->toJson());
+
+			$users->each(function($user) use ($bids, $english, $total_pot){
+				$this->info("Sending email to {$user->email}");
+
+				if ($bids->first()->user_id == $user->id){
+					$this->info("User is left bidder");
+					Mail::to($user->email)->send(new ResultsEmail(
+						$user, // current_user
+						$bids->first(), // left_bid,
+						$bids->second(), // right big
+						$total_pot,
+						$english, // date of birth string
+						true // is winner
+					));
+				} else if ($bids->last()->user_id == $user->id){
+					$this->info("User is right bidder");
+					Mail::to($user->email)->send(new ResultsEmail(
+						$user, // current_user
+						$bids->last(), // left_bid,
+						$bids->first(), // right big
+						$total_pot,
+						$english, // date of birth string
+						true // is winner
+					));
+				} else {
+					$this->info("User is not a winner.");
+					Mail::to($user->email)->send(new ResultsEmail(
+						$user, // current_user
+						$bids->first(), // left_bid,
+						$bids->last(), // right big
+						$total_pot,
+						$english, // date of birth string
+						false // is winner
+					));
+				}
+			});
+		}
 	}
 
 	private function get_highest_bid($date_string){

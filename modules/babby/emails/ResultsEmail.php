@@ -26,8 +26,8 @@ class ResultsEmail extends Mailable {
      *
      * @return void
      */
-    public function __construct(User $current_user, Bid $left_bid, Bid $right_bid, $total_pot, $date_of_birth, $is_winner) {
-        $this->current_user = $current_user,
+    public function __construct(User $current_user, Bid $left_bid, Bid $right_bid = null, $total_pot, $date_of_birth, $is_winner) {
+        $this->current_user = $current_user;
         $this->left_bid = $left_bid;
         $this->right_bid = $right_bid;
         $this->total_pot = $total_pot;
@@ -41,10 +41,13 @@ class ResultsEmail extends Mailable {
      * @return $this
      */
     public function build() {
+        $this->left_bid->load('user');
+        $date = $this->left_bid->date;
+        $date_time = DateTime::createFromFormat('Y-m-d', $date);
         $data = [
             'left_bid' => [
-                'date_string' => $this->left_bid->date->format('F jS, Y'),
-                'initials' => $this->left_bid->user->initials
+                'date_string' => $date_time->format('F jS, Y'),
+                'initials' => $this->left_bid->user->initials,
                 'value' => number_format($this->left_bid->value, 2),
             ],
             'date_of_birth' => $this->date_of_birth,
@@ -53,18 +56,24 @@ class ResultsEmail extends Mailable {
             'parent_pot' => number_format($this->total_pot / 2.0, 2),
             'sharing' => false,
             'total_pot' => number_format($this->total_pot, 2),
-            'your_initials' => $current_user->initials,
+            'your_initials' => $this->current_user->initials,
         ];
 
         if (!is_null($this->right_bid)){
+            $this->right_bid->load('user');
+            $date = $this->right_bid->date;
+            $date_time = DateTime::createFromFormat('Y-m-d', $date);
+
             $data['sharing'] = true;
             $data['right_bid'] = [
-                'date_string' => $this->right_bid->date->format('F jS, Y'),
-                'initials' => $this->right_bid->user->initials
+                'date_string' => $date_time->format('F jS, Y'),
+                'initials' => $this->right_bid->user->initials,
                 'value' => number_format($this->right_bid->value, 2),
             ];
             $data['winner_pot'] = number_format($this->total_pot / 4.0, 2);
         }
+
+        \Log::info(json_encode($data));
 
         return $this->view('emails.results')
             ->with($data);

@@ -129,13 +129,13 @@
 @if ($is_winner)
                     <tr>
                       <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
-                        <div style="cursor:auto;color:#ff3d7f;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">{{$your_initials}}, your bid for ${{$left_bid['value']}} on {{$left_bid['date_string']}} was the winning bid!</div>
+                        <div style="cursor:auto;color:#ff3d7f;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">{{$your_initials}}, your bid for ${{$l_bid['value']}} on {{$l_bid['date_string']}} was the winning bid!</div>
                       </td>
                     </tr>
   @if ($sharing)
                     <tr>
                       <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
-                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}. You will split the pool with {{$right_bid['initials']}}, who bid ${{$right_bid['value']}} for {{$right_bid['date_string']}}. <span style="color:#ff3d7f">You will both take home ${{$winner_pot}}.</span>                          Congratulations!</div>
+                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}. You will split the pool with {{$r_bid['initials']}}, who bid ${{$r_bid['value']}} for {{$r_bid['date_string']}}. <span style="color:#ff3d7f">You will both take home ${{$winner_pot}}.</span>                          Congratulations!</div>
                       </td>
                     </tr>
   @else
@@ -148,15 +148,15 @@
 @elseif ($sharing)
                     <tr>
                       <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
-                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">Sorry, {{$your_initials}}, but you did not win the baby pool. The winners were <span style="color:#ff3d7f">{{$left_bid['initials']}}</span>, with a bid of ${{$left_bid['value']}} on {{$left_bid['date_string']}}, and <span style="color:#ff3d7f">{{$right_bid['initials']}}</span>,
-                          with a bid of ${{$right_bid['value']}} on {{$right_bid['date_string']}}. Since the parents will take their half, ${{$parent_pot}}, this means {{$left_bid['initials']}} and {{$right_bid['initials']}} will split the remaining <span style="color:#ff3d7f">$95!</span></div>
+                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">Sorry, {{$your_initials}}, but you did not win the baby pool. The winners were <span style="color:#ff3d7f">{{$l_bid['initials']}}</span>, with a bid of ${{$l_bid['value']}} on {{$l_bid['date_string']}}, and <span style="color:#ff3d7f">{{$r_bid['initials']}}</span>,
+                          with a bid of ${{$r_bid['value']}} on {{$r_bid['date_string']}}. Since the parents will take their half, ${{$parent_pot}}, this means {{$l_bid['initials']}} and {{$r_bid['initials']}} will split the remaining <span style="color: #FF3D7F">${{$winner_pot}}</span>.</div>
                       </td>
                     </tr>
 @else
                     <tr>
                       <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
-                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">Sorry, {{$your_initials}}, but you did not win the baby pool. The winner was <span style="color:#ff3d7f">{{$left_bid['initials']}}</span>, with a bid of ${{$left_bid['value']}} on {{$left_bid['date_string']}}. Since the parents will take
-                          their half, ${{$parent_pot}}, this means {{$left_bid['initials']}} will take home the remaining ${{$winner_pot}}!</div>
+                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">Sorry, {{$your_initials}}, but you did not win the baby pool. The winner was <span style="color:#ff3d7f">{{$l_bid['initials']}}</span>, with a bid of ${{$l_bid['value']}} on {{$l_bid['date_string']}}. Since the parents will take
+                          their half, ${{$parent_pot}}, this means {{$l_bid['initials']}} will take home the remaining <span style="color: #FF3D7F">${{$winner_pot}}</span>.</div>
                       </td>
                     </tr>
 @endif
@@ -168,7 +168,7 @@
                     </tr>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
-                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">A huge thank you to all the participants. And congratulations to the proud parents.</div>
+                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:12pt;line-height:22px;text-align:left">A huge thank you to all the participants, and congratulations to the proud parents!</div>
                       </td>
                     </tr>
                     <tr>

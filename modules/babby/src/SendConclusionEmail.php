@@ -61,6 +61,9 @@ class SendConclusionEmail extends Command {
 
 		// $bids has the winning bid or bids, if split between two dates.
 
+		// edge cases:
+		// one person owns both closest dates
+
 		// prompt for date of baby
 		// Calculate winner
 		// email winner

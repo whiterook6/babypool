@@ -50,7 +50,7 @@ class SendConclusionEmail extends Command {
 
 		$max_date_diff = 30;
 		$current_date_diff = 0;
-		$bids = collect($this->get_highest_bid($date_of_birth_string));
+		$bids = collect([$this->get_highest_bid($date_of_birth_string)]);
 
 		while ($bids->isEmpty() && $current_date_diff < $max_date_diff){
 			$current_date_diff ++ ;

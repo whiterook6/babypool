@@ -15,17 +15,17 @@
 					</mj-text>
 	
 	@if ($sharing)
-	        <mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
-					  The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}.
-					  You will split the pool with ${{$right_bid['initials']}}, who bid ${{$right_bid['value']}} for {{$right_bid['date_string']}}.
-					  <span style="color: #FF3D7F">You will both take home ${{$winner_pot}}.</span>
-					  Congratulations!
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+						The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}.
+						You will split the pool with ${{$right_bid['initials']}}, who bid ${{$right_bid['value']}} for {{$right_bid['date_string']}}.
+						<span style="color: #FF3D7F">You will both take home ${{$winner_pot}}.</span>
+						Congratulations!
 					</mj-text>
 	@else
-		      <mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
-					  The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}.
-					  <span style="color: #FF3D7F">You will take home the remaining ${{$winner_pot}}.</span>
-					  Congratulations!
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+						The total pool size was ${{$total_pot}}. The parents will take their half, ${{$parent_pot}}.
+						<span style="color: #FF3D7F">You will take home the remaining ${{$winner_pot}}.</span>
+						Congratulations!
 					</mj-text>
 	@endif
 @elseif ($sharing)

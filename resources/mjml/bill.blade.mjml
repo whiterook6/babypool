@@ -54,6 +54,9 @@
 						View Your Bids and Make a Payment
 					</mj-button>
 
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="8pt">
+						Questions? You can reply to this email.
+					</mj-text>
 				</mj-column>
 			</mj-section>
 		</mj-container>

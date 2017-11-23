@@ -22,6 +22,11 @@ class Payment extends Model {
 		'user_id',
 	];
 
+	protected $dates = [
+		'created_at',
+		'updated_at',
+	];
+
 	protected $casts = [
 		'stripe_data' => 'array',
 	];

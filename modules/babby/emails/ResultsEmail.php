@@ -73,8 +73,6 @@ class ResultsEmail extends Mailable {
 			$data['winner_pot'] = number_format($this->total_pot / 4.0, 2);
 		}
 
-		\Log::info(json_encode($data));
-
 		return $this->view('emails.results')
 			->with($data);
 	}

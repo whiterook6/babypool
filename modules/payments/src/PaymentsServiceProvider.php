@@ -2,6 +2,7 @@
 
 namespace Babypool\Providers;
 
+use Babypool\SendBillEmail;
 use Babypool\PaymentController;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,5 +31,9 @@ class PaymentsServiceProvider extends ServiceProvider {
 		$this->app->singleton(PaymentController::class, function ($app) {
 			return new PaymentController;
 		});
+
+		$this->commands([
+			SendBillEmail::class,
+		]);
 	}
 }

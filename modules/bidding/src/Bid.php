@@ -16,6 +16,12 @@ class Bid extends Model {
 		'date',
 	];
 
+	protected $dates = [
+		'created_at',
+		'updated_at',
+		'date'
+	];
+
 	public function user(){
 		return $this->belongsTo(User::class);
 	}

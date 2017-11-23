@@ -1,0 +1,61 @@
+<mjml>
+	<mj-head>
+		<mj-font name="Source Sans Pro" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+	</mj-head>
+	<mj-body>
+		<mj-container>
+			<mj-section>
+				<mj-column>
+					<mj-text font-size="36pt" color="#FF3D7F" font-family="Source Sans Pro, Helvetica">Baby Pool</mj-text>
+					<mj-divider border-color="#FF3D7F"></mj-divider>
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt" color="#FF3D7F">
+						You owe money to the Baby Pool!
+					</mj-text>
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+						Your bids: $20
+					</mj-text>
+
+					<mj-table>
+						<tr style="border-bottom:1px solid #ecedee;text-align:left;padding:15px 0;">
+							<th style="width:50%; color:#FF3D7F">Bidding date</th>
+							<th style="width:50%; color:#FF3D7F">Amount</th>
+						</tr>
+						<tr>
+							<td style="width:50%;">November 16th</td>
+							<td style="width:50%;">$10</td>
+						</tr>
+					</mj-table>
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+						Your payments: $0
+					</mj-text>
+
+					<mj-table>
+						<tr style="border-bottom:1px solid #ecedee;text-align:left;padding:15px 0;">
+							<th style="width:50%; color:#FF3D7F">Payment Date</th>
+							<th style="width:50%; color:#FF3D7F">Amount</th>
+						</tr>
+						<tr>
+							<td style="width:50%;">November 16th</td>
+							<td style="width:50%;">$10</td>
+						</tr>
+						<tr>
+							<td style="width:50%;">None</td>
+						</tr>
+					</mj-table>
+
+					<mj-text font-family="Source Sans Pro, Helvetica" font-size="12pt">
+						You can pay online with the Babypool.
+					</mj-text>
+
+					<mj-button font-family="Source Sans Pro, Helvetica" href="{{$me_url}}" background-color="#FF3D7F" color="white">
+						View Your Bids and Make a Payment
+					</mj-button>
+
+				</mj-column>
+			</mj-section>
+		</mj-container>
+	</mj-body>
+</mjml>

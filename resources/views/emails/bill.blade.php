@@ -196,6 +196,11 @@
                           </tbody>
                         </table>
                       </td>
+                    <tr>
+                      <td style="word-wrap:break-word;font-size:0;padding:10px 25px" align="left">
+                        <div style="cursor:auto;color:#000;font-family:Source Sans Pro,Helvetica;font-size:8pt;line-height:22px;text-align:left">Questions? You can reply to this email.</div>
+                      </td>
+                    </tr>
                     </tr>
                   </tbody>
                 </table>
